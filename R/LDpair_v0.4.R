@@ -1,4 +1,6 @@
-# LDlinkR::LDpair
+# ldlinkR::ldpair
+
+# library(httr)
 
 # This function queries the LDlink > LDpair web tool using two RS numbers and a population(s) as input
 # and returns a data frame with the results.
@@ -9,7 +11,6 @@
 # arg5:  output, two output options available, "text" or "table", default = "table"
 # arg6:  optional character string naming a path and file
 
-library(httr)
 
 ########## Function for Output option "Table" ##############
 table_out <- function (data_out) {

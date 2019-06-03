@@ -1,9 +1,6 @@
-# LDlinkR::LDproxy
+# ldlinkr::ldproxy
 
-
-
-# Example
-# df_proxy <- LDproxy("rs456", "YRI", "r2", "faketoken123")
+# library(httr)
 
 # This function queries the LDlink > LDproxy web tool and returns a data frame with the results
 # arg1:  snp, an rsID or chromosome coordinate (e.g. "chr7:24966446"), one per query
@@ -12,7 +9,8 @@
 # arg4:  token, LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
 # arg5:  optional character string naming a path and file
 
-library(httr)
+# Example
+# df_proxy <- LDproxy("rs456", "YRI", "r2", "faketoken123")
 
 ############### LDhap function ###############
 LDproxy <- function(snp, pop="CEU", r2d="r2", token=NULL, file = FALSE) {

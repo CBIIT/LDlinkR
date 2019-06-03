@@ -1,4 +1,6 @@
-# LDlinkR::LDpop
+# ldlinkr::ldpop
+
+# library(httr)
 
 # This function queries the LDlink > LDpop web tool using two RS numbers, a population(s) as input
 # and returns a data.frame with the results.
@@ -11,8 +13,6 @@
 
 # Example
 # df_pop <- LDpop("rs3", "rs4", "YRI", "faketoken123")
-
-library(httr)
 
 ###### Primary Function #######
 LDpop <- function(var1, var2, pop = "CEU", r2d="r2", token=NULL, file = FALSE) {

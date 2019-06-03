@@ -1,4 +1,6 @@
-# LDlinkR::SNPchip
+# ldlinkr::snpchip
+
+# library(httr)
 
 # The primary function, snpchip queries the LDlink > SNPchip web tool and returns a data frame with the results
 # arg1:  between 1 - 5,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
@@ -6,9 +8,6 @@
 # arg3:  token, LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
 # arg5:  optional character string naming a path and file
 
-# Function, snp_array_codes, lists available SNP arrays and codes
-
-library(httr)
 
 ##### Function to count rows in data_out that have an rsID #####
 count_snps <- function(data_out) {

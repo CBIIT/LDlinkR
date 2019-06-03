@@ -1,4 +1,6 @@
-# LDlinkR::LDmatrix
+# ldlinkr::ldmatrix
+
+# library(httr)
 
 # This function queries the LDlink > LDmatrix web tool and returns a data frame with the results
 # arg1:  between 2 - 1,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
@@ -7,7 +9,6 @@
 # arg4:  token, LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
 # arg5:  optional character string naming a path and file
 
-library(httr)
 
 LDmatrix <- function(snps, pop="CEU", r2d="r2", token=NULL, file = FALSE) {
 

@@ -10,3 +10,5 @@ Description: Provides access to the LDlink (https://ldlink.nci.nih.gov/?tab=apia
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    httr
