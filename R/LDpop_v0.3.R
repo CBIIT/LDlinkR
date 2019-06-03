@@ -1,0 +1,157 @@
+# LDlinkR::LDpop
+
+# This function queries the LDlink > LDpop web tool using two RS numbers, a population(s) as input 
+# and returns a data.frame with the results.
+# arg1:  the first RS number or genomic coordinate (e.g. "chr7:24966446")
+# arg2:  the second RS number or genomic coordinate (e.g. "ch7:24966446")
+# arg3:  pop, a particular population(s), (e.g. YRI or CEU), multiple allowed, default=CEU
+# arg4:  r2d, either "r2" for LD R-squared or "d" for LD D-prime, default="r2"
+# arg5:  token, LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess 
+# arg6:  optional character string naming a path and file
+
+# Example
+# df_pop <- LDpop("rs3", "rs4", "YRI", "faketoken123")
+
+library(httr)
+
+###### Primary Function #######
+LDpop <- function(var1, var2, pop = "CEU", r2d="r2", token=NULL, file = FALSE) {
+
+LD_config <- list(ldpop_url="https://ldlink.nci.nih.gov/LDlinkRest/ldpop", 
+                    avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
+                                "MXL","PUR","CLM","PEL","CHB","JPT","CHS",
+                                "CDX","KHV","CEU","TSI","FIN","GBR","IBS",
+                                "GIH","PJL","BEB","STU","ITU",
+                                "ALL", "AFR", "AMR", "EAS", "EUR", "SAS"),
+                    avail_ld=c("r2", "d"))
+
+
+  url <- LD_config[["ldpop_url"]]
+  avail_pop <- LD_config[["avail_pop"]]
+  avail_ld <- LD_config[["avail_ld"]]
+  
+# ensure file option is a character string
+file <- as.character(file)
+  
+# Define regular expressions used to check arguments for valid input below
+  rsid_pattern <- "^rs\\d{1,}"
+     # Syntax               Description
+     # ^rs                  rsid starts with 'rs'
+     # \\d{1,}              followed by 1 or more digits
+  
+  chr_coord_pattern <- "(^chr)(\\d{1,2}|X|x|Y|y):(\\d{8,8})$"
+     # Syntax               Description
+     # (^chr)               chromosome coordinate starts with 'chr'
+     # (\\d{1,2}|X|x|Y|y)   followed by one or two digits, 'X', 'x', 'Y', 'y', to designate chromosome
+     # :                    followed by a colon
+     # (\\d{8,8})$          followed by 8 digits only to the end of string
+  
+  
+# Checking arguments for valid input
+  if(!(length(var1) == 1)) {
+    stop("Input one SNP for Variant 1 only.")
+  }
+  
+  if(!(length(var2) == 1)) {
+    stop("Input one SNP for Variant 2 only.")
+  }
+  
+  if(!((grepl(rsid_pattern, var1, ignore.case = TRUE)) | (grepl(chr_coord_pattern, var1, ignore.case = TRUE)))) {
+    stop(paste("Invalid query SNP format for Variant 1: ",var1,".", sep=""))
+  }
+
+  if(!((grepl(rsid_pattern, var2, ignore.case = TRUE)) | (grepl(chr_coord_pattern, var2, ignore.case = TRUE)))) {
+    stop(paste("Invalid query SNP format for Variant 2: ",var2,".", sep=""))
+  }
+  
+  if(!(all(pop %in% avail_pop))) {
+    stop("Not a valid population code.")
+  }
+  
+  if(!(r2d %in% avail_ld)) {
+    stop("Not a valid r2d.  Enter 'r2' or 'd'.")
+  }
+  
+  if(is.null(token)) {
+    stop("Enter valid access token. Please register using the LDlink API Access tab: https://ldlink.nci.nih.gov/?tab=apiaccess")
+  }
+
+# Request body
+# snps_to_upload <- paste(unlist(snps), collapse = "%0A")
+pop_to_upload <- paste(unlist(pop), collapse = "%2B")
+body <- list(paste("var1=", var1, sep=""),
+             paste("var2=", var2, sep=""),
+             paste("pop=", pop_to_upload, sep=""),
+             paste("r2_d=", r2d, sep=""),
+             paste("token=", token, sep=""))
+
+# URL query string
+url_str <- paste(url, "?", paste(unlist(body), collapse = "&"), sep="")
+
+# GET command, send request to the web server
+raw_out <- GET(url=url_str)
+stop_for_status(raw_out)
+# Parse response object from web server
+data_out <- read.delim(textConnection(content(raw_out, "text", encoding = "UTF-8")), header=T, as.is = T, sep="\t")
+
+# Rename LD D-prime column from D. to D'
+colnames(data_out)[colnames(data_out)=="D."] <- "D'"
+# edit chromosome coordinate, if needed
+names(data_out) <- sub(x = names(data_out), 
+                       pattern = "(?<=chr\\d|chr\\d\\d|chrX|chrY)\\.", 
+                       replacement = ":", 
+                       ignore.case = TRUE,
+                       perl = TRUE)
+# Convert any number of '.' and replace with '_'
+names(data_out) <- gsub(x = names(data_out),
+                      pattern = "(\\.)+",
+                      replacement = "_")
+
+# Check for error/warning in response data
+  if(grepl("error", data_out[nrow(data_out),1], ignore.case = TRUE)) {
+    stop(data_out[nrow(data_out),1])
+  }
+
+  if(grepl("warning", data_out[nrow(data_out),1], ignore.case = TRUE)) {
+    stop(data_out[nrow(data_out),1])
+  }
+
+# Evaluate 'file' option
+  if (file == FALSE) {
+    return(data_out)
+  } else if (is.character(file)) {
+    write.table(data_out, file = file, quote = F, row.names = F, sep = "\t")
+    cat(paste("\nFile saved to ",file,".", "\n\n", sep=""))
+    return(data_out)
+  }
+
+}
+############ End Primary Function ##################
+
+
+# Funtion call, good and bad examples
+# token="28da99809470"
+myfile <- "/Volumes/ifs/DCEG/Branches/LTG/Chanock/Tim/LDlinkR/SNPchipR/data_saved/text1.txt"
+
+LDpop(var1 = "rs3", var2 = "rs4", pop = "YRI", r2d = "r2", token = "28da99809470", myfile)                   # good, with save file option
+LDpop(var1 = "rs3", var2 = "rs4", pop = "YRI", r2d = "r2", token = "28da99809470", "text6.txt")              # good, with save file option
+
+LDpop(var1 = "rs3", var2 = "rs4", pop = "YRI", r2d = "r2", token = "28da99809470")                           # good
+LDpop(var1 = "Rs3", var2 = "rs4", pop = "YRI", r2d = "r2", token = "28da99809470")                           # good, upper case in var1 rsID
+LDpop(var1 = "rs3", var2 = "Rs4", pop = "YRI", r2d = "r2", token = "28da99809470")                           # good, upper case in var2 rsID
+LDpop(var1 = "s3", var2 = "Rs4", pop = "YRI", r2d = "r2", token = "28da99809470")                            # bad, invalid var2 rsID
+LDpop(var1 = "rs3", var2 = "R4", pop = "YRI", r2d = "r2", token = "28da99809470")                            # bad, invalid var2 rsID
+LDpop(var1 = "chr13:32446842", var2 = "chr13:32446842", pop = "YRI", r2d = "r2", token = "28da99809470")     # good, using chr coordinates
+LDpop(var1 = "rs3", var2 = "chr13:32446842", pop = "YRI", r2d = "r2", token = "28da99809470")                # good, using chr coordinates
+LDpop(var1 = "Chr13:32446842", var2 = "chr13:32446842", pop = "YRI", r2d = "r2", token = "28da99809470")     # good, upper case var1 chr coordinate
+LDpop(var1 = "Chr13:32446842", var2 = "CHR13:32446842", pop = "YRI", r2d = "r2", token = "28da99809470")     # good, upper case for var1 & var2
+LDpop(var1 = "ch13:32446842", var2 = "chr13:32446842", pop = "YRI", r2d = "r2", token = "28da99809470")      # bad, invalid var1 chr coordinate
+LDpop(var1 = "chr13:32446842", var2 = "cr13:32446842", pop = "YRI", r2d = "r2", token = "28da99809470")      # bad, invalid var2 chr coordinate
+LDpop(var1 = "rs0", var2 = "rs4", pop = "YRI", r2d = "r2", token = "28da99809470")                           # good, error for var1 is not in dbSNP 151
+LDpop(var1 = "rs3", var2 = "rs456", pop = "YRI", r2d = "r2", token = "28da99809470")                         # good, 
+pop_out <- LDpop(var1 = "rs3", var2 = "chr13:32446842", pop = "YRI", r2d = "r2", token = "28da99809470")     # good, using chr coordinates
+LDpop(var1 = "rs72630805", var2 = "rs189192078", pop = "YRI", r2d = "r2", token = "28da99809470")            # bad, rsID on chrX
+
+
+# writeLines(capture.output(sessionInfo()), "/Volumes/ifs/DCEG/Branches/LTG/Chanock/Tim/LDlinkR/LDpopR/sessionInfo/LDpopR_v0.1.1_sessionInfo.txt")
+
