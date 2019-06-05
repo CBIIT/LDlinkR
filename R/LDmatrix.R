@@ -81,7 +81,7 @@ url_str <- paste(url, "?", "&token=", token, sep="")
 raw_out <-  httr::POST(url=url_str, body=jsonbody, encode="json")
 httr::stop_for_status(raw_out)
 # Parse response object
-data_out <- read.delim(textConnection(content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t")
+data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t")
 
 # Check for error in response data
   if(grepl("error", data_out[2,1])) {
