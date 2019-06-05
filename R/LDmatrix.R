@@ -1,6 +1,4 @@
-# ldlinkr::ldmatrix
-
-# library(httr)
+# LDlinkR::LDmatrix
 
 # This function queries the LDlink > LDmatrix web tool and returns a data frame with the results
 # arg1:  between 2 - 1,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
@@ -80,7 +78,7 @@ jsonbody <- list(snps=snps_to_upload, pop=pop_to_upload, r2_d=r2d)
 url_str <- paste(url, "?", "&token=", token, sep="")
 
 # POST command
-raw_out <-  POST(url=url_str, body=jsonbody, encode="json")
+raw_out <-  httr::POST(url=url_str, body=jsonbody, encode="json")
 stop_for_status(raw_out)
 # Parse response object
 data_out <- read.delim(textConnection(content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t")
