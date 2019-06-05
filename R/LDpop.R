@@ -1,6 +1,4 @@
-# ldlinkr::ldpop
-
-# library(httr)
+# LDlinkR::LDpop
 
 # This function queries the LDlink > LDpop web tool using two RS numbers, a population(s) as input
 # and returns a data.frame with the results.
@@ -89,8 +87,8 @@ body <- list(paste("var1=", var1, sep=""),
 url_str <- paste(url, "?", paste(unlist(body), collapse = "&"), sep="")
 
 # GET command, send request to the web server
-raw_out <- GET(url=url_str)
-stop_for_status(raw_out)
+raw_out <- httr::GET(url=url_str)
+httr::stop_for_status(raw_out)
 # Parse response object from web server
 data_out <- read.delim(textConnection(content(raw_out, "text", encoding = "UTF-8")), header=T, as.is = T, sep="\t")
 
