@@ -79,7 +79,7 @@ url_str <- paste(url, "?", "&token=", token, sep="")
 
 # POST command
 raw_out <-  httr::POST(url=url_str, body=jsonbody, encode="json")
-stop_for_status(raw_out)
+httr::stop_for_status(raw_out)
 # Parse response object
 data_out <- read.delim(textConnection(content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t")
 
