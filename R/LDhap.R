@@ -120,7 +120,7 @@ url_str <- paste(url, "?", paste(unlist(body), collapse = "&"), sep="")
 raw_out <- httr::GET(url=url_str)
 httr::stop_for_status(raw_out)
 # Parse response object, raw_out
-data_out <- read.delim(textConnection(content(raw_out, "text", encoding = "UTF-8")), header=T, as.is = T, sep="\t")
+data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, as.is = T, sep="\t")
 
 # Check for error in response data
   if(grepl("error", data_out[2,1])) {
