@@ -1,6 +1,4 @@
-# ldlinkR::ldhap
-
-# library(httr)
+# LDlinkR::LDhap
 
 # This function queries the LDlink > LDhap web tool and returns a data frame with the results
 # arg1:  between 1 - 30 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
@@ -119,8 +117,8 @@ body <- list(paste("snps=", snps_to_upload, sep=""),
 url_str <- paste(url, "?", paste(unlist(body), collapse = "&"), sep="")
 
 # GET command, request to the web server
-raw_out <- GET(url=url_str)
-stop_for_status(raw_out)
+raw_out <- httr::GET(url=url_str)
+httr::stop_for_status(raw_out)
 # Parse response object, raw_out
 data_out <- read.delim(textConnection(content(raw_out, "text", encoding = "UTF-8")), header=T, as.is = T, sep="\t")
 
