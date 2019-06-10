@@ -1,7 +1,5 @@
 # LDlinkR::LDproxy
 
-# library(httr)
-
 # This function queries the LDlink > LDproxy web tool and returns a data frame with the results
 # arg1:  snp, an rsID or chromosome coordinate (e.g. "chr7:24966446"), one per query
 # arg2:  pop, a particular population, (e.g. YRI or CEU), multiple allowed, default=CEU
