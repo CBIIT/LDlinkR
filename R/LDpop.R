@@ -13,7 +13,7 @@
 #' @export
 #'
 #' @examples
-#' LDpop(var1 = "rs3", var2 = "rs4", pop = "YRI", r2d = "r2", token = "28da99809470")
+#' LDpop(var1 = "rs3", var2 = "rs4", pop = "YRI", r2d = "r2", token = "faketoken123")
 #'
 LDpop <- function(var1, var2, pop = "CEU", r2d="r2", token=NULL, file = FALSE) {
 

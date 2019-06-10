@@ -27,6 +27,6 @@ a data frame
 Query SNPclip API
 }
 \examples{
-SNPclip(c("rs3", "rs4", "rs148890987"), "YRI", "0.1", "0.01", "28da99809470")
+SNPclip(c("rs3", "rs4", "rs148890987"), "YRI", "0.1", "0.01", "faketoken123")
 
 }

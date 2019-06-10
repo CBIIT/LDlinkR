@@ -120,9 +120,9 @@ format_tbl <- function(out_raw) {
 #' @export
 #'
 #' @examples
-#' SNPchip(c("rs3", "rs4", "rs148890987"), "ALL", "28da99809470")
-#' SNPchip(c("rs3", "rs4", "rs148890987"), c("A_CHB2", "A_SNP5.0"), "28da99809470")
-#' SNPchip(c("rs3", "rs4", "rs148890987"), "ALL_Affy", "28da99809470")
+#' SNPchip(c("rs3", "rs4", "rs148890987"), "ALL", "faketoken123")
+#' SNPchip(c("rs3", "rs4", "rs148890987"), c("A_CHB2", "A_SNP5.0"), "faketoken123")
+#' SNPchip(c("rs3", "rs4", "rs148890987"), "ALL_Affy", "faketoken123")
 #'
 SNPchip <- function(snps, chip="ALL", token=NULL, file = FALSE) {
 

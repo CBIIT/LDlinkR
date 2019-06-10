@@ -55,8 +55,8 @@ if (grepl("warning", z[[22]][1], ignore.case = TRUE))  {
 #' @export
 #'
 #' @examples
-#' LDpair(var1 = "rs3", var2 = "rs4", pop = "YRI", token = "28da99809470")
-#' LDpair("rs3", "rs4", "YRI", "28da99809470", "text")
+#' LDpair(var1 = "rs3", var2 = "rs4", pop = "YRI", token = "faketoken123")
+#' LDpair("rs3", "rs4", "YRI", "faketoken123", "text")
 #'
 LDpair <- function(var1, var2, pop = "CEU", token=NULL, output = "table", file = FALSE) {
 

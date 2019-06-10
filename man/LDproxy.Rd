@@ -24,6 +24,6 @@ a data frame
 Query LDproxy API
 }
 \examples{
-df_proxy <- LDproxy("rs456", "YRI", "r2", "28da99809470")
+df_proxy <- LDproxy("rs456", "YRI", "r2", "faketoken123")
 
 }

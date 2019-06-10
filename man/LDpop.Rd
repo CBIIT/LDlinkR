@@ -27,6 +27,6 @@ a data frame
 Query LDpop API
 }
 \examples{
-LDpop(var1 = "rs3", var2 = "rs4", pop = "YRI", r2d = "r2", token = "28da99809470")
+LDpop(var1 = "rs3", var2 = "rs4", pop = "YRI", r2d = "r2", token = "faketoken123")
 
 }

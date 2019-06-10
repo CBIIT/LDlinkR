@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' LDmatrix(c("rs3", "rs4", "rs148890987"), "YRI", "r2", "28da99809470")
+#' LDmatrix(c("rs3", "rs4", "rs148890987"), "YRI", "r2", "faketoken123")
 #'
 LDmatrix <- function(snps, pop="CEU", r2d="r2", token=NULL, file = FALSE) {
 

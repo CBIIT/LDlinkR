@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' df_proxy <- LDproxy("rs456", "YRI", "r2", "28da99809470")
+#' df_proxy <- LDproxy("rs456", "YRI", "r2", "faketoken123")
 #'
 LDproxy <- function(snp, pop="CEU", r2d="r2", token=NULL, file = FALSE) {
 
