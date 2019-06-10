@@ -52,6 +52,22 @@ if (grepl("warning", z[[22]][1], ignore.case = TRUE))  {
 
 
 ###### Primary Function #######
+#' Query LDpair API
+#'
+#' @param var1 the first RS number or genomic coordinate (e.g. "chr7:24966446")
+#' @param var2 the second RS number or genomic coordinate (e.g. "ch7:24966446")
+#' @param pop a particular population(s), (e.g. YRI or CEU), multiple allowed, default=CEU
+#' @param token LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
+#' @param output two output options available, "text" or "table", default = "table"
+#' @param file optional character string naming a path and file
+#'
+#' @return text or data frame, dependning on the output option
+#' @export
+#'
+#' @examples
+#' LDpair(var1 = "rs3", var2 = "rs4", pop = "YRI", token = "28da99809470")
+#' LDpair("rs3", "rs4", "YRI", "28da99809470", "text")
+#'
 LDpair <- function(var1, var2, pop = "CEU", token=NULL, output = "table", file = FALSE) {
 
 LD_config <- list(ldpair_url="https://ldlink.nci.nih.gov/LDlinkRest/ldpair",

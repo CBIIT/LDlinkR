@@ -11,6 +11,20 @@
 # df_proxy <- LDproxy("rs456", "YRI", "r2", "faketoken123")
 
 ############### LDhap function ###############
+#' Query LDproxy API
+#'
+#' @param snp  an rsID or chromosome coordinate (e.g. "chr7:24966446"), one per query
+#' @param pop a particular population, (e.g. YRI or CEU), multiple allowed, default=CEU
+#' @param r2d r2d, either "r2" for LD R-squared or "d" for LD D-prime, default="r2"
+#' @param token token, LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
+#' @param file optional character string naming a path and file
+#'
+#' @return a data frame
+#' @export
+#'
+#' @examples
+#' df_proxy <- LDproxy("rs456", "YRI", "r2", "28da99809470")
+#'
 LDproxy <- function(snp, pop="CEU", r2d="r2", token=NULL, file = FALSE) {
 
 

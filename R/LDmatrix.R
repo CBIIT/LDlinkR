@@ -8,6 +8,20 @@
 # arg5:  optional character string naming a path and file
 
 
+#' Query LDmatrix API
+#'
+#' @param snps list of between 2 - 1,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
+#' @param pop pop, a particular population, (e.g. YRI or CEU), multiple allowed, default=CEU
+#' @param r2d r2d, either "r2" for LD R-squared or "d" for LD D-prime, default="r2"
+#' @param token token, LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
+#' @param file optional character string naming a path and file
+#'
+#' @return a data frame
+#' @export
+#'
+#' @examples
+#' LDmatrix(c("rs3", "rs4", "rs148890987"), "YRI", "r2", "28da99809470")
+#'
 LDmatrix <- function(snps, pop="CEU", r2d="r2", token=NULL, file = FALSE) {
 
 LD_config <- list(ldmatrix_url="https://ldlink.nci.nih.gov/LDlinkRest/ldmatrix",

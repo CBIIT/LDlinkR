@@ -116,7 +116,22 @@ format_tbl <- function(out_raw) {
 
 
 ############ Begin Primary Function ##################
-snpchip <- function(snps, chip="ALL", token=NULL, file = FALSE) {
+#' Query SNPchip API
+#'
+#' @param snps between 1 - 5,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
+#' @param chip chip or arrays, platform code(s) for a SNP chip array, ALL_Illumina, ALL_Affy or ALL, default=ALL
+#' @param token token, LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
+#' @param file optional character string naming a path and file
+#'
+#' @return a data frame
+#' @export
+#'
+#' @examples
+#' SNPchip(c("rs3", "rs4", "rs148890987"), "ALL", "28da99809470")
+#' SNPchip(c("rs3", "rs4", "rs148890987"), c("A_CHB2", "A_SNP5.0"), "28da99809470")
+#' SNPchip(c("rs3", "rs4", "rs148890987"), "ALL_Affy", "28da99809470")
+#'
+SNPchip <- function(snps, chip="ALL", token=NULL, file = FALSE) {
 
 LD_config <- list(snpchip_url_base="https://ldlink.nci.nih.gov/LDlinkRest/snpchip",
                   avail_chip=c("I_100","I_1M","I_1M-D","I_240S","I_300","I_300-D","I_550v1",

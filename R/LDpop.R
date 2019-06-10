@@ -13,6 +13,21 @@
 # df_pop <- LDpop("rs3", "rs4", "YRI", "faketoken123")
 
 ###### Primary Function #######
+#' Query LDpop API
+#'
+#' @param var1 the first RS number or genomic coordinate (e.g. "chr7:24966446")
+#' @param var2 the second RS number or genomic coordinate (e.g. "ch7:24966446")
+#' @param pop a particular population(s), (e.g. YRI or CEU), multiple allowed, default=CEU
+#' @param r2d either "r2" for LD R-squared or "d" for LD D-prime, default="r2"
+#' @param token LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
+#' @param file optional character string naming a path and file
+#'
+#' @return a data frame
+#' @export
+#'
+#' @examples
+#' LDpop(var1 = "rs3", var2 = "rs4", pop = "YRI", r2d = "r2", token = "28da99809470")
+#'
 LDpop <- function(var1, var2, pop = "CEU", r2d="r2", token=NULL, file = FALSE) {
 
 LD_config <- list(ldpop_url="https://ldlink.nci.nih.gov/LDlinkRest/ldpop",

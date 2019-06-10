@@ -9,7 +9,22 @@
 # arg6:  optional character string naming a path and file
 
 ##### Begin primary function #####
-snpclip <- function(snps, pop="CEU", r2_threshold="0.1", maf_threshold="0.01",  token=NULL, file = FALSE) {
+#' Query SNPclip API
+#'
+#' @param snps a list of between 1 - 5,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
+#' @param pop pop, a particular population, (e.g. YRI or CEU), multiple allowed, default=CEU
+#' @param r2_threshold LD R-squared threshold between 0-1, default = 0.1
+#' @param maf_threshold minor allele frequency threshold between 0-1, default = 0.01
+#' @param token LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
+#' @param file optional character string naming a path and file
+#'
+#' @return a data frame
+#' @export
+#'
+#' @examples
+#' SNPclip(c("rs3", "rs4", "rs148890987"), "YRI", "0.1", "0.01", "28da99809470")
+#'
+SNPclip <- function(snps, pop="CEU", r2_threshold="0.1", maf_threshold="0.01",  token=NULL, file = FALSE) {
 
 LD_config <- list(snpclip_url="https://ldlink.nci.nih.gov/LDlinkRest/snpclip",
                   avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
