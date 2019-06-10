@@ -1,14 +1,5 @@
 # LDlinkR::SNPclip
 
-# This function queries the LDlink > SNPclip web tool and returns a data frame with the results
-# arg1:  between 1 - 5,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
-# arg2:  pop, a particular population, (e.g. YRI or CEU), multiple allowed, default=CEU
-# arg3:  r2_threshold, LD R-squared threshold between 0-1, default = 0.1
-# arg4:  maf_threshold, minor allele frequency threshold between 0-1, default = 0.01
-# arg5:  token, LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
-# arg6:  optional character string naming a path and file
-
-##### Begin primary function #####
 #' Query SNPclip API
 #'
 #' @param snps a list of between 1 - 5,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")

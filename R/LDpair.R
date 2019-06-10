@@ -1,15 +1,5 @@
 # LDlinkR::LDpair
 
-# This function queries the LDlink > LDpair web tool using two RS numbers and a population(s) as input
-# and returns a data frame with the results.
-# arg1:  the first RS number or genomic coordinate (e.g. "chr7:24966446")
-# arg2:  the second RS number or genomic coordinate (e.g. "ch7:24966446")
-# arg3:  pop, a particular population(s), (e.g. YRI or CEU), multiple allowed, default=CEU
-# arg4:  token, LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
-# arg5:  output, two output options available, "text" or "table", default = "table"
-# arg6:  optional character string naming a path and file
-
-
 ########## Function for Output option "Table" ##############
 table_out <- function (data_out) {
 # Tidy up data_out

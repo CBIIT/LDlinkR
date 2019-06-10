@@ -1,13 +1,5 @@
 # LDlinkR::LDmatrix
 
-# This function queries the LDlink > LDmatrix web tool and returns a data frame with the results
-# arg1:  between 2 - 1,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
-# arg2:  pop, a particular population, (e.g. YRI or CEU), multiple allowed, default=CEU
-# arg3:  r2d, either "r2" for LD R-squared or "d" for LD D-prime, default="r2"
-# arg4:  token, LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
-# arg5:  optional character string naming a path and file
-
-
 #' Query LDmatrix API
 #'
 #' @param snps list of between 2 - 1,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")

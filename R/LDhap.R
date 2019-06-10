@@ -1,15 +1,5 @@
 # LDlinkR::LDhap
 
-# This function queries the LDlink > LDhap web tool and returns a data frame with the results
-# arg1:  between 1 - 30 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
-# arg2:  pop, a particular population, (e.g. YRI or CEU), multiple allowed, default=CEU
-# arg3:  token, LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
-# arg4:  optional character string naming a path and file
-
-# Example
-# df_hap <- LDhap(c("rs3", "rs4", "rs148890987"), "YRI", "28da99809470")
-
-
 ########### Secondary Function:  Called by primary function LDhap ##########
 df_merge <- function(data_out) {
 

@@ -1,18 +1,5 @@
 # LDlinkR::LDpop
 
-# This function queries the LDlink > LDpop web tool using two RS numbers, a population(s) as input
-# and returns a data.frame with the results.
-# arg1:  the first RS number or genomic coordinate (e.g. "chr7:24966446")
-# arg2:  the second RS number or genomic coordinate (e.g. "ch7:24966446")
-# arg3:  pop, a particular population(s), (e.g. YRI or CEU), multiple allowed, default=CEU
-# arg4:  r2d, either "r2" for LD R-squared or "d" for LD D-prime, default="r2"
-# arg5:  token, LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
-# arg6:  optional character string naming a path and file
-
-# Example
-# df_pop <- LDpop("rs3", "rs4", "YRI", "faketoken123")
-
-###### Primary Function #######
 #' Query LDpop API
 #'
 #' @param var1 the first RS number or genomic coordinate (e.g. "chr7:24966446")
