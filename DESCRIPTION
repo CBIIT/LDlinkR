@@ -2,10 +2,8 @@ Package: LDlinkR
 Type: Package
 Title: Access LDlink API with R
 Version: 0.0.0.9000
-Author@R: c(
-    person("Timothy", "A.", "Myers", role = c("aut", "cre"), email = "myersta@mail.nih.gov"),
-    person("Mitchell", "J.", "Machiela", role = c("aut", "cre"), email = "mitchell.machiela@nih.gov")
-    )
+Author:  Timothy A. Myers and Mitchel J. Machiela
+Maintainer:  Tim Myers <myersta@mail.nih.gov> and Mitch Machiela <mitchell.machiela@nih.gov>
 Description: Provides access to the LDlink API (https://ldlink.nci.nih.gov/?tab=apiaccess)
     using the R console.  This programmatic access facilitates researchers who are interested
     in performaing batch queries in 1000 Genomes Project data using LDlink.
