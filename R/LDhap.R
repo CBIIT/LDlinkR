@@ -44,15 +44,16 @@ df_merge <- function(data_out) {
 #' Query LDhap API
 #'
 #' @param snps list of between 1 - 30 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
-#' @param pop a particular population, (e.g. YRI or CEU), multiple allowed, default=CEU
-#' @param token LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
-#' @param file optional character string naming a path and file
+#' @param pop a particular population, (e.g. YRI or CEU), multiple allowed, default = "CEU"
+#' @param token LDlink provided user token, default = NULL, register for token at 'https://ldlink.nci.nih.gov/?tab=apiaccess'
+#' @param file Optional character string naming a path and file.  If file = FALSE, no file will be generated, default = FALSE
 #'
 #' @return a data frame
 #' @export
 #'
 #' @examples
 #' LDhap(c("rs3", "rs4", "rs148890987"), "CEU", "faketoken123")
+#' LDhap(c("rs4", "rs148890987"), c("YRI", "CEU"), "28da99809470")
 #'
 LDhap <- function(snps, pop="CEU", token=NULL, file = FALSE) {
 
