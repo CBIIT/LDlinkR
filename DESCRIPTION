@@ -1,7 +1,7 @@
 Package: LDlinkR
 Type: Package
 Title: Access LDlink API with R
-Version: 0.0.0.9000
+Version: 0.1.0
 Author:  Timothy A. Myers and Mitchel J. Machiela
 Maintainer:  Tim Myers <myersta@mail.nih.gov> and Mitch Machiela <mitchell.machiela@nih.gov>
 Description: Provides access to the LDlink API (https://ldlink.nci.nih.gov/?tab=apiaccess)
