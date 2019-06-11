@@ -6,8 +6,6 @@ Author@R: c(person("Timothy", "A.", "Myers", role = c("aut", "cre"),
                     email = "myersta@mail.nih.gov")
             person("Mitchel", "J.", "Machiela", role = c("aut", "cre"),
                     email = "mitchell.machiela@nih.gov"))
-Author: Timothy A. Myers and Mitchell J. Machiela 
-Maintainer: Tim Myers <myersta@mail.nih.gov>, Mitch Machiela <mitchell.machiela@nih.gov>
 Author:  Timothy A. Myers and Mitchel J. Machiela
 Maintainer:  Tim Myers <myersta@mail.nih.gov>, Mitch Machiela <mitchell.machiela@nih.gov>
 Description: Provides access to the LDlink API (https://ldlink.nci.nih.gov/?tab=apiaccess)
