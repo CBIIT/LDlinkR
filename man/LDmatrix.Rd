@@ -9,13 +9,13 @@ LDmatrix(snps, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
 \arguments{
 \item{snps}{list of between 2 - 1,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")}
 
-\item{pop}{pop, a particular population, (e.g. YRI or CEU), multiple allowed, default=CEU}
+\item{pop}{pop, a particular population, (e.g. YRI or CEU), multiple allowed, default = "CEU"}
 
-\item{r2d}{r2d, either "r2" for LD R-squared or "d" for LD D-prime, default="r2"}
+\item{r2d}{r2d, either "r2" for LD R^2^ or "d" for LD D', default="r2"}
 
-\item{token}{token, LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess}
+\item{token}{token, LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
 
-\item{file}{optional character string naming a path and file}
+\item{file}{Pptional character string naming a path and file.  If file = FALSE, no file will be generated, default = FALSE}
 }
 \value{
 a data frame
