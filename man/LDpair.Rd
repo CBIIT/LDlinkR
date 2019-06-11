@@ -12,13 +12,13 @@ LDpair(var1, var2, pop = "CEU", token = NULL, output = "table",
 
 \item{var2}{the second RS number or genomic coordinate (e.g. "ch7:24966446")}
 
-\item{pop}{a particular population(s), (e.g. YRI or CEU), multiple allowed, default=CEU}
+\item{pop}{a particular population(s), (e.g. YRI or CEU), multiple allowed, default = "CEU"}
 
-\item{token}{LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess}
+\item{token}{LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
 
 \item{output}{two output options available, "text" or "table", default = "table"}
 
-\item{file}{optional character string naming a path and file}
+\item{file}{Optional character string naming a path and file.  If file = FALSE, no file will be generated, default = FALSE.}
 }
 \value{
 text or data frame, dependning on the output option

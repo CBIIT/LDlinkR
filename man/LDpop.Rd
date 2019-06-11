@@ -12,13 +12,13 @@ LDpop(var1, var2, pop = "CEU", r2d = "r2", token = NULL,
 
 \item{var2}{the second RS number or genomic coordinate (e.g. "ch7:24966446")}
 
-\item{pop}{a particular population(s), (e.g. YRI or CEU), multiple allowed, default=CEU}
+\item{pop}{a particular population(s), (e.g. YRI or CEU), multiple allowed, default = "CEU"}
 
-\item{r2d}{either "r2" for LD R-squared or "d" for LD D-prime, default="r2"}
+\item{r2d}{either "r2" for LD R2 or "d" for LD D', default = "r2"}
 
-\item{token}{LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess}
+\item{token}{LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
 
-\item{file}{optional character string naming a path and file}
+\item{file}{Optional character string naming a path and file.  If file = FALSE, no file will be generated, default = FALSE.}
 }
 \value{
 a data frame

@@ -46,10 +46,10 @@ if (grepl("warning", z[[22]][1], ignore.case = TRUE))  {
 #'
 #' @param var1 the first RS number or genomic coordinate (e.g. "chr7:24966446")
 #' @param var2 the second RS number or genomic coordinate (e.g. "ch7:24966446")
-#' @param pop a particular population(s), (e.g. YRI or CEU), multiple allowed, default=CEU
-#' @param token LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
+#' @param pop a particular population(s), (e.g. YRI or CEU), multiple allowed, default = "CEU"
+#' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
 #' @param output two output options available, "text" or "table", default = "table"
-#' @param file optional character string naming a path and file
+#' @param file Optional character string naming a path and file.  If file = FALSE, no file will be generated, default = FALSE.
 #'
 #' @return text or data frame, dependning on the output option
 #' @export
