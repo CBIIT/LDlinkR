@@ -113,8 +113,8 @@ format_tbl <- function(out_raw) {
 #'
 #' @param snps between 1 - 5,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
 #' @param chip chip or arrays, platform code(s) for a SNP chip array, ALL_Illumina, ALL_Affy or ALL, default=ALL
-#' @param token token, LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
-#' @param file optional character string naming a path and file
+#' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
+#' @param file Optional character string naming a path and file.  If file = FALSE, no file will be generated, default = FALSE.
 #'
 #' @return a data frame
 #' @export

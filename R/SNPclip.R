@@ -3,11 +3,11 @@
 #' Query SNPclip API
 #'
 #' @param snps a list of between 1 - 5,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
-#' @param pop pop, a particular population, (e.g. YRI or CEU), multiple allowed, default=CEU
-#' @param r2_threshold LD R-squared threshold between 0-1, default = 0.1
+#' @param pop pop, a particular population, (e.g. YRI or CEU), multiple allowed, default = "CEU"
+#' @param r2_threshold LD R2 threshold between 0-1, default = 0.1
 #' @param maf_threshold minor allele frequency threshold between 0-1, default = 0.01
-#' @param token LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess
-#' @param file optional character string naming a path and file
+#' @param token LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
+#' @param file Optional character string naming a path and file.  If file = FALSE, no file will be generated, default = FALSE.
 #'
 #' @return a data frame
 #' @export

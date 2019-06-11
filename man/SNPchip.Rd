@@ -11,9 +11,9 @@ SNPchip(snps, chip = "ALL", token = NULL, file = FALSE)
 
 \item{chip}{chip or arrays, platform code(s) for a SNP chip array, ALL_Illumina, ALL_Affy or ALL, default=ALL}
 
-\item{token}{token, LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess}
+\item{token}{LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
 
-\item{file}{optional character string naming a path and file}
+\item{file}{Optional character string naming a path and file.  If file = FALSE, no file will be generated, default = FALSE.}
 }
 \value{
 a data frame

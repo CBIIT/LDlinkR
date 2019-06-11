@@ -10,15 +10,15 @@ SNPclip(snps, pop = "CEU", r2_threshold = "0.1",
 \arguments{
 \item{snps}{a list of between 1 - 5,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")}
 
-\item{pop}{pop, a particular population, (e.g. YRI or CEU), multiple allowed, default=CEU}
+\item{pop}{pop, a particular population, (e.g. YRI or CEU), multiple allowed, default = "CEU"}
 
-\item{r2_threshold}{LD R-squared threshold between 0-1, default = 0.1}
+\item{r2_threshold}{LD R2 threshold between 0-1, default = 0.1}
 
 \item{maf_threshold}{minor allele frequency threshold between 0-1, default = 0.01}
 
-\item{token}{LDlink provided user token, default = NULL, register for token at: https://ldlink.nci.nih.gov/?tab=apiaccess}
+\item{token}{LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
 
-\item{file}{optional character string naming a path and file}
+\item{file}{Optional character string naming a path and file.  If file = FALSE, no file will be generated, default = FALSE.}
 }
 \value{
 a data frame
