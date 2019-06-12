@@ -16,7 +16,7 @@ URL: https://ldlink.nci.nih.gov
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    httr
+    httr, utils
 Suggests: 
     testthat
 RoxygenNote: 6.1.1

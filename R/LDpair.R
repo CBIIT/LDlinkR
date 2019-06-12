@@ -53,6 +53,7 @@ if (grepl("warning", z[[22]][1], ignore.case = TRUE))  {
 #'
 #' @return text or data frame, dependning on the output option
 #' @importFrom httr GET content stop_for_status
+#' @importFrom utils capture.output read.delim write.table
 #' @export
 #'
 #' @examples

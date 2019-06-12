@@ -118,6 +118,7 @@ format_tbl <- function(out_raw) {
 #'
 #' @return a data frame
 #' @importFrom httr POST content stop_for_status
+#' @importFrom utils capture.output read.delim write.table
 #' @export
 #'
 #' @examples
