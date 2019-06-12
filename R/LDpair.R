@@ -52,6 +52,7 @@ if (grepl("warning", z[[22]][1], ignore.case = TRUE))  {
 #' @param file Optional character string naming a path and file.  If file = FALSE, no file will be generated, default = FALSE.
 #'
 #' @return text or data frame, dependning on the output option
+#' @importFrom httr GET content stop_for_status
 #' @export
 #'
 #' @examples

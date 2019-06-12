@@ -117,12 +117,13 @@ format_tbl <- function(out_raw) {
 #' @param file Optional character string naming a path and file.  If file = FALSE, no file will be generated, default = FALSE.
 #'
 #' @return a data frame
+#' @importFrom httr POST content stop_for_status
 #' @export
 #'
 #' @examples
 #' SNPchip(c("rs3", "rs4", "rs148890987"), "ALL", "faketoken123")
 #' SNPchip(c("rs3", "rs4", "rs148890987"), c("A_CHB2", "A_SNP5.0"), "faketoken123")
-#' SNPchip(c("rs3", "rs4", "rs148890987"), "ALL_Affy", "faketoken123")
+#' SNPchip("rs148890987", "ALL_Affy", "faketoken123")
 #'
 SNPchip <- function(snps, chip="ALL", token=NULL, file = FALSE) {
 

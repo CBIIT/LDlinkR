@@ -10,6 +10,7 @@
 #' @param file Optional character string naming a path and file.  If file = FALSE, no file will be generated, default = FALSE.
 #'
 #' @return a data frame
+#' @importFrom httr GET content stop_for_status
 #' @export
 #'
 #' @examples
