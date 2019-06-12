@@ -14,7 +14,7 @@
 #' @export
 #'
 #' @examples
-#' LDmatrix(c("rs3", "rs4", "rs148890987"), "YRI", "r2", "faketoken123")
+#' LDmatrix(c("rs3", "rs4", "rs148890987"), "YRI", "r2", token = Sys.getenv("LDLINK_TOKEN"))
 #'
 LDmatrix <- function(snps, pop="CEU", r2d="r2", token=NULL, file = FALSE) {
 

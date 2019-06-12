@@ -24,6 +24,6 @@ a data frame
 Query LDmatrix API
 }
 \examples{
-LDmatrix(c("rs3", "rs4", "rs148890987"), "YRI", "r2", "faketoken123")
+LDmatrix(c("rs3", "rs4", "rs148890987"), "YRI", "r2", token = Sys.getenv("LDLINK_TOKEN"))
 
 }

@@ -22,8 +22,8 @@ a data frame
 Query SNPchip API
 }
 \examples{
-SNPchip(c("rs3", "rs4", "rs148890987"), "ALL", "faketoken123")
-SNPchip(c("rs3", "rs4", "rs148890987"), c("A_CHB2", "A_SNP5.0"), "faketoken123")
-SNPchip("rs148890987", "ALL_Affy", "faketoken123")
+SNPchip(c("rs3", "rs4", "rs148890987"), "ALL", token = Sys.getenv("LDLINK_TOKEN"))
+SNPchip(c("rs3", "rs4", "rs148890987"), c("A_CHB2", "A_SNP5.0"), token = Sys.getenv("LDLINK_TOKEN"))
+SNPchip("rs148890987", "ALL_Affy", token = Sys.getenv("LDLINK_TOKEN"))
 
 }

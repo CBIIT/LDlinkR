@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-#' LDpop(var1 = "rs3", var2 = "rs4", pop = "YRI", r2d = "r2", token = "faketoken123")
+#' LDpop(var1 = "rs3", var2 = "rs4", pop = "YRI", r2d = "r2", token = Sys.getenv("LDLINK_TOKEN"))
 #'
 LDpop <- function(var1, var2, pop = "CEU", r2d="r2", token=NULL, file = FALSE) {
 

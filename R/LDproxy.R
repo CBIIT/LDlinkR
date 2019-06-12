@@ -14,7 +14,7 @@
 #' @export
 #'
 #' @examples
-#' LDproxy("rs456", "YRI", "r2", "faketoken123")
+#' LDproxy("rs456", "YRI", "r2", token = Sys.getenv("LDLINK_TOKEN"))
 #'
 LDproxy <- function(snp, pop="CEU", r2d="r2", token=NULL, file = FALSE) {
 

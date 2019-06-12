@@ -24,6 +24,6 @@ a data frame
 Query LDproxy API
 }
 \examples{
-LDproxy("rs456", "YRI", "r2", "faketoken123")
+LDproxy("rs456", "YRI", "r2", token = Sys.getenv("LDLINK_TOKEN"))
 
 }

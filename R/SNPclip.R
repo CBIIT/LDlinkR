@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-#' SNPclip(c("rs3", "rs4", "rs148890987"), "YRI", "0.1", "0.01", "faketoken123")
+#' SNPclip(c("rs3", "rs4", "rs148890987"), "YRI", "0.1", "0.01", token = Sys.getenv("LDLINK_TOKEN"))
 #'
 SNPclip <- function(snps, pop="CEU", r2_threshold="0.1", maf_threshold="0.01",  token=NULL, file = FALSE) {
 
