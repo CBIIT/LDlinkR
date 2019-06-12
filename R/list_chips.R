@@ -1,4 +1,4 @@
-#' list_chips
+#' List available SNP Chip Arrays
 #'
 #' @return a data frame listing the names and abbreviation codes for available SNP Chip Arrays from Illumina and Affymetrix
 #' @export

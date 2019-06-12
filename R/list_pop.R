@@ -1,6 +1,6 @@
-#' list_pop
+#' List available reference populations
 #'
-#' @return a data frame listing the available populations
+#' @return a data frame listing the available reference populations, continental (ex: European, African, and Admixed American) and sub-populations (ex: Finnish, Gambian, and Peruvian)
 #' @export
 #'
 #' @examples

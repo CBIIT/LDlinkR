@@ -2,15 +2,15 @@
 % Please edit documentation in R/list_pop.R
 \name{list_pop}
 \alias{list_pop}
-\title{list_pop}
+\title{List available reference populations}
 \usage{
 list_pop()
 }
 \value{
-a data frame listing the available populations
+a data frame listing the available reference populations, continental (ex: European, African, and Admixed American) and sub-populations (ex: Finnish, Gambian, and Peruvian)
 }
 \description{
-list_pop
+List available reference populations
 }
 \examples{
 list_pop()

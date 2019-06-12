@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_chips.R
 \name{list_chips}
 \alias{list_chips}
-\title{list_chips}
+\title{List available SNP Chip Arrays}
 \usage{
 list_chips()
 }
@@ -10,7 +10,7 @@ list_chips()
 a data frame listing the names and abbreviation codes for available SNP Chip Arrays from Illumina and Affymetrix
 }
 \description{
-list_chips
+List available SNP Chip Arrays
 }
 \examples{
 list_chips()
