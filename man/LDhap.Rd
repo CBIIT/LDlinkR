@@ -23,6 +23,6 @@ Query LDhap API
 }
 \examples{
 LDhap(c("rs3", "rs4", "rs148890987"), "CEU", "faketoken123")
-LDhap(c("rs4", "rs148890987"), c("YRI", "CEU"), "28da99809470")
+LDhap("rs148890987", c("YRI", "CEU"), "faketoken123")
 
 }

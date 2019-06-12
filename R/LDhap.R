@@ -53,7 +53,7 @@ df_merge <- function(data_out) {
 #'
 #' @examples
 #' LDhap(c("rs3", "rs4", "rs148890987"), "CEU", "faketoken123")
-#' LDhap(c("rs4", "rs148890987"), c("YRI", "CEU"), "28da99809470")
+#' LDhap("rs148890987", c("YRI", "CEU"), "faketoken123")
 #'
 LDhap <- function(snps, pop="CEU", token=NULL, file = FALSE) {
 
