@@ -11,7 +11,7 @@ This package provides programmatic access to the LDlink API using the R console.
 
 2) install.packages("devtools")
 
-3) devtools::install_github("timyers/ldlinkr")
+3) devtools::install_github("CBIIT/nci-R-dceg-linkage")
 
 ## Contributors
 
