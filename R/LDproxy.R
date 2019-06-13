@@ -90,7 +90,7 @@ data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = 
 
 # Check for error in response data
   if(grepl("error", data_out[2,1])) {
-    message(data_out[2,1],)
+    message(data_out[2,1])
   }
 
 # Evaluate 'file' option
