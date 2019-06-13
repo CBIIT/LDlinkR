@@ -6,9 +6,11 @@
 \alias{LDlinkR-package}
 \title{LDlinkR: Access LDlink API with R}
 \description{
+\if{html}{\figure{logo.png}{options: align='right'}}
+
 Provides access to the LDlink API (https://ldlink.nci.nih.gov/?tab=apiaccess)
     using the R console.  This programmatic access facilitates researchers who are interested
-    in performaing batch queries in 1000 Genomes Project data using LDlink.
+    in performing batch queries in 1000 Genomes Project data using LDlink.
 }
 \seealso{
 Useful links:
