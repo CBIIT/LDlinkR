@@ -46,11 +46,11 @@ list_pop <- function() {
                                          "British in England and Scotland",
                                          "Iberian population in Spain",
                                          "SOUTH ASIAN",
-                                         "Gujarati Indian from Houston, Texas",
+                                         "Gujarati Indian from Houston, Texas, USA",
                                          "Punjabi from Lahore, Pakistan",
                                          "Bengali from Bangladesh",
                                          "Sri Lankan Tamil from the UK",
-                                         "Indian Telugu from the UK ")
+                                         "Indian Telugu from the UK")
 
                              )
   return(avail_pop)
