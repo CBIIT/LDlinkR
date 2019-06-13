@@ -63,5 +63,6 @@ list_chips <- function() {
 
                              )
       avail_chips <- avail_chips[order(avail_chips$chip_name),]
+      row.names(avail_chips) <- 1:nrow(avail_chips)
    return(avail_chips)
 }
