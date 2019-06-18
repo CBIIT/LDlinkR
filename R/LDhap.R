@@ -54,8 +54,8 @@ df_merge <- function(data_out) {
 #' @export
 #'
 #' @examples
-#' LDhap(c("rs3", "rs4", "rs148890987"), "CEU", token = Sys.getenv("LDLINK_TOKEN"))
-#' LDhap("rs148890987", c("YRI", "CEU"), token = Sys.getenv("LDLINK_TOKEN"))
+#' \dontrun{LDhap(c("rs3", "rs4", "rs148890987"), "CEU", token = Sys.getenv("LDLINK_TOKEN"))}
+#' \dontrun{LDhap("rs148890987", c("YRI", "CEU"), token = Sys.getenv("LDLINK_TOKEN"))}
 #'
 LDhap <- function(snps, pop="CEU", token=NULL, file = FALSE) {
 

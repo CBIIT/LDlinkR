@@ -57,8 +57,8 @@ if (grepl("warning", z[[22]][1], ignore.case = TRUE))  {
 #' @export
 #'
 #' @examples
-#' LDpair(var1 = "rs3", var2 = "rs4", pop = "YRI", token = Sys.getenv("LDLINK_TOKEN"))
-#' LDpair("rs3", "rs4", "YRI", token = Sys.getenv("LDLINK_TOKEN"), "text")
+#' \dontrun{LDpair(var1 = "rs3", var2 = "rs4", pop = "YRI", token = Sys.getenv("LDLINK_TOKEN"))}
+#' \dontrun{LDpair("rs3", "rs4", "YRI", token = Sys.getenv("LDLINK_TOKEN"), "text")}
 #'
 LDpair <- function(var1, var2, pop = "CEU", token=NULL, output = "table", file = FALSE) {
 
