@@ -1,7 +1,7 @@
 Package: LDlinkR
 Type: Package
 Title: Access LDlink API with R
-Version: 0.1.0
+Version: 0.0.0.9000
 Author@R: c(person("Timothy", "A.", "Myers", role = c("aut", "cre"), 
                     email = "myersta@mail.nih.gov")
             person("Mitchel", "J.", "Machiela", role = c("aut", "cre"),
