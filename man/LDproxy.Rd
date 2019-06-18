@@ -11,7 +11,7 @@ LDproxy(snp, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
 
 \item{pop}{a particular population, (e.g. YRI or CEU), multiple allowed, default = "CEU"}
 
-\item{r2d}{r2d, either "r2" for LD R2 or "d" for LD D', default = "r2"}
+\item{r2d}{either "r2" for LD R2 or "d" for LD D', default = "r2"}
 
 \item{token}{LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
 

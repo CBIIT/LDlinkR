@@ -5,7 +5,7 @@ test_that("ldproxy throws an error for bad query variant", {
 })
 
 test_that("ldproxy throws an error for bad token", {
-  expect_error(LDproxy("chr7:24966446", "YRI", token = "faketoken"))
+  expect_condition(LDproxy("chr7:24966446", "YRI", token = "faketoken"))
 })
 
 test_that("ldproxy works", {
