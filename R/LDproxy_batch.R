@@ -14,7 +14,7 @@
 #' @export
 #'
 #' @examples
-#' snps_to_upload <- data.frame(c("rs3", "rs4", "rs148890987"))
+#' snps_to_upload <- data.frame(c("rs3", "rs4"))
 #' LDproxy_batch(snp = snps_to_upload, token = Sys.getenv("LDLINK_TOKEN"), append = FALSE)
 #'
 LDproxy_batch <- function(snp, pop="CEU", r2d="r2", token=NULL, append = FALSE) {

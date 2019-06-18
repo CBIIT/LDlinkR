@@ -25,7 +25,7 @@ text file(s) are saved to the current working directory.
 Query LDproxy API using a list of query variants, one per line.
 }
 \examples{
-snps_to_upload <- data.frame(c("rs3", "rs4", "rs148890987"))
-LDproxy_batch(snp = snps_to_upload, token = "28da99809470", append = FALSE)
+snps_to_upload <- data.frame(c("rs3", "rs4"))
+LDproxy_batch(snp = snps_to_upload, token = Sys.getenv("LDLINK_TOKEN"), append = FALSE)
 
 }
