@@ -27,6 +27,9 @@ a data frame
 Query LDpop API
 }
 \examples{
-LDpop(var1 = "rs3", var2 = "rs4", pop = "YRI", r2d = "r2", token = Sys.getenv("LDLINK_TOKEN"))
+\dontrun{LDpop(var1 = "rs3", var2 = "rs4",
+               pop = "YRI", r2d = "r2",
+               token = Sys.getenv("LDLINK_TOKEN"))
+             }
 
 }

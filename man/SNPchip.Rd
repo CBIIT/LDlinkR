@@ -22,8 +22,13 @@ a data frame
 Query SNPchip API
 }
 \examples{
-SNPchip(c("rs3", "rs4", "rs148890987"), "ALL", token = Sys.getenv("LDLINK_TOKEN"))
-SNPchip(c("rs3", "rs4", "rs148890987"), c("A_CHB2", "A_SNP5.0"), token = Sys.getenv("LDLINK_TOKEN"))
-SNPchip("rs148890987", "ALL_Affy", token = Sys.getenv("LDLINK_TOKEN"))
+\dontrun{SNPchip(c("rs3", "rs4", "rs148890987"), "ALL",
+                 token = Sys.getenv("LDLINK_TOKEN"))
+               }
+\dontrun{SNPchip(c("rs3", "rs4", "rs148890987"),
+                 c("A_CHB2", "A_SNP5.0"),
+                 token = Sys.getenv("LDLINK_TOKEN"))
+                 }
+\dontrun{SNPchip("rs148890987", "ALL_Affy", token = Sys.getenv("LDLINK_TOKEN"))}
 
 }
