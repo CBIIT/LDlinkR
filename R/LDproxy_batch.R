@@ -3,7 +3,7 @@
 
 #' Query LDproxy API using a list of query variants, one per line.
 #'
-#' @param snp a data frame listing rsID's or chromosome coordinates (e.g. "chr7:24966446"), one per line
+#' @param snp a character string or data frame listing rsID's or chromosome coordinates (e.g. "chr7:24966446"), one per line
 #' @param pop a particular population, (e.g. YRI or CEU), multiple allowed, default = "CEU"
 #' @param r2d either "r2" for LD R2 or "d" for LD D', default = "r2"
 #' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
@@ -14,10 +14,12 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{snps_to_upload <- data.frame(c("rs3", "rs4"))}
+#' \dontrun{snps_to_upload <- c("rs3", "rs4")}
 #' \dontrun{LDproxy_batch(snp = snps_to_upload, token = Sys.getenv("LDLINK_TOKEN"), append = FALSE)}
 #'
 LDproxy_batch <- function(snp, pop="CEU", r2d="r2", token=NULL, append = FALSE) {
+
+  snp <- as.data.frame(snp)
 
   if(append == FALSE) {
     for (i in 1:nrow(snp)) {
@@ -45,7 +47,6 @@ LDproxy_batch <- function(snp, pop="CEU", r2d="r2", token=NULL, append = FALSE) 
     }
 
   }
-
 
 }
 ############################## End Function ##############################

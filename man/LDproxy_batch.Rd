@@ -8,7 +8,7 @@ LDproxy_batch(snp, pop = "CEU", r2d = "r2", token = NULL,
   append = FALSE)
 }
 \arguments{
-\item{snp}{a data frame listing rsID's or chromosome coordinates (e.g. "chr7:24966446"), one per line}
+\item{snp}{a character string or data frame listing rsID's or chromosome coordinates (e.g. "chr7:24966446"), one per line}
 
 \item{pop}{a particular population, (e.g. YRI or CEU), multiple allowed, default = "CEU"}
 
@@ -25,7 +25,7 @@ text file(s) are saved to the current working directory.
 Query LDproxy API using a list of query variants, one per line.
 }
 \examples{
-\dontrun{snps_to_upload <- data.frame(c("rs3", "rs4"))}
+\dontrun{snps_to_upload <- c("rs3", "rs4")}
 \dontrun{LDproxy_batch(snp = snps_to_upload, token = Sys.getenv("LDLINK_TOKEN"), append = FALSE)}
 
 }
