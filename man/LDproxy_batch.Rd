@@ -10,7 +10,7 @@ LDproxy_batch(snp, pop = "CEU", r2d = "r2", token = NULL,
 \arguments{
 \item{snp}{a character string or data frame listing rsID's or chromosome coordinates (e.g. "chr7:24966446"), one per line}
 
-\item{pop}{a particular population, (e.g. YRI or CEU), multiple allowed, default = "CEU"}
+\item{pop}{a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"}
 
 \item{r2d}{either "r2" for LD R2 or "d" for LD D', default = "r2"}
 

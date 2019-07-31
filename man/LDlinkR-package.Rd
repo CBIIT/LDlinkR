@@ -15,7 +15,16 @@ Provides access to the LDlink API (https://ldlink.nci.nih.gov/?tab=apiaccess)
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://ldlink.nci.nih.gov}
+  \item \url{<https://ldlink.nci.nih.gov>}
+}
+
+}
+\author{
+\strong{Maintainer}: Timothy A. Myers \email{myersta@mail.nih.gov}
+
+Authors:
+\itemize{
+  \item Mitchell J. Machiela \email{mitchell.machiela@nih.gov}
 }
 
 }

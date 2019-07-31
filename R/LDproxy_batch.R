@@ -4,7 +4,7 @@
 #' Query LDproxy API using a list of query variants, one per line.
 #'
 #' @param snp a character string or data frame listing rsID's or chromosome coordinates (e.g. "chr7:24966446"), one per line
-#' @param pop a particular population, (e.g. YRI or CEU), multiple allowed, default = "CEU"
+#' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"
 #' @param r2d either "r2" for LD R2 or "d" for LD D', default = "r2"
 #' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
 #' @param append logical. If TRUE, output for each query variant is appended to a text file. If FALSE, output of each query variant is saved in its own text file.

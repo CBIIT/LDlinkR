@@ -12,13 +12,13 @@ LDpair(var1, var2, pop = "CEU", token = NULL, output = "table",
 
 \item{var2}{the second RS number or genomic coordinate (e.g. "ch7:24966446")}
 
-\item{pop}{a particular population(s), (e.g. YRI or CEU), multiple allowed, default = "CEU"}
+\item{pop}{a 1000 Genomes Project population(s), (e.g. YRI or CEU), multiple allowed, default = "CEU"}
 
 \item{token}{LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
 
-\item{output}{two output options available, "text" or "table", default = "table"}
+\item{output}{two output options available, "text", which displays a two-by-two matrix displaying haplotype counts and allele frequencies along with other statistics, or "table", which displays the same data in rows and columns, default = "table"}
 
-\item{file}{Optional character string naming a path and file.  If file = FALSE, no file will be generated, default = FALSE.}
+\item{file}{Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.}
 }
 \value{
 text or data frame, dependning on the output option
