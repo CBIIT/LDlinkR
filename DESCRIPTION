@@ -12,11 +12,11 @@ Authors@R:
              role = "aut",
              email = "mitchell.machiela@nih.gov"))
 Maintainer: Timothy A. Myers <myersta@mail.nih.gov>
-Description: Provides access to the LDlink API (https://ldlink.nci.nih.gov/?tab=apiaccess)
+Description: Provides access to the LDlink API (<https://ldlink.nci.nih.gov/?tab=apiaccess>)
     using the R console.  This programmatic access facilitates researchers who are interested
     in performing batch queries in 1000 Genomes Project data using LDlink.
 License: GPL (>= 2)
-URL: <https://ldlink.nci.nih.gov>
+URL: https://ldlink.nci.nih.gov
 Encoding: UTF-8
 LazyData: true
 Imports: 

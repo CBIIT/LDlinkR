@@ -21,7 +21,7 @@ SNPclip(snps, pop = "CEU", r2_threshold = "0.1",
 \item{file}{Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.}
 }
 \value{
-The output table provides details including query varaint RS number, genomic position, alleles, and details about whether the variant was kept or removed.
+a data frame
 }
 \description{
 Query SNPclip API

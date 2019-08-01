@@ -8,14 +8,14 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right'}}
 
-Provides access to the LDlink API (https://ldlink.nci.nih.gov/?tab=apiaccess)
+Provides access to the LDlink API (<https://ldlink.nci.nih.gov/?tab=apiaccess>)
     using the R console.  This programmatic access facilitates researchers who are interested
     in performing batch queries in 1000 Genomes Project data using LDlink.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{<https://ldlink.nci.nih.gov>}
+  \item \url{https://ldlink.nci.nih.gov}
 }
 
 }
