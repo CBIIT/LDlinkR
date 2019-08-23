@@ -164,12 +164,12 @@ avail_chip <- LD_config[["avail_chip"]]
   # ^rs                  rsid starts with 'rs'
   # \\d{1,}              followed by 1 or more digits
 
-  chr_coord_pattern <- "(^chr)(\\d{1,2}|X|x|Y|y):(\\d{8,8})$"
+  chr_coord_pattern <- "(^chr)(\\d{1,2}|X|x|Y|y):(\\d{1,9})$"
   # Syntax               Description
   # (^chr)               chromosome coordinate starts with 'chr'
   # (\\d{1,2}|X|x|Y|y)   followed by one or two digits, 'X', 'x', 'Y', 'y', to designate chromosome
   # :                    followed by a colon
-  # (\\d{8,8})$          followed by 8 digits only to the end of string
+  # (\\d{1,9})$          followed by 1 to 9 digits only to the end of string
 
 
 # Checking arguments for valid input
