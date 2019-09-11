@@ -1,3 +1,4 @@
+[![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ldlinkr?color=blue)](https://CRAN.R-project.org/package=ldlinkr)
 # LDlinkR - Access the LDlink webtool API with R
 ## Repo for the R package LDlinkR
 # LDlinkR <img src="man/figures/logo.png" align="right" height=140/>
