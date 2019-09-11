@@ -1,4 +1,4 @@
-| [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ldlinkr?color=blue)](https://CRAN.R-project.org/package=ldlinkr)
+[![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
 # LDlinkR - Access the LDlink webtool API with R
 ## Repo for the R package LDlinkR
 # LDlinkR <img src="man/figures/logo.png" align="right" height=140/>
