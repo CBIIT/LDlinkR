@@ -1,5 +1,5 @@
 
-# LDlinkR - Access the LDlink webtool API with R
+# LDlinkR - An R Package for Calculating Linkage Disequilibrium
 ## Repo for the R package LDlinkR
 # LDlinkR <img src="man/figures/logo.png" align="right" height=140/>
 ## LDlink webtool is at https://ldlink.nci.nih.gov/
