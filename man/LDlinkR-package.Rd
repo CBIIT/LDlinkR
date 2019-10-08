@@ -4,7 +4,7 @@
 \name{LDlinkR-package}
 \alias{LDlinkR}
 \alias{LDlinkR-package}
-\title{LDlinkR: Access LDlink API with R}
+\title{LDlinkR: An R Package for Calculating Linkage Disequilibrium}
 \description{
 \if{html}{\figure{logo.png}{options: align='right'}}
 
@@ -24,6 +24,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Stephen J. Chanock \email{chanocks@mail.nih.gov}
   \item Mitchell J. Machiela \email{mitchell.machiela@nih.gov}
 }
 
