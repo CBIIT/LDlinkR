@@ -1,11 +1,10 @@
 ---
-title: 'LDlinkR: an R package for rapid query of LDlink web-based linkage disequilibrium
-  applications'
+title: 'LDlinkR: an R package for rapidly calculating linkage disequilibrium statistics'
 author: "Timothy A. Myers, Stephen J. Chanock and Mitchell J. Machiela"
 date: "30 Jul 2019"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{LDlinkR: an R package for rapid query of LDlink web-based linkage disequilibrium applications}
+  %\VignetteIndexEntry{LDlinkR: an R package for rapidly calculating linkage disequilibrium statistics}
   %\VignetteEngine{knitr::rmarkdown}
   \usagepackage[utf8]{inputenc}
 ---
