@@ -89,20 +89,37 @@ Calculates population specific haplotype frequencies of all haplotypes observed 
 - `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
 
 #### Usage: Multiple query variants, single population
-```{r}
+```{r eval=FALSE}
 LDhap(snps = c("rs3", "rs4", "rs148890987"), 
       pop = "CEU", 
       token = Sys.getenv("LDLINK_TOKEN")
      )
 ```
+
+```
+##   rs148890987 rs3 rs4 Count Frequency
+## 1           C   C   A   176    0.8889
+## 2           T   T   G    11    0.0556
+## 3           T   C   A     7    0.0354
+## 4           C   T   G     4    0.0202
+```
+
 <br>
 
 #### Usage: Multiple query variants, multiple populations
-```{r}
+```{r eval=FALSE}
 LDhap(snps = c("rs3", "rs4", "rs148890987"),
       pop = c("YRI", "CEU"),
       token = Sys.getenv("LDLINK_TOKEN")
      )
+```
+
+```
+##   rs148890987 rs3 rs4 Count Frequency
+## 1           C   C   A   355    0.8575
+## 2           C   T   G    41     0.099
+## 3           T   T   G    11    0.0266
+## 4           T   C   A     7    0.0169
 ```
 
 Output is a table of alleles, haplotype count and haplotype frequencies. 
@@ -125,20 +142,60 @@ Generates a data frame of pairwise linkage disequilibirum statistics. Input is a
 - `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
 
 #### Usage: Multiple query variants, single population, R^2^
-```{r}
+```{r eval=FALSE}
 LDmatrix(snps = c("rs496202", "rs11147477", "rs201578600"), 
          pop = "YRI", r2d = "r2", 
          token = Sys.getenv("LDLINK_TOKEN")
         )
 ```
+
+```
+##     RS_number rs496202 rs201578600 rs11147477
+## 1    rs496202    1.000       0.660      0.504
+## 2 rs201578600    0.660       1.000      0.786
+## 3  rs11147477    0.504       0.786      1.000
+```
+
 <br>
 
 #### Usage: Multiple query variants (rsID & genomic coordinates), multiple populations, D'
-```{r}
+```{r eval=FALSE}
 LDmatrix(snps = c("chr13:32444611", "rs11147477", "rs201578600"), 
          pop = c("YRI", "CEU"), r2d = "d", 
          token = Sys.getenv("LDLINK_TOKEN")
         )
+```
+
+```
+##     RS_number rs496202 rs201578600 rs11147477
+## 1    rs496202    1.000       0.973      0.738
+## 2 rs201578600    0.973       1.000      0.971
+## 3  rs11147477    0.738       0.971      1.000
+```
+
+<br>
+
+#### Usage: Multiple query variants read from text file, multiple populations, D'
+```{r}
+my_variants <- read.table("variant_list.txt")
+my_variants
+```
+Then, call *LDmatrix* with:
+```{r eval=FALSE}
+LDmatrix(snps = my_variants[,1], 
+         pop = c("YRI", "CEU"), r2d = "d", 
+         token = Sys.getenv("LDLINK_TOKEN")
+        )
+```
+
+```
+##    RS_number rs60676332 rs7805287 rs127 rs456 rs10239961 rs114
+## 1 rs60676332      1.000     0.094 0.180 0.151      0.363 0.148
+## 2  rs7805287      0.094     1.000 0.818 0.789      0.464 0.710
+## 3      rs127      0.180     0.818 1.000 0.929      0.912 0.886
+## 4      rs456      0.151     0.789 0.929 1.000      1.000 0.963
+## 5 rs10239961      0.363     0.464 0.912 1.000      1.000 0.459
+## 6      rs114      0.148     0.710 0.886 0.963      0.459 1.000
 ```
 
 Output is a table with rows and columns equal to the number of query variants and pairwise linkage disequilibrium statistics.
@@ -162,7 +219,7 @@ Investigates potentially correlated alleles for a pair of variants.  Input is tw
 - `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
 
 #### Usage: With `output` argument set to "text"
-```{r}
+```{r eval=FALSE}
 LDpair(var1 = "rs496202", 
        var2 = "rs11147477", 
        pop = "YRI", 
@@ -170,16 +227,59 @@ LDpair(var1 = "rs496202",
        output = "text"
       )
 ```
+
+```
+## Query SNPs:
+## rs496202 (chr13:32444611)
+## rs11147477 (chr13:32509120)
+## 
+## YRI Haplotypes:
+##                rs11147477
+##                C       T
+##              -----------------
+##            C | 11    | 26    | 37    (0.171)
+## rs496202     -----------------
+##            G | 173   | 6     | 179   (0.829)
+##              -----------------
+##                184     32      216
+##               (0.852) (0.148)
+## 
+##           G_C: 173 (0.801)
+##           C_T: 26 (0.12)
+##           C_C: 11 (0.051)
+##           G_T: 6 (0.028)
+## 
+##           D': 0.7737
+##           R2: 0.5037
+##       Chi-sq: 108.8005
+##      p-value: <0.0001
+## 
+## rs496202(C) allele is correlated with rs11147477(T) allele
+## rs496202(G) allele is correlated with rs11147477(C) allele
+```
+
 <br>
 
 #### Usage: With no `output` argument option specified, using default "table"
-```{r}
+```{r eval=FALSE}
 LDpair(var1 = "rs496202", 
        var2 = "rs11147477", 
        pop = "YRI", 
        token = Sys.getenv("LDLINK_TOKEN")
       )
 ```
+
+```
+##       var1       var2 pops       var1_pos       var2_pos var1_a1 var1_a2
+## 1 rs496202 rs11147477  YRI chr13:32444611 chr13:32509120       C       G
+##   var1_a1_freq var1_a2_freq var2_a1 var2_a2 var2_a1_freq var2_a2_freq
+## 1        0.171        0.829       C       T        0.852        0.148
+##   d_prime     r2    chisq p_val
+## 1  0.7737 0.5037 108.8005 1e-04
+##                                           corr_alleles
+## 1 rs496202(C)-rs11147477(T), rs496202(G)-rs11147477(C)
+```
+
 Output of the `output` argument "text" option is a two-by-two contingency table displaying haplotype counts and allele frequencies of the two query variants. Also displayed are calculated metrics of linkage disequilibrium including: D prime (D'), R square (R^2^), and goodness-of-fit (Chi-square and p-value). Goodness-of-fit tests for deviations of expected haplotype frequencies based on allele frequencies. Correlated alleles are reported if linkage disequilibrium is present (R^2^ > 0.1). If linkage equilibrium, no alleles are reported. 
 
 Output from the `output` argument "table" option converts the data from the two-by-two contingency table into a data frame.
@@ -203,13 +303,18 @@ Investigates allele frequencies and linkage disequilibrium patterns across 1000G
 - `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
 
 #### Usage
-```{r}
+```{r eval=FALSE}
 LDpop(var1 = "rs496202", 
       var2 = "rs11147477", 
       pop = "YRI", 
       r2d = "r2", 
       token = Sys.getenv("LDLINK_TOKEN")
      )
+```
+
+```
+##   Population   N rs496202_Allele_Freq rs11147477_Allele_Freq     R2     D'
+## 1        YRI 108 G: 82.87%, C: 17.13%   C: 85.19%, T: 14.81% 0.5037 0.7737
 ```
 
 ***
@@ -230,7 +335,7 @@ Explore proxy and putatively functional variants for a single query variant. Inp
 - `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
 
 #### Usage: single reference population
-```{r}
+```{r eval=FALSE}
 my_proxies <- LDproxy(snp = "rs456", 
                       pop = "YRI", 
                       r2d = "r2", 
@@ -239,9 +344,27 @@ my_proxies <- LDproxy(snp = "rs456",
 ```
 
 Output is a data frame stored in the variable `my_proxies` with 2455 rows and 10 columns with data. 
-```{r}
+```{r eval=FALSE}
 head(my_proxies)
 ```
+
+```
+##    RS_Number         Coord Alleles    MAF Distance Dprime     R2
+## 1      rs456 chr7:24962419   (G/C) 0.1944        0      1 1.0000
+## 2      rs457 chr7:24962426   (T/C) 0.1944        7      1 1.0000
+## 3 rs28475742 chr7:24964633   (G/T) 0.1944     2214      1 1.0000
+## 4      rs123 chr7:24966446   (C/A) 0.1944     4027      1 1.0000
+## 5      rs125 chr7:24959703   (C/T) 0.2037    -2716      1 0.9436
+## 6      rs128 chr7:24958977   (C/T) 0.2037    -3442      1 0.9436
+##   Correlated_Alleles RegulomeDB Function
+## 1            G=G,C=C          5     <NA>
+## 2            G=T,C=C          5     <NA>
+## 3            G=G,C=T          4     <NA>
+## 4            G=C,C=A         1f     <NA>
+## 5            G=C,C=T          5     <NA>
+## 6            G=C,C=T          7     <NA>
+```
+
 Includes information on all variants -/+ 500 Kb of the query variant with a pairwise R^2^ value greater than 0.01.
 
 ***
@@ -298,32 +421,67 @@ Used to find commercial genotyping chip arrays for variants.  Input is a list of
 - `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
 
 #### Usage: Multiple variants, search "ALL" available chip arrays
-```{r}
+```{r eval=FALSE}
 SNPchip(snps = c("rs3", "rs4", "rs148890987"), 
         chip = "ALL", 
         token = Sys.getenv("LDLINK_TOKEN")
        )
 ```
 
+```
+## WARNING: The following RS number did not have any platforms found: rs148890987, rs3.
+```
+
+```
+##     RS_Number Position_GRCh37 A_SNP5.0 A_CHB2 A_250S A_SNP6.0
+## 1 rs148890987  chr13:32403784        0      0      0        0
+## 2         rs3  chr13:32446842        0      0      0        0
+## 3         rs4  chr13:32447222        1      1      1        1
+```
+
 <br>
 
 #### Usage: Multiple variants, search two Affymetrix arrays
-```{r}
+```{r eval=FALSE}
 SNPchip(snps = c("rs3", "rs4", "rs148890987"), 
         chip = c("A_SNP5.0", "A_CHB2"), 
         token = Sys.getenv("LDLINK_TOKEN")
        )
 ```
 
+```
+## WARNING: The following RS number did not have any platforms found: rs148890987, rs3.
+```
+
+```
+##     RS_Number Position_GRCh37 A_SNP5.0 A_CHB2
+## 1 rs148890987  chr13:32403784        0      0
+## 2         rs3  chr13:32446842        0      0
+## 3         rs4  chr13:32447222        1      1
+```
+
+
 <br>
 
 #### Usage: Multiple variants, search all available Affymetrix arrays using, "ALL_Affy"
-```{r}
+```{r eval=FALSE}
 SNPchip(snps = c("rs3", "rs4", "rs148890987"), 
         chip = "ALL_Affy", 
         token = Sys.getenv("LDLINK_TOKEN")
        )
 ```
+
+```
+## WARNING: The following RS number did not have any platforms found: rs148890987, rs3.
+```
+
+```
+##     RS_Number Position_GRCh37 A_SNP5.0 A_CHB2 A_250S A_SNP6.0
+## 1 rs148890987  chr13:32403784        0      0      0        0
+## 2         rs3  chr13:32446842        0      0      0        0
+## 3         rs4  chr13:32447222        1      1      1        1
+```
+
 Output is a data frame of query variant rows (RS number), genomic coordinate (GRCh37) and genotyping chip array columns. The presence of a "1" designates the variant is present on the respective commercial genotyping array and a "0" indicates that it is not present on the genotyping array. 
 
 ***
@@ -345,7 +503,7 @@ Prune a list of variants by linkage disequilibrium. Input is a list of variant R
 - `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
 
 #### Usage:  Multiple Variants
-```{r}
+```{r eval=FALSE}
 SNPclip(snps =  c("rs3", "rs4", "rs148890987", "rs115955931"), 
         pop = "YRI", 
         r2_threshold =  "0.1", 
@@ -353,6 +511,20 @@ SNPclip(snps =  c("rs3", "rs4", "rs148890987", "rs115955931"),
         token = Sys.getenv("LDLINK_TOKEN")
        )
 ```
+
+```
+##     RS_Number       Position          Alleles
+## 1         rs3 chr13:32446842 C=0.829, T=0.171
+## 2         rs4 chr13:32447222 A=0.829, G=0.171
+## 3 rs148890987 chr13:32403784     C=1.0, T=0.0
+## 4 rs115955931 chr13:32130008 G=0.954, A=0.046
+##                                             Details
+## 1                                     Variant kept.
+## 2 Variant in LD with rs3 (R2=1.0), variant removed.
+## 3              Variant MAF is 0.0, variant removed.
+## 4                                     Variant kept.
+```
+
 The output table provides details including query varaint RS number, genomic position, alleles, and and details about whether the variant was kept or removed.
 
 ***
