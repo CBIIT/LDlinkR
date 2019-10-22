@@ -164,7 +164,7 @@ data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = 
       cat(content(raw_out, "text"))
     } else if (is.character(file)) {
       cat(content(raw_out, "text"))
-      writeLines(capture.output(cat(content(raw_out, "text"))), file)
+      writeLines(capture.output(cat(content(raw_out, "text"))), "text_out.text")
       cat(paste("\nFile saved to ",file,".", sep=""))
      }
   } else if (output == "table") {
@@ -174,7 +174,7 @@ data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = 
     } else if (is.character(file)) {
       data_out_tbl <- table_out(data_out)
       print(data_out_tbl)
-      write.table(data_out_tbl, file = file, quote = F, row.names = F, sep = "\t")
+      write.table(data_out_tbl, file = "table_out.txt", quote = F, row.names = F, sep = "\t")
       cat(paste("\nTable saved to ",file,".", sep=""))
       return(data_out_tbl)
     }
