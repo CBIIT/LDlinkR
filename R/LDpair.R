@@ -38,7 +38,7 @@ df_pair_tbl <- data.frame(var1 = z[[1]][1],
    }
 
  } else {
-   df_pair_tbl$note <- paste(z[[21]], collapse = " ")
+   df_pair_tbl$ld <- paste(z[[21]], collapse = " ")
  }
 
  return(df_pair_tbl)
