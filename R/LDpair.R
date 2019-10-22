@@ -164,8 +164,8 @@ data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = 
       cat(content(raw_out, "text"))
     } else if (is.character(file)) {
       cat(content(raw_out, "text"))
-      writeLines(capture.output(cat(content(raw_out, "text"))), "text_out.text")
-      cat(paste("\nFile saved to ","text_out.text",".", sep=""))
+      writeLines(capture.output(cat(content(raw_out, "text"))), "text_out.txt")
+      cat(paste("\nFile saved to ","text_out.txt",".", sep=""))
      }
   } else if (output == "table") {
     if(file == FALSE) {
