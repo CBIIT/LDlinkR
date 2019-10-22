@@ -26,15 +26,20 @@ df_pair_tbl <- data.frame(var1 = z[[1]][1],
                         stringsAsFactors = FALSE
                         )
 
-if (grepl("warning", z[[22]][1], ignore.case = TRUE))  {
-      # Add these two columns to df_pair_tbl, if there is a "warning" message in data_out
-      df_pair_tbl$ld <- paste(z[[21]], collapse = " ")
-      df_pair_tbl$note <- paste(z[[22]], collapse = " ")
+ if (nrow(data_out) == 22) {
+   if (grepl("warning", z[[22]][1], ignore.case = TRUE))  {
+     # Add these two columns to df_pair_tbl, if there is a "warning" message in data_out
+     df_pair_tbl$ld <- paste(z[[21]], collapse = " ")
+     df_pair_tbl$note <- paste(z[[22]], collapse = " ")
 
-  } else {
-      # Used if no "warning" message in data_out
-      df_pair_tbl$corr_alleles <- paste(z[[21]][1], "-", z[[21]][6], ", ", z[[22]][1], "-", z[[22]][6], sep="")
-    }
+   } else {
+     # Used if no "warning" message in data_out
+     df_pair_tbl$corr_alleles <- paste(z[[21]][1], "-", z[[21]][6], ", ", z[[22]][1], "-", z[[22]][6], sep="")
+   }
+
+ } else {
+   df_pair_tbl$note <- paste(z[[21]], collapse = " ")
+ }
 
  return(df_pair_tbl)
 }
