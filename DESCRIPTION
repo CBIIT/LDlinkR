@@ -1,7 +1,7 @@
 Package: LDlinkR
 Type: Package
 Title: An R Package for Calculating Linkage Disequilibrium
-Version: 1.0.1.9001
+Version: 1.0.1.9002
 Authors@R: 
     c(person(given = "Timothy A.",
              family = "Myers",
