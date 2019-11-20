@@ -21,32 +21,38 @@ LDproxy_batch <- function(snp, pop="CEU", r2d="r2", token=NULL, append = FALSE) 
 
   snp <- as.data.frame(snp)
 
+  snp <- as.data.frame(snp)
+
   if(append == FALSE) {
     for (i in 1:nrow(snp)) {
       myfile <- paste(snp[i,], ".txt", sep="")
       df_proxy <- LDproxy(snp=snp[i,], pop, r2d, token)
-      write.table(df_proxy, file = myfile,
-                  append = FALSE,
-                  quote = FALSE,
-                  row.names = TRUE,
-                  sep = "\t")
-     }
+      if(!(grepl("error", df_proxy[1,1])))
+      {
+        write.table(df_proxy, file = myfile,
+                    append = FALSE,
+                    quote = FALSE,
+                    row.names = TRUE,
+                    sep = "\t")
+      }
+    }
   } else if (append == TRUE) {
     for (i in 1:nrow(snp)) {
       df_proxy <- LDproxy(snp=snp[i,], pop, r2d, token)
-      # add new column, query_snp
-      df_proxy["query_snp"] <- rep(snp[i,], nrow(df_proxy))
-      # rearrange by column index
-      df_proxy <- df_proxy[, colnames(df_proxy)[c(11, 1:10)]]
-      write.table(df_proxy, file = "combined_query_snp_list.txt",
-                  append = TRUE,
-                  quote = FALSE,
-                  row.names = TRUE,
-                  col.names = !file.exists("combined_query_snp_list.txt"),
-                  sep = "\t")
+      if(!(grepl("error", df_proxy[1,1])))
+      {
+        # add new column, query_snp
+        df_proxy["query_snp"] <- rep(snp[i,], nrow(df_proxy))
+        # rearrange by column index
+        df_proxy <- df_proxy[, colnames(df_proxy)[c(11, 1:10)]]
+        write.table(df_proxy, file = "combined_query_snp_list.txt",
+                    append = TRUE,
+                    quote = FALSE,
+                    row.names = TRUE,
+                    col.names = !file.exists("combined_query_snp_list.txt"),
+                    sep = "\t")
+      }
     }
-
   }
-
 }
 ############################## End Function ##############################

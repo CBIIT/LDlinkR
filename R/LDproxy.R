@@ -89,8 +89,9 @@ httr::stop_for_status(raw_out)
 data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t") # Parse response object
 
 # Check for error in response data
-  if(grepl("error", data_out[2,1])) {
-    message(data_out[2,1])
+if(grepl("error", data_out[1,1])) {
+  message(data_out[1,1])
+  return(as.data.frame(data_out[1,1]))
   }
 
 # Evaluate 'file' option
