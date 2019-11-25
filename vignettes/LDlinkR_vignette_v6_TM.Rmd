@@ -55,17 +55,17 @@ usethis::edit_r_environ()
 ```
 Your `.Renviron` file should open in your editor.  Add a line that looks like this:
 ```{r eval=FALSE}
-LDLINKR_TOKEN=yourtokenhere123
+LDLINK_TOKEN=yourtokenhere123
 ```
 **Important**, ensure you put a line break at the end by hitting the *enter/return* key.
 
 Save and close the `.Renviron` file.  Restart R, as environment variables are only loaded from `.Renviron` at the start of a new R session. Now, check to see that your token is available by entering:
 ```{r}
-Sys.getenv("LDLINKR_TOKEN")
+Sys.getenv("LDLINK_TOKEN")
 ```
 You should see your personal access token print to the screen, as shown above. Now, *LDlinkR* function calls that use
 ```{r eval=FALSE}
-Sys.getenv("LDLINKR_TOKEN")
+Sys.getenv("LDLINK_TOKEN")
 ```
 for the `token` argment in *LDlinkR* function calls will use your personal access token in a private and secure way.  This method will be used in the extended examples that follow.
 
