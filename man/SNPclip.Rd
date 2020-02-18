@@ -4,8 +4,14 @@
 \alias{SNPclip}
 \title{Query SNPclip API}
 \usage{
-SNPclip(snps, pop = "CEU", r2_threshold = "0.1",
-  maf_threshold = "0.01", token = NULL, file = FALSE)
+SNPclip(
+  snps,
+  pop = "CEU",
+  r2_threshold = "0.1",
+  maf_threshold = "0.01",
+  token = NULL,
+  file = FALSE
+)
 }
 \arguments{
 \item{snps}{a list of between 1 - 5,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")}

@@ -4,8 +4,7 @@
 \alias{LDproxy_batch}
 \title{Query LDproxy API using a list of query variants, one per line.}
 \usage{
-LDproxy_batch(snp, pop = "CEU", r2d = "r2", token = NULL,
-  append = FALSE)
+LDproxy_batch(snp, pop = "CEU", r2d = "r2", token = NULL, append = FALSE)
 }
 \arguments{
 \item{snp}{a character string or data frame listing rsID's or chromosome coordinates (e.g. "chr7:24966446"), one per line}

@@ -6,7 +6,7 @@
 \alias{LDlinkR-package}
 \title{LDlinkR: An R Package for Calculating Linkage Disequilibrium}
 \description{
-\if{html}{\figure{logo.png}{options: align='right'}}
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
 Provides access to the LDlink API (<https://ldlink.nci.nih.gov/?tab=apiaccess>)
     using the R console.  This programmatic access facilitates researchers who are interested
@@ -16,6 +16,7 @@ Provides access to the LDlink API (<https://ldlink.nci.nih.gov/?tab=apiaccess>)
 Useful links:
 \itemize{
   \item \url{https://ldlink.nci.nih.gov}
+  \item Report bugs at \url{https://github.com/CBIIT/LDlinkR/issues}
 }
 
 }

@@ -4,8 +4,7 @@
 \alias{LDpair}
 \title{Query LDpair API}
 \usage{
-LDpair(var1, var2, pop = "CEU", token = NULL, output = "table",
-  file = FALSE)
+LDpair(var1, var2, pop = "CEU", token = NULL, output = "table", file = FALSE)
 }
 \arguments{
 \item{var1}{the first RS number or genomic coordinate (e.g. "chr7:24966446")}

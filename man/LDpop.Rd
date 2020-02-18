@@ -4,8 +4,7 @@
 \alias{LDpop}
 \title{Query LDpop API}
 \usage{
-LDpop(var1, var2, pop = "CEU", r2d = "r2", token = NULL,
-  file = FALSE)
+LDpop(var1, var2, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
 }
 \arguments{
 \item{var1}{the first RS number or genomic coordinate (e.g. "chr7:24966446")}
