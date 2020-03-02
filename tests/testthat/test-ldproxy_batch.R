@@ -15,11 +15,11 @@ test_that("LDproxy_batch throws an error for bad token", {
   expect_condition(LDproxy_batch(snps_good_qry, "YRI", token = "faketoken"))
 })
 
-test_that("LDproxy_batch works", {
-  skip_on_cran()
-  expect_condition(LDproxy_batch(snps_good_qry,
-                                 "YRI",
-                                 "r2",
-                                 token = Sys.getenv("LDLINK_TOKEN"),
-                                 append = TRUE))
-})
+# test_that("LDproxy_batch works", {
+#  skip_on_cran()
+#  expect_condition(LDproxy_batch(snps_good_qry,
+#                                "YRI",
+#                                "r2",
+#                                token = Sys.getenv("LDLINK_TOKEN"),
+#                                append = TRUE))
+# })
