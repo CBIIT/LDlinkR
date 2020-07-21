@@ -4,3 +4,6 @@ doc
 .Rhistory
 .RData
 .Ruserdata
+
+# Mac OSX
+.DS_Store
