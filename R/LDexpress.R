@@ -132,12 +132,9 @@ avail_tissue <- LD_config[["avail_tissue_abbrev"]]
   # first, ensure 'r2d_threshold' is type 'numeric'
   r2d_threshold <- as.numeric(r2d_threshold)
 
-  if (!(r2d_threshold >= 0 & r2d_threshold <= 1))
-  {
+  if (!(r2d_threshold >= 0 & r2d_threshold <= 1)) {
     stop(paste("'r2d' threshold must be between 0 and 1: ", r2d_threshold, ".", sep=""))
-  }
-  else if (r2d_threshold >= 0 & r2d_threshold <= 1)
-  {
+  } else {
     # convert back to character
     r2d_threshold <- as.character(r2d_threshold)
   }
@@ -148,22 +145,18 @@ avail_tissue <- LD_config[["avail_tissue_abbrev"]]
   if (!(p_threshold >= 0 & p_threshold <= 1))
   {
     stop(paste("P threshold must be between 0 and 1: ", p_threshold, ".", sep=""))
-  }
-  else if (p_threshold >= 0 & p_threshold <= 1)
-  {
+  } else {
     # convert back to character
     p_threshold <- as.character(p_threshold)
   }
 
-  # first, ensure 'win_size' is type 'numeric'
-  win_size <- as.numeric(win_size)
+  # first, ensure 'win_size' is type 'integer'
+  win_size <- as.integer(win_size)
 
   if (!(win_size >= 0 & win_size <= 1000000))
   {
     stop(paste("Window size must be between 0 and 1000000 bp: ", win_size, ".", sep=""))
-  }
-  else if (win_size >= 0 & win_size <= 1000000)
-  {
+  } else {
     # convert back to character
     win_size <- as.character(win_size)
   }
