@@ -24,7 +24,7 @@ LDexpress(
 \item{tissue}{select from 1 - 54 non-diseased tissue sites collected for the GTEx project, mulitple
 allowed.  Acceptable user input is taken either from "tissue_name_ldexpress" or "tissue_abbrev"
 (tissue abbreviation) code listed in available GTEx tissue sites using the
-`list_getex_tissues()` function (e.g. "ADI_SUB" for Adipose Subcutaneous). Input is case sensitive.
+\code{list_getex_tissues()} function (e.g. "ADI_SUB" for Adipose Subcutaneous). Input is case sensitive.
 Default = "ALL" for all available tissue types.}
 
 \item{r2d}{either "r2" for LD R2 or "d" for LD D', default = "r2".}
@@ -50,7 +50,7 @@ and associated gene expression.
 \description{
 Search if a list of genomic variants (or variants in LD with those variants) is associated with gene
 expression in tissues of interest. Quantitative trait loci data is downloaded from the
-[GTEx Portal](https://gtexportal.org/home/).
+GTEx Portal (\url{https://gtexportal.org/home/}).
 }
 \examples{
 \dontrun{LDexpress(snps = c("rs345", "rs456"),

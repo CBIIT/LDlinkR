@@ -2,14 +2,14 @@
 #'
 #' Search if a list of genomic variants (or variants in LD with those variants) is associated with gene
 #' expression in tissues of interest. Quantitative trait loci data is downloaded from the
-#' [GTEx Portal](https://gtexportal.org/home/).
+#' GTEx Portal (\url{https://gtexportal.org/home/}).
 #'
 #' @param snps between 1 - 10 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
 #' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"
 #' @param tissue select from 1 - 54 non-diseased tissue sites collected for the GTEx project, mulitple
 #' allowed.  Acceptable user input is taken either from "tissue_name_ldexpress" or "tissue_abbrev"
 #' (tissue abbreviation) code listed in available GTEx tissue sites using the
-#' `list_getex_tissues()` function (e.g. "ADI_SUB" for Adipose Subcutaneous). Input is case sensitive.
+#' \code{list_getex_tissues()} function (e.g. "ADI_SUB" for Adipose Subcutaneous). Input is case sensitive.
 #' Default = "ALL" for all available tissue types.
 #' @param r2d either "r2" for LD R2 or "d" for LD D', default = "r2".
 #' @param r2d_threshold R2 or D' (depends on 'r2d' user input parameter) threshold for LD filtering. Any variants
