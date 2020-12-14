@@ -1,7 +1,6 @@
 # LDlinkR::LDexpress
 
 
-############ Begin Primary Function ##################
 #' Search if a list of genomic variants (or variants in LD with those variants) is associated with gene
 #' expression in tissues of interest. Quantitative trait loci data is downloaded from the
 #' [GTEx Portal](https://gtexportal.org/home/).
@@ -9,9 +8,10 @@
 #' @param snps between 1 - 10 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
 #' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"
 #' @param tissue select from 1 - 54 non-diseased tissue sites collected for the GTEx project, mulitple
-#' allowed.  User input is "tissue_abbrev" (tissue abbreviation) code listed in available GTEx tissue sites using the
-#' `list_getex_tissues()` function (e.g. "ADI_SUB" for Adipose Subcutaneous).  Default = "ALL" for all
-#' available tissue sites.
+#' allowed.  Acceptable user input is taken either from "tissue_name_ldexpress" or "tissue_abbrev"
+#' (tissue abbreviation) code listed in available GTEx tissue sites using the
+#' `list_getex_tissues()` function (e.g. "ADI_SUB" for Adipose Subcutaneous). Input is case sensitive.
+#' Default = "ALL" for all available tissue types.
 #' @param r2d either "r2" for LD R2 or "d" for LD D', default = "r2".
 #' @param r2d_threshold R2 or D' (depends on 'r2d' user input parameter) threshold for LD filtering. Any variants
 #' within -/+ of the specified genomic window and R^2 or D' less than the threshold will be removed. Value needs
@@ -73,7 +73,7 @@ LDexpress <- function(snps, pop = "CEU", tissue = "ALL",
                                      "BRA_ANT_CIN_COR_BA2", "BRA_CAU_BAS_GAN", "BRA_CER_HEM", "BRA_CER", "BRA_COR",
                                      "BRA_FRO_COR_BA9", "BRA_HIP", "BRA_HYP", "BRA_NUC_ACC_BAS_GAN", "BRA_PUT_BAS_GAN",
                                      "BRA_SPI_COR_CER_C-1", "BRA_SUB_NIG", "BRE_MAM_MAM_TIS", "CEL_CUL_FIB", "CEL_EBV_TRA_LYN",
-                                     "CER_ECT", "CER_END", "COL_SIG", "COL_TRA", "ESO_GAS_JUN", "ESO_MUC", "ESO_MUS", "FAL",
+                                     "CER_ECT", "CER_END", "COL_SIG", "COL_TRA", "ESO_GAS_JUN", "ESO_MUC", "ESO_MUS", "FAL_TUB",
                                      "HEA_ATR", "HEA_LEF", "KID_COR", "KID_MED", "LIV", "LUN", "MIN_SAL_GLA", "MUS_SKE",
                                      "NER_TIB", "OVA", "PAN", "PIT", "PRO", "SKI_NOT_SUN_EXP_SUP", "SKI_SUN_EXP_LOW_LEG",
                                      "SMA_INT_TER_ILE", "SPL", "STO", "TES", "THY", "UTE", "VAG", "WHO_BLO", "ALL")
@@ -83,7 +83,8 @@ LDexpress <- function(snps, pop = "CEU", tissue = "ALL",
 url <- LD_config[["ldexpress_url_base"]]
 avail_pop <- LD_config[["avail_pop"]]
 avail_ld <- LD_config[["avail_ld"]]
-avail_tissue <- LD_config[["avail_tissue_abbrev"]]
+tissue_ldexpress <- LD_config[["avail_tissue_ldexpress"]]
+tissue_abbrev <- LD_config[["avail_tissue_abbrev"]]
 
 # ensure file option is a character string
 #  file <- as.character(file)
@@ -121,9 +122,33 @@ avail_tissue <- LD_config[["avail_tissue_abbrev"]]
     pop=paste(unlist(pop), collapse = "+")
   }
 
-  if(!(all(tissue %in% avail_tissue))) {
-    stop("Invalid tissue abbreviation code. Please lookup using the `list_gtex_tissues()` function.")
+  # When 'tissue' is 'ALL'
+  if (length(tissue) == 1) {
+    if (tissue == "ALL") {
+      tissue <- tissue_ldexpress[1:54]
+    }
   }
+
+  # Check 'tissue' argument for valid input and, if abbreviation for tissue
+  # was used, convert to 'tissue_name_ldexpress' format (required format
+  # LDlink API call); also, create 'tissue_to_upload' character vector to
+  # be used to create below to generate API request body.
+  tissues_to_upload <- character() # initialize empty character vector
+
+  if((all(tissue %in% tissue_abbrev))) {
+    for(i in 1:length(tissue)) { # convert tissue abbreviation to full length 'tissue_ldexpress' format
+      tissues_to_upload <- append(tissues_to_upload,
+                                  LD_config[["avail_tissue_ldexpress"]][LD_config[["avail_tissue_abbrev"]] == tissue[i]],
+                                  after = length(tissues_to_upload))
+    }
+  } else if ((all(tissue %in% tissue_ldexpress))) {
+    tissues_to_upload <- tissue
+  } else {
+    stop("Invalid input for tissue type. Please lookup acceptable input using
+       the `list_gtex_tissues()` function.  Use input from either
+       'tissue_name_ldexpress' or 'tissue_abbrev'. Input is case sensitive.")
+  }
+#############################
 
   if(!(r2d %in% avail_ld)) {
     stop("Not a valid r2d.  Enter 'r2' or 'd'.")
@@ -133,7 +158,7 @@ avail_tissue <- LD_config[["avail_tissue_abbrev"]]
   r2d_threshold <- as.numeric(r2d_threshold)
 
   if (!(r2d_threshold >= 0 & r2d_threshold <= 1)) {
-    stop(paste("'r2d' threshold must be between 0 and 1: ", r2d_threshold, ".", sep=""))
+    stop(paste("'r2d' threshold must be between 0 and 1. Threshold input was ", r2d_threshold, ".", sep=""))
   } else {
     # convert back to character
     r2d_threshold <- as.character(r2d_threshold)
@@ -144,7 +169,7 @@ avail_tissue <- LD_config[["avail_tissue_abbrev"]]
 
   if (!(p_threshold >= 0 & p_threshold <= 1))
   {
-    stop(paste("P threshold must be between 0 and 1: ", p_threshold, ".", sep=""))
+    stop(paste("P threshold must be between 0 and 1. Threshold input was ", p_threshold, ".", sep=""))
   } else {
     # convert back to character
     p_threshold <- as.character(p_threshold)
@@ -155,7 +180,7 @@ avail_tissue <- LD_config[["avail_tissue_abbrev"]]
 
   if (!(win_size >= 0 & win_size <= 1000000))
   {
-    stop(paste("Window size must be between 0 and 1000000 bp: ", win_size, ".", sep=""))
+    stop(paste("Window size must be between 0 and 1000000 bp. Input window size was ", win_size, " bp.", sep=""))
   } else {
     # convert back to character
     win_size <- as.character(win_size)
@@ -169,39 +194,22 @@ avail_tissue <- LD_config[["avail_tissue_abbrev"]]
     stop("Invalid input for file option.")
   }
 
-# When 'tissue' is 'ALL'
-if (length(tissue) == 1) {
-   if (tissue == "ALL") {
-      tissue <- avail_tissue[1:54]
-   }
-}
-
 # Request body
 snps_to_upload <- paste(unlist(snps), collapse = "\n")
 pop_to_upload <- paste(unlist(pop), collapse = "+")
 
-  # Convert 'tissue' parameter with tissue abbreviations to 'tissue_ldexpress' format
-  # and create 'tissue_to_upload' character vector.
-    tissue <- toupper(tissue) # ensure 'tissue' parameter abbrev is all upper case
-    tissues_to_upload <- character() # initialize empty character vector
+# See above for creation of "tissues_to_upload"
+# collapse list of tissues, separated by '+' character
+tissues_to_upload <- paste(unlist(tissues_to_upload), collapse = "+")
 
-    for(i in 1:length(tissue)) {     # convert tissue abbreviation to full length 'tissue_ldexpress' format
-      tissues_to_upload <- append(tissues_to_upload,
-                                  LD_config[["avail_tissue_ldexpress"]][LD_config[["avail_tissue_abbrev"]] == tissue[i]],
-                                  after = length(tissues_to_upload))
-    }
-
-    # collapse list of tissues, separated by '+' character
-    tissues_to_upload <- paste(unlist(tissues_to_upload), collapse = "+")
-
-    jsonbody <- list(snps = snps_to_upload,
-                     pop = pop_to_upload,
-                     tissues = tissues_to_upload,
-                     r2_d = r2d,
-                     r2_d_threshold = r2d_threshold,
-                     p_threshold = p_threshold,
-                     window = win_size
-                    )
+jsonbody <- list(snps = snps_to_upload,
+                 pop = pop_to_upload,
+                 tissues = tissues_to_upload,
+                 r2_d = r2d,
+                 r2_d_threshold = r2d_threshold,
+                 p_threshold = p_threshold,
+                 window = win_size
+                )
 
 # URL string
 url_str <- paste(url, "?", "token=", token, sep="")
