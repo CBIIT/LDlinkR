@@ -24,9 +24,10 @@ LDexpress(
 \item{pop}{a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"}
 
 \item{tissue}{select from 1 - 54 non-diseased tissue sites collected for the GTEx project, mulitple
-allowed.  User input is "tissue_abbrev" (tissue abbreviation) code listed in available GTEx tissue sites using the
-`list_getex_tissues()` function (e.g. "ADI_SUB" for Adipose Subcutaneous).  Default = "ALL" for all
-available tissue sites.}
+allowed.  Acceptable user input is taken either from "tissue_name_ldexpress" or "tissue_abbrev"
+(tissue abbreviation) code listed in available GTEx tissue sites using the
+`list_getex_tissues()` function (e.g. "ADI_SUB" for Adipose Subcutaneous). Input is case sensitive.
+Default = "ALL" for all available tissue sites.}
 
 \item{r2d}{either "r2" for LD R2 or "d" for LD D', default = "r2".}
 
