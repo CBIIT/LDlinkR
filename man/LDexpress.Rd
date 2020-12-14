@@ -27,7 +27,7 @@ LDexpress(
 allowed.  Acceptable user input is taken either from "tissue_name_ldexpress" or "tissue_abbrev"
 (tissue abbreviation) code listed in available GTEx tissue sites using the
 `list_getex_tissues()` function (e.g. "ADI_SUB" for Adipose Subcutaneous). Input is case sensitive.
-Default = "ALL" for all available tissue sites.}
+Default = "ALL" for all available tissue types.}
 
 \item{r2d}{either "r2" for LD R2 or "d" for LD D', default = "r2".}
 
