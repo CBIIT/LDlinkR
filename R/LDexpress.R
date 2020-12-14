@@ -1,6 +1,5 @@
-# LDlinkR::LDexpress
-
-
+#' LDlinkR::LDexpress
+#'
 #' Search if a list of genomic variants (or variants in LD with those variants) is associated with gene
 #' expression in tissues of interest. Quantitative trait loci data is downloaded from the
 #' [GTEx Portal](https://gtexportal.org/home/).
