@@ -42,7 +42,7 @@ list_gtex_tissues <- function() {
                                             "Skin_Not_Sun_Exposed_Suprapubic", "Skin_Sun_Exposed_Lower_leg",
                                             "Small_Intestine_Terminal_Ileum", "Spleen", "Stomach", "Testis", "Thyroid", "Uterus",
                                             "Vagina", "Whole_Blood", "ALL"),
-                        "tissue_abbrev" = c("ADI_SUB", "ADI_VIS_OME", "ADR_GLA", "ART_AOR", "ART_COR", "ART_TIB", "BLA", "BRA_AMY",
+              "tissue_abbrev_ldexpress" = c("ADI_SUB", "ADI_VIS_OME", "ADR_GLA", "ART_AOR", "ART_COR", "ART_TIB", "BLA", "BRA_AMY",
                                             "BRA_ANT_CIN_COR_BA2", "BRA_CAU_BAS_GAN", "BRA_CER_HEM", "BRA_CER", "BRA_COR",
                                             "BRA_FRO_COR_BA9", "BRA_HIP", "BRA_HYP", "BRA_NUC_ACC_BAS_GAN", "BRA_PUT_BAS_GAN",
                                             "BRA_SPI_COR_CER_C-1", "BRA_SUB_NIG", "BRE_MAM_MAM_TIS", "CEL_CUL_FIB", "CEL_EBV_TRA_LYN",
