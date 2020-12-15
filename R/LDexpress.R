@@ -218,6 +218,15 @@ raw_out <-  httr::POST(url=url_str, body=jsonbody, encode="json")
 httr::stop_for_status(raw_out)
 # Parse response object
 data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t")
+
+# Rename LD D-prime column from D. to D'
+colnames(data_out)[colnames(data_out)=="D."] <- "D'"
+
+# Convert any number of '.' and replace with '_'
+names(data_out) <- gsub(x = names(data_out),
+                        pattern = "(\\.)+",
+                        replacement = "_")
+
 # convert 'factor' to 'character'
 data_out[] <- lapply(data_out, as.character)
 
