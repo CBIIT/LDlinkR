@@ -4,7 +4,7 @@
 \name{LDlinkR-package}
 \alias{LDlinkR}
 \alias{LDlinkR-package}
-\title{LDlinkR: Calculating Linkage Disequilibrium (LD) in human population groups of interest}
+\title{LDlinkR: Calculating Linkage Disequilibrium (LD) in Human Population Groups of Interest}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
