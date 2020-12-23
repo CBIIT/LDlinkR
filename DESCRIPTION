@@ -1,6 +1,6 @@
 Package: LDlinkR
 Type: Package
-Title: An R Package for Calculating Linkage Disequilibrium
+Title: Calculating Linkage Disequilibrium (LD) in human population groups of interest
 Version: 1.1.0.9000
 Authors@R: 
     c(person(given = "Timothy A.",
@@ -18,8 +18,11 @@ Authors@R:
       )
 Maintainer: Timothy A. Myers <myersta@mail.nih.gov>
 Description: Provides access to the LDlink API (<https://ldlink.nci.nih.gov/?tab=apiaccess>)
-    using the R console.  This programmatic access facilitates researchers who are interested
-    in performing batch queries in 1000 Genomes Project data using LDlink.
+    using the R console.  This programmatic access facilitates researchers who are 
+    interested in performing batch queries in 1000 Genomes Project data using LDlink. 
+    LDlink is an interactive and powerful suite of web-based tools for querying germline 
+    variants in human population groups of interest. For more details, please see 
+    Machiela et al. (2015) <doi:10.1093/bioinformatics/btv402>.
 License: GPL (>= 2)
 URL: https://ldlink.nci.nih.gov
 BugReports: https://github.com/CBIIT/LDlinkR/issues
