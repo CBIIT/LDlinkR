@@ -1,8 +1,13 @@
 # LDlinkR (development version)
-* Added new function, LDexpress
-* Updated vignette with new function.
+* Release date TBD
+* Added new two functions, `LDexpress` & `list_gtex_tissues`
+* Updated vignette with new functions.
 * Major update to README
 * Added a `NEWS.md` file to track changes to the package.
+
+# LDlinkR 1.0.2
+* Release date 2020-03-02
+* Minor updates
 
 # LDlinkR 1.0.1
 * Release date 2019-10-17
