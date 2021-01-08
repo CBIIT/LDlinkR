@@ -1,4 +1,4 @@
-#' LDlinkR::LDexpress
+#' Determine if genomic variants are associated with gene expression.
 #'
 #' Search if a list of genomic variants (or variants in LD with those variants) is associated with gene
 #' expression in tissues of interest. Quantitative trait loci data is downloaded from the

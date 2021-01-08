@@ -2,7 +2,7 @@
 % Please edit documentation in R/LDexpress.R
 \name{LDexpress}
 \alias{LDexpress}
-\title{LDlinkR::LDexpress}
+\title{Determine if genomic variants are associated with gene expression.}
 \usage{
 LDexpress(
   snps,
