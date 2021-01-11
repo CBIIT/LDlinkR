@@ -6,6 +6,8 @@
 version](https://www.r-pkg.org/badges/version-ago/LDlinkR)](https://cran.r-project.org/package=LDlinkR)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/LDlinkR?color=blue)](https://r-pkg.org/pkg/LDlinkR)
+![CRAN/METACRAN](https://img.shields.io/cran/l/LDlinkR?color=yellow)
+
 
 ### An R Package for Calculating Linkage Disequilibrium
 
