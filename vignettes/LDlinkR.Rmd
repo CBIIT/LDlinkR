@@ -1,7 +1,7 @@
 ---
 title: '*LDlinkR*: An R Package for Rapidly Calculating Linkage Disequilibrium Statistics in Diverse Populations'
 author: "Timothy A. Myers, Stephen J. Chanock and Mitchell J. Machiela"
-date: "08 January 2021"
+date: "12 January 2021"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{*LDlinkR*: An R Package for Rapidly Calculating Linkage Disequilibrium Statistics in Diverse Populations}
