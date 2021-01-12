@@ -220,8 +220,6 @@ More detailed examples demonstrating the usage of each function can be found in 
 browseVignettes("LDlinkR")
 ```
 
-
-
 ## Contributors
 
 Timothy A. Myers, Stephen J. Chanock and Mitchell J. Machiela
