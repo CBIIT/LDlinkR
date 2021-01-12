@@ -132,7 +132,7 @@ my_output <- LDexpress(snps = "rs4",
                       )
 ```
 
-For the function arguments, this example uses a single rsID for a query variant, multiple populations (e.g. YRI = Yoruba in Ibadan, Nigera and CEU = Utah Residents from North and West Europe) and multiple tissue types using acceptable abbreviations for available tissues (e.g. ADI_SUB = Adipose - Subcutaneous and ADI_VIS_OME = Adipose - Visceral (Omentum)). The output is stored in the variable `my_output`.  **Note:** Replace "YourTokenHere123" with your personal access token. See section above, "Personal Access Token".
+For the function arguments, this example uses a single rsID for a query variant, multiple populations (e.g., YRI = Yoruba in Ibadan, Nigera and CEU = Utah Residents from North and West Europe) and multiple tissue types using acceptable abbreviations for available tissues (e.g., ADI_SUB = Adipose - Subcutaneous and ADI_VIS_OME = Adipose - Visceral (Omentum)). The output is stored in the variable `my_output`.  **Note:** Replace "YourTokenHere123" with your personal access token. See section above, "Personal Access Token".
 
 <br>
 
