@@ -2,7 +2,7 @@
 * Release date TBD
 * Added new two functions, `LDexpress` & `list_gtex_tissues`
 * Updated vignette with new functions and examples.
-* Major update to `README.md`
+* Major update to `README.md`, including basic examples
 * Added a `NEWS.md` file to track changes to the package.
 
 # LDlinkR 1.0.2
