@@ -91,7 +91,7 @@ my_proxies <- LDproxy(snp = "rs456",
                       token = Sys.getenv("LDLINK_TOKEN")
                      )
 ```
-This example uses a single reference SNP ID (rsID) for the query variant, a population of interest (YRI = Yoruba in Ibadan, Nigera) and "r2" for the desired output to be based on estimated R^2^. The output is stored in the variable `my_proxies`.  **Note:** Replace "YourTokenHere123" with your personal access token. See section above, "Personal Access Token".
+This example uses a single reference SNP ID (rsID) for the query variant, a population of interest (YRI = Yoruba in Ibadan, Nigera) and "r2" for the desired output to be based on estimated R<sup>2</sup>. The output is stored in the variable `my_proxies`.  **Note:** Replace "YourTokenHere123" with your personal access token. See section above, "Personal Access Token".
 
 <br>
 
