@@ -115,7 +115,7 @@ Search if a list of genomic variants (or variants in LD with those variants) is 
 - `snps`, between 1 - 10 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
 - `pop`, a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU".  See the *list_pop* function in the utilities section below for available populations and their abbreviation codes.
 - `tissue`, select from 1 - 54 non-diseased tissue sites collected for the GTEx project, mulitple allowed. Acceptable user input is taken either from "tissue_name_ldexpress" or "tissue_abbrev" (tissue abbreviation) code listed in available GTEx tissue sites using the *list_getex_tissues* function (e.g. "ADI_SUB" for Adipose Subcutaneous). Input is case sensitive. Default = "ALL" for all available tissue types.
-- `r2d`, Select either "r2" for LD R2 (R-squared) or "d" for LD D', default = "r2".
+- `r2d`, Select either "r2" for LD R^2^ (R-squared) or "d" for LD D', default = "r2".
 - `r2d_threshold`, R-squared or D' (depends on 'r2d' user input parameter) threshold for LD filtering. Any variants within -/+ of the specified genomic window and R^2^ or D' less than the threshold will be removed. Value needs to be in the range 0 to 1. Default value is 0.1.
 - `p_threshold`, define the eQTL significance threshold used for returning query results. Default value is 0.1 which returns all GTEx eQTL associations with P-value less than 0.1.
 - `win_size`, set genomic base pair window size for LD calculation. Specify a value greater than or equal to zero and less than or equal to 1000000 base pairs (bp). Default value is -/+ 500000 bp.
