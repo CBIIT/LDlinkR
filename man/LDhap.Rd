@@ -2,7 +2,8 @@
 % Please edit documentation in R/LDhap.R
 \name{LDhap}
 \alias{LDhap}
-\title{Query LDhap API}
+\title{Calculates population specific haplotype frequencies of all
+haplotypes observed for a list of query variants.}
 \usage{
 LDhap(snps, pop = "CEU", token = NULL, file = FALSE)
 }
@@ -19,7 +20,8 @@ LDhap(snps, pop = "CEU", token = NULL, file = FALSE)
 a data frame
 }
 \description{
-Query LDhap API
+Calculates population specific haplotype frequencies of all
+haplotypes observed for a list of query variants.
 }
 \examples{
 \dontrun{LDhap(c("rs3", "rs4", "rs148890987"), "CEU", token = Sys.getenv("LDLINK_TOKEN"))}
