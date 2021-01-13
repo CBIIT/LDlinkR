@@ -41,7 +41,8 @@ df_merge <- function(data_out) {
 
 
 ########## Primary Function:  LDhap ##########
-#' Query LDhap API
+#' Calculates population specific haplotype frequencies of all
+#' haplotypes observed for a list of query variants.
 #'
 #' @param snps list of between 1 - 30 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
 #' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"
