@@ -1,5 +1,4 @@
-# Calculates population specific haplotype frequencies of all
-# haplotypes observed for a list of query variants.
+# Calculates population specific haplotype frequencies of all haplotypes observed for a list of query variants
 
 ########### Secondary Function:  Called by primary function LDhap ##########
 df_merge <- function(data_out) {
