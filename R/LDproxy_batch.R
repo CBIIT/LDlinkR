@@ -45,12 +45,17 @@ LDproxy_batch <- function(snp, pop="CEU", r2d="r2", token=NULL, append = FALSE) 
         df_proxy["query_snp"] <- rep(snp[i,], nrow(df_proxy))
         # rearrange by column index
         df_proxy <- df_proxy[, colnames(df_proxy)[c(11, 1:10)]]
+        # suppress warning message by write.table about appending
+        # column names to file from write.table when append is TRUE
+        # issue #2
+        suppressWarnings(
         write.table(df_proxy, file = "combined_query_snp_list.txt",
                     append = TRUE,
                     quote = FALSE,
                     row.names = TRUE,
                     col.names = !file.exists("combined_query_snp_list.txt"),
                     sep = "\t")
+              )
       }
     }
   }
