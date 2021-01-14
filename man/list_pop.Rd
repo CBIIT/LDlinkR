@@ -3,7 +3,7 @@
 \name{list_pop}
 \alias{list_pop}
 \title{Provides a data frame listing the available reference populations from
-the [1000 Genomes Project](https://www.internationalgenome.org/).}
+the 1000 Genomes Project.}
 \usage{
 list_pop()
 }
@@ -12,7 +12,7 @@ a data frame listing the available reference populations, continental (ex: Europ
 }
 \description{
 Provides a data frame listing the available reference populations from
-the [1000 Genomes Project](https://www.internationalgenome.org/).
+the 1000 Genomes Project.
 }
 \examples{
 list_pop()
