@@ -62,7 +62,7 @@ LDhap(snps = c("rs3", "rs4", "rs148890987"),
 |`LDhap` |Calculates population specific haplotype frequencies of all haplotypes observed for a list of query variants.|
 |`LDmatrix` |Generates a data frame of pairwise linkage disequilibirum statistics.|
 |`LDpair`|Investigates potentially correlated alleles for a pair of variants.|
-|`LDpop` |Investigates allele frequencies and linkage disequilibrium patterns across 1000G populations.|
+|`LDpop` |Investigates allele frequencies and linkage disequilibrium patterns across [1000 Genomes Project](https://www.internationalgenome.org/) populations.|
 |`LDproxy` |Explore proxy and putatively functional variants for a single query variant.|
 |`LDproxy_batch`|Query `LDproxy` using a list of query variants.|
 |`SNPchip` |Find commercial genotyping chip arrays for variants of interest.|
