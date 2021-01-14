@@ -2,7 +2,8 @@
 % Please edit documentation in R/LDpop.R
 \name{LDpop}
 \alias{LDpop}
-\title{Query LDpop API}
+\title{Investigates allele frequencies and linkage disequilibrium
+patterns across 1000 Genomes Project populations.}
 \usage{
 LDpop(var1, var2, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
 }
@@ -23,7 +24,8 @@ LDpop(var1, var2, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
 a data frame
 }
 \description{
-Query LDpop API
+Investigates allele frequencies and linkage disequilibrium
+patterns across 1000 Genomes Project populations.
 }
 \examples{
 \dontrun{LDpop(var1 = "rs3", var2 = "rs4",

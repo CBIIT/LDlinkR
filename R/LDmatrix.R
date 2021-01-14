@@ -1,6 +1,7 @@
 # LDlinkR::LDmatrix
 
-#' Query LDmatrix API
+#' Generates a data frame of pairwise linkage disequilibirum
+#' statistics.
 #'
 #' @param snps list of between 2 - 1,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
 #' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"

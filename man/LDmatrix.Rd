@@ -2,7 +2,8 @@
 % Please edit documentation in R/LDmatrix.R
 \name{LDmatrix}
 \alias{LDmatrix}
-\title{Query LDmatrix API}
+\title{Generates a data frame of pairwise linkage disequilibirum
+statistics.}
 \usage{
 LDmatrix(snps, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
 }
@@ -21,7 +22,8 @@ LDmatrix(snps, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
 a data frame
 }
 \description{
-Query LDmatrix API
+Generates a data frame of pairwise linkage disequilibirum
+statistics.
 }
 \examples{
 \dontrun{LDmatrix(c("rs3", "rs4", "rs148890987"),

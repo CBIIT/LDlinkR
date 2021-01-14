@@ -47,7 +47,8 @@ df_pair_tbl <- data.frame(var1 = z[[1]][1],
 
 
 ###### Primary Function #######
-#' Query LDpair API
+#' Investigates potentially correlated alleles for a
+#' pair of variants.
 #'
 #' @param var1 the first RS number or genomic coordinate (e.g. "chr7:24966446")
 #' @param var2 the second RS number or genomic coordinate (e.g. "ch7:24966446")

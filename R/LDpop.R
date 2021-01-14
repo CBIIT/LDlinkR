@@ -1,6 +1,7 @@
 # LDlinkR::LDpop
 
-#' Query LDpop API
+#' Investigates allele frequencies and linkage disequilibrium
+#' patterns across 1000 Genomes Project populations.
 #'
 #' @param var1 the first RS number or genomic coordinate (e.g. "chr7:24966446")
 #' @param var2 the second RS number or genomic coordinate (e.g. "ch7:24966446")
