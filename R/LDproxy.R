@@ -1,6 +1,7 @@
 # LDlinkR::LDproxy
 
-#' Query LDproxy API
+#' Explore proxy and putatively functional variants for a
+#' single query variant.
 #'
 #' @param snp  an rsID or chromosome coordinate (e.g. "chr7:24966446"), one per query
 #' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"

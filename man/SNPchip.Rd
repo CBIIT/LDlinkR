@@ -2,7 +2,7 @@
 % Please edit documentation in R/SNPchip.R
 \name{SNPchip}
 \alias{SNPchip}
-\title{Query SNPchip API}
+\title{Find commercial genotyping chip arrays for variants of interest.}
 \usage{
 SNPchip(snps, chip = "ALL", token = NULL, file = FALSE)
 }
@@ -19,7 +19,7 @@ SNPchip(snps, chip = "ALL", token = NULL, file = FALSE)
 a data frame
 }
 \description{
-Query SNPchip API
+Find commercial genotyping chip arrays for variants of interest.
 }
 \examples{
 \dontrun{SNPchip(c("rs3", "rs4", "rs148890987"), "ALL",

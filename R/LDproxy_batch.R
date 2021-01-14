@@ -1,7 +1,7 @@
 # LDlinkR::LDproxy_batch
 
 
-#' Query LDproxy API using a list of query variants, one per line.
+#' Query LDproxy using a list of query variants, one per line.
 #'
 #' @param snp a character string or data frame listing rsID's or chromosome coordinates (e.g. "chr7:24966446"), one per line
 #' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"

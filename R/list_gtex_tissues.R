@@ -1,4 +1,7 @@
-#' List GTEx tissues
+#' Provides a data frame listing the GTEx full names, `LDexpress` full names
+#' (without spaces) and acceptable abbreviation codes of the 54 non-diseased
+#' tissue sites collected for the [GTEx Portal](https://gtexportal.org/home/)
+#' and used as input for the `LDexpress` function.
 #'
 #' @return a data frame listing the GTEx tissues, their names and abbreviation codes
 #' used as input for LDexpress.

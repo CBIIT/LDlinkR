@@ -2,7 +2,8 @@
 % Please edit documentation in R/list_pop.R
 \name{list_pop}
 \alias{list_pop}
-\title{List available reference populations}
+\title{Provides a data frame listing the available reference populations from
+the [1000 Genomes Project](https://www.internationalgenome.org/).}
 \usage{
 list_pop()
 }
@@ -10,7 +11,8 @@ list_pop()
 a data frame listing the available reference populations, continental (ex: European, African, and Admixed American) and sub-populations (ex: Finnish, Gambian, and Peruvian)
 }
 \description{
-List available reference populations
+Provides a data frame listing the available reference populations from
+the [1000 Genomes Project](https://www.internationalgenome.org/).
 }
 \examples{
 list_pop()

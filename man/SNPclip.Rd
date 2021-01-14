@@ -2,7 +2,7 @@
 % Please edit documentation in R/SNPclip.R
 \name{SNPclip}
 \alias{SNPclip}
-\title{Query SNPclip API}
+\title{Prune a list of variants by linkage disequilibrium.}
 \usage{
 SNPclip(
   snps,
@@ -30,7 +30,7 @@ SNPclip(
 a data frame
 }
 \description{
-Query SNPclip API
+Prune a list of variants by linkage disequilibrium.
 }
 \examples{
 \dontrun{SNPclip(c("rs3", "rs4", "rs148890987"), "YRI", "0.1", "0.01",

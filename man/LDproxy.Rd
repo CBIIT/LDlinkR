@@ -2,7 +2,8 @@
 % Please edit documentation in R/LDproxy.R
 \name{LDproxy}
 \alias{LDproxy}
-\title{Query LDproxy API}
+\title{Explore proxy and putatively functional variants for a
+single query variant.}
 \usage{
 LDproxy(snp, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
 }
@@ -21,7 +22,8 @@ LDproxy(snp, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
 a data frame
 }
 \description{
-Query LDproxy API
+Explore proxy and putatively functional variants for a
+single query variant.
 }
 \examples{
 \dontrun{LDproxy("rs456", "YRI", "r2", token = Sys.getenv("LDLINK_TOKEN"))}

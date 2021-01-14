@@ -1,4 +1,5 @@
-#' List available reference populations
+#' Provides a data frame listing the available reference populations from
+#' the [1000 Genomes Project](https://www.internationalgenome.org/).
 #'
 #' @return a data frame listing the available reference populations, continental (ex: European, African, and Admixed American) and sub-populations (ex: Finnish, Gambian, and Peruvian)
 #' @export

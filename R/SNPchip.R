@@ -109,7 +109,7 @@ format_tbl <- function(out_raw) {
 
 
 ############ Begin Primary Function ##################
-#' Query SNPchip API
+#' Find commercial genotyping chip arrays for variants of interest.
 #'
 #' @param snps between 1 - 5,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
 #' @param chip chip or arrays, platform code(s) for a SNP chip array, ALL_Illumina, ALL_Affy or ALL, default=ALL

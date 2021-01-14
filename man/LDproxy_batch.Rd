@@ -2,7 +2,7 @@
 % Please edit documentation in R/LDproxy_batch.R
 \name{LDproxy_batch}
 \alias{LDproxy_batch}
-\title{Query LDproxy API using a list of query variants, one per line.}
+\title{Query LDproxy using a list of query variants, one per line.}
 \usage{
 LDproxy_batch(snp, pop = "CEU", r2d = "r2", token = NULL, append = FALSE)
 }
@@ -21,7 +21,7 @@ LDproxy_batch(snp, pop = "CEU", r2d = "r2", token = NULL, append = FALSE)
 text file(s) are saved to the current working directory.
 }
 \description{
-Query LDproxy API using a list of query variants, one per line.
+Query LDproxy using a list of query variants, one per line.
 }
 \examples{
 \dontrun{snps_to_upload <- c("rs3", "rs4")}
