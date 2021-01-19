@@ -65,6 +65,7 @@ LDhap(snps = c("rs3", "rs4", "rs148890987"),
 |`LDpop` |Investigates allele frequencies and linkage disequilibrium patterns across [1000 Genomes Project](https://www.internationalgenome.org/) populations.|
 |`LDproxy` |Explore proxy and putatively functional variants for a single query variant.|
 |`LDproxy_batch`|Query `LDproxy` using a list of query variants.|
+|`LDtrait` | Search the [GWAS Catalog](https://www.ebi.ac.uk/gwas/docs/file-downloads) (data updated nightly) to determine if a list of variants (or variants in LD with those variants) have been previously associated with a trait or disease.
 |`SNPchip` |Find commercial genotyping chip arrays for variants of interest.|
 |`SNPclip` |Prune a list of variants by linkage disequilibrium.|
 
