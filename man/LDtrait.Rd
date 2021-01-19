@@ -15,12 +15,12 @@ LDtrait(
 )
 }
 \arguments{
-\item{snps}{between 1 - 50 variants, using an rsID or chromosome coordinate (GRCh37) (e.g. "chr7:24966446"). 
+\item{snps}{between 1 - 50 variants, using an rsID or chromosome coordinate (GRCh37) (e.g. "chr7:24966446").
 All input variants must match a bi-allelic variant.}
 
 \item{pop}{a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"}
 
-\item{r2d}{use "r2" to filter desired output from a threshold based on estimated 
+\item{r2d}{use "r2" to filter desired output from a threshold based on estimated
 LD R2 (R squared) or "d" for LD D' (D-prime), default = "r2".}
 
 \item{r2d_threshold}{R2 or D' (depends on 'r2d' user input parameter) threshold for LD filtering. Any variants
@@ -35,16 +35,16 @@ equal to 1,000,000bp. Default value is -/+ 500,000 bp.}
 \item{file}{Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.}
 }
 \value{
-A data frame of all query variant RS numbers with a list of queried variants 
+A data frame of all query variant RS numbers with a list of queried variants
 in LD with a variant reported in the GWAS Catalog (\url{https://www.ebi.ac.uk/gwas/docs/file-downloads}.
 }
 \description{
-Search if a list of variants (or variants in LD with those variants) have been 
-previously associated with a trait or disease. Trait and disease data is updated 
+Search if a list of variants (or variants in LD with those variants) have been
+previously associated with a trait or disease. Trait and disease data is updated
 nightly from the GWAS Catalog (\url{https://www.ebi.ac.uk/gwas/docs/file-downloads}.
 }
 \examples{
-\dontrun{LDtrait(snps = "rs456",                                                                       # good, does not save to file
+\dontrun{LDtrait(snps = "rs456",
                  pop = c("YRI", "CEU"),
                  r2d = "r2",
                  r2d_threshold = "0.1",
