@@ -1,6 +1,6 @@
 # LDlinkR (development version)
 * Release date: TBD
-* Added new three functions, `LDtrait`, `LDexpress` & `list_gtex_tissues`
+* Added three new functions, `LDtrait`, `LDexpress` & `list_gtex_tissues`
 * Updated vignette with new functions and examples.
 * Major update to `README.md`, including basic examples
 * Added a `NEWS.md` file to track changes to the package.
