@@ -97,7 +97,7 @@ for the `token` argment in *LDlinkR* function calls will use your personal acces
 ### LDexpress
 
 #### Function 
-```
+```{r eval=FALSE}
 LDexpress(snps, 
           pop = "CEU", 
           tissue = "ALL", 
@@ -113,12 +113,12 @@ Search if a list of genomic variants (or variants in LD with those variants) is 
 
 #### Arguments
 - `snps`, between 1 - 10 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
-- `pop`, a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU".  See the *list_pop* function in the utilities section below for available populations and their abbreviation codes.
+- `pop`, a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU".  See the *list_pop* function in the utilities section below for available human populations and their abbreviation codes.
 - `tissue`, select from 1 - 54 non-diseased tissue sites collected for the GTEx project, mulitple allowed. Acceptable user input is taken either from "tissue_name_ldexpress" or "tissue_abbrev" (tissue abbreviation) code listed in available GTEx tissue sites using the *list_getex_tissues* function (e.g. "ADI_SUB" for Adipose Subcutaneous). Input is case sensitive. Default = "ALL" for all available tissue types.
 - `r2d`, Select either "r2" for LD R^2^ (R-squared) or "d" for LD D', default = "r2".
 - `r2d_threshold`, R-squared or D' (depends on 'r2d' user input parameter) threshold for LD filtering. Any variants within -/+ of the specified genomic window and R^2^ or D' less than the threshold will be removed. Value needs to be in the range 0 to 1. Default value is 0.1.
 - `p_threshold`, define the eQTL significance threshold used for returning query results. Default value is 0.1 which returns all GTEx eQTL associations with P-value less than 0.1.
-- `win_size`, set genomic base pair window size for LD calculation. Specify a value greater than or equal to zero and less than or equal to 1000000 base pairs (bp). Default value is -/+ 500000 bp.
+- `win_size`, set genomic base pair window size for LD calculation. Specify a value greater than or equal to zero and less than or equal to 1000000 basepairs (bp). Default value is -/+ 500000 bp.
 - `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 - `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
 
@@ -492,6 +492,51 @@ LDproxy_batch(snp = my_variants,
              )
 ```
 Output not displayed.  All output from *LDproxy_batch* is saved to a text file(s) in the current working directory.
+
+***
+
+### LDtrait
+
+#### Function 
+```{r eval=FALSE}
+LDtrait(snps,
+        pop = "CEU",
+        r2d = "r2",
+        r2d_threshold = 0.1,
+        win_size = 500000,
+        token = NULL,
+        file = FALSE
+        )
+```
+Search if a list of variants (or variants in LD with those variants) have been previously associated with a trait or disease. Trait and disease data is updated nightly from the [GWAS Catalog](https://www.ebi.ac.uk/gwas/docs/file-downloads).
+
+#### Arguments
+- `snps`, between 1 - 50 variants, using an rsID or chromosome coordinate (GRCh37)(e.g. "chr7:24966446"). All input variants must match a bi-allelic variant.
+- `pop`, a [1000 Genomes Project](https://www.internationalgenome.org/) population, (e.g. YRI or CEU), multiple allowed, default = "CEU".  See the *list_pop* function in the utilities section below for available human populations and their abbreviation codes.
+- `r2d`, use "r2" to filter desired output from a threshold based on estimated LD R2 (R squared) or "d" for LD D' (D-prime), default = "r2".
+- `r2d_threshold`, R-squared or D' (depends on 'r2d' user input parameter) threshold for LD filtering. Any variants within -/+ of the specified genomic window and R^2^ or D' less than the threshold will be removed. Value needs to be in the range 0 to 1. Default value is 0.1.
+- `win_size`, set genomic base pair window size for LD calculation. Specify a value greater than or equal to zero and less than or equal to 1000000 basepairs (bp). Default value is -/+ 500000 bp.
+- `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
+- `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
+
+#### Usage: Single query variant and multiple reference populations 
+
+```{r}
+LDtrait(snps = "rs456",
+        pop = c("YRI", "CEU"),
+        token = Sys.getenv("LDLINK_TOKEN")
+)
+```
+
+#### Usage:  Multiple query variants, multiple reference populations and *win_size* set to 750000 basepairs (bp).
+
+```{r}
+LDtrait(snps = c("rs114", "rs496202", "rs345"),
+        pop = c("YRI", "CHB", "CEU"),
+        win_size = "750000",
+        token = Sys.getenv("LDLINK_TOKEN")
+)
+```
 
 ***
 
