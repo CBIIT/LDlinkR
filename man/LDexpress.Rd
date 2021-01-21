@@ -19,7 +19,8 @@ LDexpress(
 \arguments{
 \item{snps}{between 1 - 10 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")}
 
-\item{pop}{a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"}
+\item{pop}{a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU".
+Use the `list_pop` function to see a list of available human reference populations.}
 
 \item{tissue}{select from 1 - 54 non-diseased tissue sites collected for the GTEx project, mulitple
 allowed.  Acceptable user input is taken either from "tissue_name_ldexpress" or "tissue_abbrev"
@@ -37,9 +38,9 @@ to be in the range 0 to 1. Default value is 0.1.}
 is 0.1 which returns all GTEx eQTL associations with P-value less than 0.1.}
 
 \item{win_size}{set genomic window size for LD calculation. Specify a value greater than or equal to zero and less than or
-equal to 1,000,000bp. Default value is -/+ 500,000bp.}
+equal to 1,000,000 basepairs (bp). Default value is -/+ 500,000bp.}
 
-\item{token}{LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
+\item{token}{LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
 
 \item{file}{Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.}
 }

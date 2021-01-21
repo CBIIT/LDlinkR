@@ -6,7 +6,8 @@
 #'
 #' @param snps between 1 - 50 variants, using an rsID or chromosome coordinate (GRCh37) (e.g. "chr7:24966446").
 #' All input variants must match a bi-allelic variant.
-#' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"
+#' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU".
+#' Use the `list_pop` function to see a list of available human reference populations.
 #' @param r2d use "r2" to filter desired output from a threshold based on estimated
 #' LD R2 (R squared) or "d" for LD D' (D-prime), default = "r2".
 #' @param r2d_threshold R2 or D' (depends on 'r2d' user input parameter) threshold for LD filtering. Any variants

@@ -18,7 +18,8 @@ LDtrait(
 \item{snps}{between 1 - 50 variants, using an rsID or chromosome coordinate (GRCh37) (e.g. "chr7:24966446").
 All input variants must match a bi-allelic variant.}
 
-\item{pop}{a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"}
+\item{pop}{a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU".
+Use the `list_pop` function to see a list of available human reference populations.}
 
 \item{r2d}{use "r2" to filter desired output from a threshold based on estimated
 LD R2 (R squared) or "d" for LD D' (D-prime), default = "r2".}

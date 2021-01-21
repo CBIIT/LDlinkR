@@ -5,7 +5,8 @@
 #' GTEx Portal (\url{https://gtexportal.org/home/}).
 #'
 #' @param snps between 1 - 10 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
-#' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"
+#' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU".
+#' Use the `list_pop` function to see a list of available human reference populations.
 #' @param tissue select from 1 - 54 non-diseased tissue sites collected for the GTEx project, mulitple
 #' allowed.  Acceptable user input is taken either from "tissue_name_ldexpress" or "tissue_abbrev"
 #' (tissue abbreviation) code listed in available GTEx tissue sites using the
@@ -18,8 +19,8 @@
 #' @param p_threshold define the eQTL significance threshold used for returning query results. Default value
 #' is 0.1 which returns all GTEx eQTL associations with P-value less than 0.1.
 #' @param win_size set genomic window size for LD calculation. Specify a value greater than or equal to zero and less than or
-#' equal to 1,000,000bp. Default value is -/+ 500,000bp.
-#' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
+#' equal to 1,000,000 basepairs (bp). Default value is -/+ 500,000bp.
+#' @param token LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
 #'
 #' @return A data frame of all query variant RS numbers, respective QTL which are in LD with query variant,
