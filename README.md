@@ -9,7 +9,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/LDlinkR?color=blue)](ht
 ![CRAN/METACRAN](https://img.shields.io/cran/l/LDlinkR?color=yellow)
 <!-- badges: end -->
 
-### An R Package for Calculating Linkage Disequilibrium in Human Populations of Interest
+### Calculating Linkage Disequilibrium in Human Populations of Interest
 
 ## Description
 
