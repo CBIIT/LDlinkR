@@ -58,7 +58,7 @@ LDhap(snps = c("rs3", "rs4", "rs148890987"),
 ## Available Functions
 | Function| Description|
 |:--------|:-----------|
-|`LDexpress`|Search if a list of genomic variants is associated with gene expression in tissues of interest.|
+|`LDexpress`|Determine if a list of genomic variants is associated with gene expression in tissues of interest.|
 |`LDhap` |Calculates population specific haplotype frequencies of all haplotypes observed for a list of query variants.|
 |`LDmatrix` |Generates a data frame of pairwise linkage disequilibirum statistics.|
 |`LDpair`|Investigates potentially correlated alleles for a pair of variants.|
