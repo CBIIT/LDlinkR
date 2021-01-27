@@ -122,6 +122,12 @@ tissue_abbrev <- LD_config[["avail_tissue_abbrev"]]
     pop=paste(unlist(pop), collapse = "+")
   }
 
+  # When 'tissue' argument is NULL
+  if(is.null(tissue)) {
+    stop("Tisse cannot be NULL. Use a valid tissue type. Select acceptable
+    input from the 'list_gtex_tissue()' function.")
+  }
+
   # When 'tissue' is 'ALL'
   if (length(tissue) == 1) {
     if (tissue == "ALL") {
@@ -130,23 +136,38 @@ tissue_abbrev <- LD_config[["avail_tissue_abbrev"]]
   }
 
   # Check 'tissue' argument for valid input and, if abbreviation for tissue
-  # was used, convert to 'tissue_name_ldexpress' format (required format
+  # was used, convert to 'tissue_name_ldexpress' format (required format for
   # LDlink API call); also, create 'tissue_to_upload' character vector to
   # be used to create below to generate API request body.
-  tissues_to_upload <- character() # initialize empty character vector
+  # Note: Mixing different formats from the columns 'tissue_name_ldexpress' and
+  # 'tissue_abbrev_ldexpress' taken from `list_gtex_tissues` function is supported.
 
-  if((all(tissue %in% tissue_abbrev))) {
-    for(i in 1:length(tissue)) { # convert tissue abbreviation to full length 'tissue_ldexpress' format
-      tissues_to_upload <- append(tissues_to_upload,
-                                  LD_config[["avail_tissue_ldexpress"]][LD_config[["avail_tissue_abbrev"]] == tissue[i]],
-                                  after = length(tissues_to_upload))
+  # initialize empty character vector
+  tissues_to_upload <- character()
+
+  if (!all(tissue %in% tissue_ldexpress)) {
+    for(i in 1:length(tissue)) {
+      if(tissue[i] %in% tissue_abbrev) {
+        tissues_to_upload <- append(tissues_to_upload,
+                                    LD_config[["avail_tissue_ldexpress"]][LD_config[["avail_tissue_abbrev"]] == tissue[i]],
+                                    after = length(tissues_to_upload))
+
+      }
+      else if (tissue[i] %in% tissue_ldexpress) {
+        tissues_to_upload <- append(tissues_to_upload,
+                                    tissue[i],
+                                    after = length(tissues_to_upload))
+      }
+      else {
+        stop(paste("'", tissue[i], "'", "is an invalid input for tissue type. Please lookup
+      acceptable input using the `list_gtex_tissues()` function.  Select input from either
+      'tissue_name_ldexpress' or 'tissue_abbrev' columns. Note: input is case sensitive."))
+      }
+
     }
-  } else if ((all(tissue %in% tissue_ldexpress))) {
+
+  } else if (all(tissue %in% tissue_ldexpress)) {
     tissues_to_upload <- tissue
-  } else {
-    stop("Invalid input for tissue type. Please lookup acceptable input using
-       the `list_gtex_tissues()` function.  Use input from either
-       'tissue_name_ldexpress' or 'tissue_abbrev'. Input is case sensitive.")
   }
 #############################
 
