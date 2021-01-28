@@ -2,7 +2,7 @@
 % Please edit documentation in R/LDmatrix.R
 \name{LDmatrix}
 \alias{LDmatrix}
-\title{Generates a data frame of pairwise linkage disequilibirum
+\title{Generates a data frame of pairwise linkage disequilibrium
 statistics.}
 \usage{
 LDmatrix(snps, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
@@ -22,7 +22,7 @@ LDmatrix(snps, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
 a data frame
 }
 \description{
-Generates a data frame of pairwise linkage disequilibirum
+Generates a data frame of pairwise linkage disequilibrium
 statistics.
 }
 \examples{

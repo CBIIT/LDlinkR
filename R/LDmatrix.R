@@ -1,6 +1,6 @@
 # LDlinkR::LDmatrix
 
-#' Generates a data frame of pairwise linkage disequilibirum
+#' Generates a data frame of pairwise linkage disequilibrium
 #' statistics.
 #'
 #' @param snps list of between 2 - 1,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")

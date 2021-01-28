@@ -61,7 +61,7 @@ LDhap(snps = c("rs3", "rs4", "rs148890987"),
 
 **Optional:**
 <br>
-However, the best security practice is to store your personal access token as an envionment variable where *LDlinkR* can find it and use it on your behalf but where it will not be accidentally shared with the public.  **Note:**  Modifying R startup files (such as the `.Renviron`) is for the advanced R user only.  Modification of these files in the wrong way could cause problems.  Please proceed cautiously.  Step-by-step instructions follow:
+However, the best security practice is to store your personal access token as an environment variable where *LDlinkR* can find it and use it on your behalf but where it will not be accidentally shared with the public.  **Note:**  Modifying R startup files (such as the `.Renviron`) is for the advanced R user only.  Modification of these files in the wrong way could cause problems.  Please proceed cautiously.  Step-by-step instructions follow:
 
 After retrieving your personal access token from your email, put your token in your `.Renviron` file. `.Renviron` is a hidden file that lives in your home directory.  The easiest way to both find and edit the `.Renviron` file is with a function from the *usethis* package.  From the R console, do:
 
@@ -88,7 +88,7 @@ You should see your personal access token print to the screen, as shown above. N
 Sys.getenv("LDLINK_TOKEN")
 ```
 
-for the `token` argment in *LDlinkR* function calls will use your personal access token in a private and secure way.  This method will be used in the extended examples that follow.
+for the `token` argument in *LDlinkR* function calls will use your personal access token in a private and secure way.  This method will be used in the extended examples that follow.
 
 ***
 
@@ -114,7 +114,7 @@ Search if a list of genomic variants (or variants in LD with those variants) is 
 #### Arguments
 - `snps`, between 1 - 10 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
 - `pop`, a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU".  See the *list_pop* function in the utilities section below for available human populations and their abbreviation codes.
-- `tissue`, select from 1 - 54 non-diseased tissue sites collected for the GTEx project, mulitple allowed. Acceptable user input is taken either from "tissue_name_ldexpress" or "tissue_abbrev" (tissue abbreviation) code listed in available GTEx tissue sites using the *list_getex_tissues* function (e.g. "ADI_SUB" for Adipose Subcutaneous). Input is case sensitive. Default = "ALL" for all available tissue types.
+- `tissue`, select from 1 - 54 non-diseased tissue sites collected for the GTEx project, multiple allowed. Acceptable user input is taken either from "tissue_name_ldexpress" or "tissue_abbrev_ldexpress" (tissue abbreviation) code listed in available GTEx tissue sites using the *list_gtex_tissues* function (e.g. "ADI_SUB" for Adipose Subcutaneous). Input is case sensitive. Default = "ALL" for all available tissue types.
 - `r2d`, Select either "r2" for LD R^2^ (R-squared) or "d" for LD D', default = "r2".
 - `r2d_threshold`, R-squared or D' (depends on 'r2d' user input parameter) threshold for LD filtering. Any variants within -/+ of the specified genomic window and R^2^ or D' less than the threshold will be removed. Value needs to be in the range 0 to 1. Default value is 0.1.
 - `p_threshold`, define the eQTL significance threshold used for returning query results. Default value is 0.1 which returns all GTEx eQTL associations with P-value less than 0.1.
@@ -221,7 +221,7 @@ Output is a table of alleles, haplotype count and haplotype frequencies.
 ```
 LDmatrix(snps, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
 ```
-Generates a data frame of pairwise linkage disequilibirum statistics. Input is a list of between 2 to 1000 variants. Desired output can be based on estimates of R^2^ or D'.
+Generates a data frame of pairwise linkage disequilibrium statistics. Input is a list of between 2 to 1000 variants. Desired output can be based on estimates of R^2^ or D'.
 
 #### Arguments
 - `snps`, list of between 2 - 1,000 variants, using an rsID or chromosome coordinate (GRCh37/hg19) (e.g. "chr7:24966446")
@@ -414,7 +414,7 @@ LDpop(var1 = "rs496202",
 ```
 LDproxy(snp, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
 ```
-Explore proxy and putatively functional variants for a single query variant. Input is a single RS number and a population group.  Depending on the number of query populations, this function could take some time to run.
+Explore proxy and putative functional variants for a single query variant. Input is a single RS number and a population group.  Depending on the number of query populations, this function could take some time to run.
 
 #### Arguments
 - `snp`, an RS number (rsID) or chromosome coordinate (GRCh37/hg19) (e.g. "chr7:24966446"), one per query, RS number must match a bi-allelic variant 
@@ -464,14 +464,14 @@ Includes information on all variants -/+ 500 Kb of the query variant with a pair
 ```
 LDproxy_batch(snp, pop = "CEU", r2d = "r2", token = NULL, append = FALSE)
 ```
-Query *LDproxy* using a list of query variants. *LDproxy_batch* will make sequential queries, one query per variant.  Concurrent queries are not permitted by the LDlink API.  Ouptput is saved as text file(s) to the current working directory. Depending on the number of query variants and reference populations selected, this function could time some time to run.
+Query *LDproxy* using a list of query variants. *LDproxy_batch* will make sequential queries, one query per variant.  Concurrent queries are not permitted by the LDlink API.  Output is saved as text file(s) to the current working directory. Depending on the number of query variants and reference populations selected, this function could time some time to run.
 
 #### Arguments
 - `snp`, a character string or data frame listing RS numbers (rsID) or chromosome coordinates (GRCh37/hg19) (e.g. "chr7:24966446"), one per line.
 - `pop`, a 1000 Genomes Project reference population, uses three letter population code, (e.g. YRI or CEU), multiple allowed, default = "CEU"
 - `r2d`, use "r2" if desired output is based on estimated R^2^ or "d" if D'
 - `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
-- `append`, a logical, if TRUE, output for eqch query variant is appended to a single text file and saved to the current working directory.  If FALSE, output for each query variant is saved in its own text file with the query variant as the filename.  Default value is FALSE.
+- `append`, a logical, if TRUE, output for each query variant is appended to a single text file and saved to the current working directory.  If FALSE, output for each query variant is saved in its own text file with the query variant as the filename.  Default value is FALSE.
 
 #### Usage: multiple variants, default `pop` and `r2d` 
 The list of query variants passed to *LDproxy_batch* can be stored as a character string.
@@ -659,7 +659,7 @@ SNPclip(snps =  c("rs3", "rs4", "rs148890987", "rs115955931"),
 ## 4                                     Variant kept.
 ```
 
-The output table provides details including query varaint RS number, genomic position, alleles, and and details about whether the variant was kept or removed.
+The output table provides details including query variant RS number, genomic position, alleles, and and details about whether the variant was kept or removed.
 
 ***
 
@@ -671,7 +671,7 @@ The output table provides details including query varaint RS number, genomic pos
 ```
 list_chips()
 ```
-Provides a data frame listing the names and abbreviation codes for available commerical SNP Chip Arrays from Illumina and Affymetrix.
+Provides a data frame listing the names and abbreviation codes for available commercial SNP Chip Arrays from Illumina and Affymetrix.
 
 #### Usage
 ```{r}
@@ -686,7 +686,7 @@ list_chips()
 ```
 list_pop()
 ```
-Provides a data frame listing the available reference populations from the 1000 Genomes Project, continetal or super-populations (e.g. European, African, Admixed American) and sub-populations (e.g Finnish, Gambian, Peruvian)
+Provides a data frame listing the available reference populations from the 1000 Genomes Project, continental or super-populations (e.g. European, African, Admixed American) and sub-populations (e.g Finnish, Gambian, Peruvian)
 
 #### Usage
 ```{r}

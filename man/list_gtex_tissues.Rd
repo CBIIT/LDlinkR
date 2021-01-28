@@ -4,7 +4,7 @@
 \alias{list_gtex_tissues}
 \title{Provides a data frame listing the GTEx full names, `LDexpress` full names
 (without spaces) and acceptable abbreviation codes of the 54 non-diseased
-tissue sites collected for the GTEx Portaland used as input for the
+tissue sites collected for the GTEx Portal and used as input for the
 `LDexpress` function.}
 \usage{
 list_gtex_tissues()
@@ -16,7 +16,7 @@ used as input for LDexpress.
 \description{
 Provides a data frame listing the GTEx full names, `LDexpress` full names
 (without spaces) and acceptable abbreviation codes of the 54 non-diseased
-tissue sites collected for the GTEx Portaland used as input for the
+tissue sites collected for the GTEx Portal and used as input for the
 `LDexpress` function.
 }
 \examples{

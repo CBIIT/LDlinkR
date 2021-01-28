@@ -1,5 +1,5 @@
 #' Provides a data frame listing the names and abbreviation codes
-#' for available commerical SNP Chip Arrays from Illumina and Affymetrix.
+#' for available commercial SNP Chip Arrays from Illumina and Affymetrix.
 #'
 #' @return a data frame listing the names and abbreviation codes for available SNP Chip Arrays from Illumina and Affymetrix
 #' @export

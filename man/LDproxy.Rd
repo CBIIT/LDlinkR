@@ -2,7 +2,7 @@
 % Please edit documentation in R/LDproxy.R
 \name{LDproxy}
 \alias{LDproxy}
-\title{Explore proxy and putatively functional variants for a
+\title{Explore proxy and putative functional variants for a
 single query variant.}
 \usage{
 LDproxy(snp, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
@@ -22,7 +22,7 @@ LDproxy(snp, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
 a data frame
 }
 \description{
-Explore proxy and putatively functional variants for a
+Explore proxy and putative functional variants for a
 single query variant.
 }
 \examples{

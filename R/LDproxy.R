@@ -1,6 +1,6 @@
 # LDlinkR::LDproxy
 
-#' Explore proxy and putatively functional variants for a
+#' Explore proxy and putative functional variants for a
 #' single query variant.
 #'
 #' @param snp  an rsID or chromosome coordinate (e.g. "chr7:24966446"), one per query

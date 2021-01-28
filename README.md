@@ -60,10 +60,10 @@ LDhap(snps = c("rs3", "rs4", "rs148890987"),
 |:--------|:-----------|
 |`LDexpress`|Determine if a list of genomic variants is associated with gene expression in tissues of interest.|
 |`LDhap` |Calculates population specific haplotype frequencies of all haplotypes observed for a list of query variants.|
-|`LDmatrix` |Generates a data frame of pairwise linkage disequilibirum statistics.|
+|`LDmatrix` |Generates a data frame of pairwise linkage disequilibrium statistics.|
 |`LDpair`|Investigates potentially correlated alleles for a pair of variants.|
 |`LDpop` |Investigates allele frequencies and linkage disequilibrium patterns across [1000 Genomes Project](https://www.internationalgenome.org/) populations.|
-|`LDproxy` |Explore proxy and putatively functional variants for a single query variant.|
+|`LDproxy` |Explore proxy and putative functional variants for a single query variant.|
 |`LDproxy_batch`|Query `LDproxy` using a list of query variants.|
 |`LDtrait` | Search the [GWAS Catalog](https://www.ebi.ac.uk/gwas/docs/file-downloads) (data updated nightly) to determine if a list of variants (or variants in LD with those variants) have been previously associated with a trait or disease.
 |`SNPchip` |Find commercial genotyping chip arrays for variants of interest.|
@@ -74,7 +74,7 @@ LDhap(snps = c("rs3", "rs4", "rs148890987"),
 ## Utilities
 |Utility Function |Description|
 |:--------|:-----------|
-|`list_chips` |Provides a data frame listing the names and abbreviation codes for available commerical SNP Chip Arrays from Illumina and Affymetrix.|
+|`list_chips` |Provides a data frame listing the names and abbreviation codes for available commercial SNP Chip Arrays from Illumina and Affymetrix.|
 |`list_pop` |Provides a data frame listing the available reference populations from the [1000 Genomes Project](https://www.internationalgenome.org/).|
 |`list_gtex_tissues` |Provides a data frame listing the GTEx full names, `LDexpress` full names (without spaces) and acceptable abbreviation codes of the 54 non-diseased tissue sites collected for the [GTEx Portal](https://gtexportal.org/home/) and used as input for the `LDexpress` function.|
 
@@ -82,7 +82,7 @@ LDhap(snps = c("rs3", "rs4", "rs148890987"),
 
 ## Basic example
 
-In this basic example, the `LDproxy` function is used to explore proxy and putatively functional variants for a single query variant. Usage by other functions is similar.
+In this basic example, the `LDproxy` function is used to explore proxy and putative functional variants for a single query variant. Usage by other functions is similar.
 
 
 ```{r}
@@ -133,7 +133,7 @@ my_output <- LDexpress(snps = "rs4",
                       )
 ```
 
-For the function arguments, this example uses a single rsID for a query variant, multiple populations (e.g., YRI = Yoruba in Ibadan, Nigera and CEU = Utah Residents from North and West Europe) and multiple tissue types using acceptable abbreviations for available tissues (e.g., ADI_SUB = Adipose - Subcutaneous and ADI_VIS_OME = Adipose - Visceral (Omentum)). The output is stored in the variable `my_output`.  **Note:** Replace "YourTokenHere123" with your personal access token. See section above, "Personal Access Token".
+For the function arguments, this example uses a single rsID for a query variant, multiple populations (e.g., YRI = Yoruba in Ibadan, Nigeria and CEU = Utah Residents from North and West Europe) and multiple tissue types using acceptable abbreviations for available tissues (e.g., ADI_SUB = Adipose - Subcutaneous and ADI_VIS_OME = Adipose - Visceral (Omentum)). The output is stored in the variable `my_output`.  **Note:** Replace "YourTokenHere123" with your personal access token. See section above, "Personal Access Token".
 
 <br>
 

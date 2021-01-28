@@ -21,7 +21,7 @@ LDpair(var1, var2, pop = "CEU", token = NULL, output = "table", file = FALSE)
 \item{file}{Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.}
 }
 \value{
-text or data frame, dependning on the output option
+text or data frame, depending on the output option
 }
 \description{
 Investigates potentially correlated alleles for a

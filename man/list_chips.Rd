@@ -3,7 +3,7 @@
 \name{list_chips}
 \alias{list_chips}
 \title{Provides a data frame listing the names and abbreviation codes
-for available commerical SNP Chip Arrays from Illumina and Affymetrix.}
+for available commercial SNP Chip Arrays from Illumina and Affymetrix.}
 \usage{
 list_chips()
 }
@@ -12,7 +12,7 @@ a data frame listing the names and abbreviation codes for available SNP Chip Arr
 }
 \description{
 Provides a data frame listing the names and abbreviation codes
-for available commerical SNP Chip Arrays from Illumina and Affymetrix.
+for available commercial SNP Chip Arrays from Illumina and Affymetrix.
 }
 \examples{
 list_chips()
