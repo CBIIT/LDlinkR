@@ -10,12 +10,11 @@ Authors@R:
       person(given = "Stephen J.",
              family = "Chanock",
              role = "aut",
-             email = "chanocks@mail.nih.gov"),       
+             email = "chanocks@mail.nih.gov"),
       person(given = "Mitchell J.",
              family = "Machiela",
              role = "aut",
-             email = "mitchell.machiela@nih.gov")
-      )
+             email = "mitchell.machiela@nih.gov"))
 Maintainer: Timothy A. Myers <myersta@mail.nih.gov>
 Description: Provides access to the LDlink API (<https://ldlink.nci.nih.gov/?tab=apiaccess>)
     using the R console.  This programmatic access facilitates researchers who are 
