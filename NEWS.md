@@ -1,7 +1,7 @@
 # LDlinkR 1.1.0
 * Submitted date: TBD
 * Added three new functions, `LDtrait`, `LDexpress` & `list_gtex_tissues`
-* Updated vignette with new functions and examples.
+* Updated vignette with new descriptions of functions and examples.
 * Major update to `README.md`, including basic examples
 * Added a `NEWS.md` file to track changes to the package.
 * Issue #2, fixed warning message from write.table in `LDproxy_batch` when append = TRUE
