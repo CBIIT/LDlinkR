@@ -1,8 +1,8 @@
-## This is the fourth release
-* Added three new functions
-* Updated vignette and README
-* Issue #2; fixed warning message from write.table in `LDproxy_batch`
-* Miscellaneous minor updates
+## Resubmission of the fourth release
+* Responding to feedback from Uwe Ligges
+  * Added single quotes to software name 'LDlink' in the Description field.
+
+Thank you for reviewing my submission!
 
 ## Test environments
 * local R installation, R 4.0.3
@@ -18,3 +18,4 @@
 
 ## Reverse Dependency Check
 None found
+
