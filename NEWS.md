@@ -1,5 +1,8 @@
+# LDlinkR (development version)
+* Add link to LDlink web site documentation
+
 # LDlinkR 1.1.1
-* Submitted date: 2021-02-01
+* Release date: 2021-02-02
 * Added three new functions, `LDtrait`, `LDexpress` & `list_gtex_tissues`
 * Updated vignette with new descriptions of functions and examples.
 * Major update to `README.md`, including basic examples
