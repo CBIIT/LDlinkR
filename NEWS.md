@@ -1,6 +1,6 @@
 # LDlinkR (development version)
 * Add link to LDlink web site documentation
-* Correct code chunk in vignette FAQ #4, changed option to eval=FALSE
+* Correct code chunk in vignette FAQ #4, changed option to eval=FALSE; this vignette code chunk no longer requires an internet resource
 * added notes to README and vignette that 'internet access required' to use
 
 # LDlinkR 1.1.1
