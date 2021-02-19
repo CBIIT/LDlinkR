@@ -1,8 +1,9 @@
-# LDlinkR (development version)
-* Add link to LDlink web site documentation
+# LDlinkR 1.1.2
+* Submission date: 2021-02-19
+* Add link to LDlink web site documentation.
 * Correct code chunk in vignette FAQ #4, changed option to eval=FALSE; this vignette code chunk no longer requires an internet resource
 * added notes to README and vignette that 'internet access required' to use
-* Add code to check if required internet resources are avialable per CRAN
+* Add code to check if required internet resources are available per CRAN
 
 # LDlinkR 1.1.1
 * Release date: 2021-02-02
