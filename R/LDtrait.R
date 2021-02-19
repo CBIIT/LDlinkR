@@ -20,7 +20,7 @@
 #'
 #' @return A data frame of all query variant RS numbers with a list of queried variants
 #' in LD with a variant reported in the GWAS Catalog (\url{https://www.ebi.ac.uk/gwas/docs/file-downloads}.
-#' @importFrom httr POST content stop_for_status
+#' @importFrom httr POST content stop_for_status http_error
 #' @importFrom utils capture.output read.delim write.table
 #' @export
 #'
@@ -134,6 +134,16 @@ LDtrait <- function(snps,
 
   # URL string
   url_str <- paste(url, "?", "token=", token, sep="")
+
+  # before 'POST command', check if LDlink server is up and accessible...
+  # if server is down pkg should fail gracefully with informative message (not error)
+  r_url <- POST(url)
+  if (httr::http_error(r_url)) { # if server is down use message (and not an error)
+    message("The LDlink server is down or not accessible. Please try again later.")
+    return(NULL)
+  } else { # network is up then proceed
+    message("\nLDlink server is working...\n")
+  }
 
   # POST command
   raw_out <-  httr::POST(url=url_str, body=jsonbody, encode="json")

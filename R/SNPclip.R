@@ -10,7 +10,7 @@
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
 #'
 #' @return a data frame
-#' @importFrom httr POST content stop_for_status
+#' @importFrom httr POST content stop_for_status http_error
 #' @importFrom utils capture.output read.delim write.table
 #' @export
 #'
@@ -109,6 +109,17 @@ jsonbody <- list(snps=snps_to_upload, pop=pop_to_upload,
 
 # URL string
 url_str <- paste(url, "?", "&token=", token, sep="")
+
+# before full 'POST command', check if LDlink server is up and accessible...
+# if server is down pkg should fail gracefully with informative message (not error)
+r_url <- POST(url)
+if (httr::http_error(r_url)) { # if server is down use message (and not an error)
+  message("The LDlink server is down or not accessible. Please try again later.")
+  return(NULL)
+  # if server is working then proceed
+} else {
+  message("\nLDlink server is working...\n")
+}
 
 # POST command
 raw_out <-  httr::POST(url=url_str, body=jsonbody, encode="json")

@@ -58,7 +58,7 @@ df_pair_tbl <- data.frame(var1 = z[[1]][1],
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
 #'
 #' @return text or data frame, depending on the output option
-#' @importFrom httr GET content stop_for_status
+#' @importFrom httr GET content stop_for_status http_error
 #' @importFrom utils capture.output read.delim write.table
 #' @export
 #'
@@ -143,6 +143,15 @@ body <- list(paste("var1=", var1, sep=""),
 
 # URL query string
 url_str <- paste(url, "?", paste(unlist(body), collapse = "&"), sep="")
+
+# before 'GET command', check if LDlink server is up and accessible...
+# if server is down pkg should fail gracefully with informative message (not error)
+if (httr::http_error(url)) { # if server is down use message (and not an error)
+  message("The LDlink server is down or not accessible. Please try again later.")
+  return(NULL)
+} else { # network is up then proceed
+  message("\nLDlink server is working...\n")
+}
 
 # GET command, request to the web server
 raw_out <- httr::GET(url=url_str)
