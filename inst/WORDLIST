@@ -24,8 +24,8 @@ README
 RStudio
 SNPchip
 SNPclip
-snps
 VIS
+WORDLIST
 YRI
 YourTokenHere
 abc
@@ -49,10 +49,12 @@ hg
 https
 httr
 ldexpress
+ldhap
 ldlink
 nci
 nih
 programmatically
 rsID
 rsID's
+snps
 usethis
