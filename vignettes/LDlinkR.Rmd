@@ -252,7 +252,7 @@ Calculates population specific haplotype frequencies of all haplotypes observed 
 -   `pop`, a 1000 Genomes Project population, uses three letter population code, (e.g. YRI or CEU), multiple allowed, default = "CEU"
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
--    `table_type`, Choose from one of four options available to determine output format type...haplotype, variant, both and merge. Default = "haplotype".
+-    `table_type`, Choose from one of four options available to determine output format type...`haplotype`, `variant`, `both` and `merged`. Default = "haplotype".
 
 #### Usage: Multiple query variants, single population
 

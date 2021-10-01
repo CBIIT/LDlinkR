@@ -17,7 +17,7 @@ LDhap(snps, pop = "CEU", token = NULL, file = FALSE, table_type = "haplotype")
 \item{file}{Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.}
 
 \item{table_type}{Choose from one of four options available to determine output
-format type...haplotype, variant, both and merge. Default = "haplotype".}
+format type...`haplotype`, `variant`, `both` and `merged`. Default = "haplotype".}
 }
 \value{
 a data frame or list

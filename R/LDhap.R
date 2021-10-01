@@ -102,7 +102,7 @@ df_merge <- function(data_out, table_type) {
 #' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
 #' @param table_type Choose from one of four options available to determine output
-#' format type...haplotype, variant, both and merge. Default = "haplotype".
+#' format type...`haplotype`, `variant`, `both` and `merged`. Default = "haplotype".
 #'
 #' @return a data frame or list
 #' @importFrom httr GET content stop_for_status http_error
