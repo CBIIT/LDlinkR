@@ -1,3 +1,5 @@
+# LDlinkR 1.2.0
+
 # LDlinkR 1.1.2
 * Submission date: 2021-02-19
 * Add link to LDlink web site documentation.
