@@ -1,4 +1,9 @@
 # LDlinkR 1.2.0
+* Issue #13 - Added new argument to `LDhap` (table_type) with four options for different types data output.
+# Issue #14 - Fixed `LDhap` valid input check for number of input 'snps', line 94.
+# Added 'snps' to the WORDLIST
+# Updated test-ldhap.R
+
 
 # LDlinkR 1.1.2
 * Submission date: 2021-02-19
