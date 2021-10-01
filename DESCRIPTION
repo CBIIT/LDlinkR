@@ -1,7 +1,7 @@
 Package: LDlinkR
 Type: Package
 Title: Calculating Linkage Disequilibrium (LD) in Human Population Groups of Interest
-Version: 1.1.2.9000
+Version: 1.1.2.9001
 Authors@R: 
     c(person(given = "Timothy A.",
              family = "Myers",
