@@ -148,7 +148,7 @@ LDhap <- function(snps, pop="CEU", token=NULL, file = FALSE, table_type="haploty
 
 
   # Checking arguments for valid input
-  if(!(length(snps) >= 1) & (length(snps) <= 30)) {
+  if(!(length(snps) >= 1 & length(snps) <= 30)) {
     stop("Input is between 1 to 30 variants only.")
   }
 
