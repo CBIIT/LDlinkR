@@ -3,7 +3,7 @@
 # Issue #14 - Fix `LDhap` valid input check for number of input 'snps', line 94.
 # Add 'snps' to the WORDLIST
 # Update test-ldhap with additional tests
-
+# Update vignette with new `LDhap` usage examples.
 
 # LDlinkR 1.1.2
 * Submission date: 2021-02-19
