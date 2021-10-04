@@ -208,12 +208,23 @@ LDhap <- function(snps, pop="CEU", token=NULL, file = FALSE, table_type="haploty
   data_out_hap <- df_merge(data_out, table_type)
 
   # Evaluate 'file' option
+  # File output depends on 'table_type' option selected, opt. 'both' output is returned
+  # as a vector/list while the other three options return output as a data.frame. These
+  # require different ways to write to file.
   if (file == FALSE) {
     return(data_out_hap)
   } else if (is.character(file)) {
-    write.table(data_out_hap, file = file, quote = F, row.names = F, sep = "\t")
-    cat(paste("\nFile saved to ",file,".\n\n", sep=""))
-    return(data_out_hap)
+    if (is.data.frame(data_out_hap)) {
+      write.table(data_out_hap, file = file, quote = F, row.names = F, sep = "\t")
+      cat(paste("\nFile saved to ",file,".\n\n", sep=""))
+      return(data_out_hap)
+    } else if (is.vector(data_out_hap)) {
+      sink(file = file)
+      print(data_out_hap)
+      sink()
+      cat(paste("\nFile saved to ",file,".\n\n", sep=""))
+      return(data_out_hap)
+    }
   }
 
 }
