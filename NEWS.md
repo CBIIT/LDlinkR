@@ -4,6 +4,7 @@
 # Add 'snps' to the WORDLIST
 # Update test-ldhap with additional tests
 # Update vignette with new `LDhap` usage examples.
+# Make LDhap able to write to file for both types of data returned by the new 'table_type' options.
 
 # LDlinkR 1.1.2
 * Submission date: 2021-02-19
