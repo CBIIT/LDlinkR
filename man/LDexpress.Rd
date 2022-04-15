@@ -12,6 +12,7 @@ LDexpress(
   r2d_threshold = 0.1,
   p_threshold = 0.1,
   win_size = 5e+05,
+  genome_build = "grch37",
   token = NULL,
   file = FALSE
 )
@@ -40,6 +41,9 @@ is 0.1 which returns all GTEx eQTL associations with P-value less than 0.1.}
 \item{win_size}{set genomic window size for LD calculation. Specify a value greater than or equal to zero and less than or
 equal to 1,000,000 basepairs (bp). Default value is -/+ 500,000bp.}
 
+\item{genome_build}{Choose between "grch37" for genome build GRCh37 (hg19),"grch38" for GRCh38 (hg38), or "grch38_high_coverage"
+for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).}
+
 \item{token}{LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
 
 \item{file}{Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.}
@@ -61,6 +65,7 @@ GTEx Portal (\url{https://gtexportal.org/home/}).
                    r2d_threshold = "0.1",
                    p_threshold = "0.1",
                    win_size = "500000",
+                   genome_build = "grch37"
                    token = Sys.getenv("LDLINK_TOKEN")
                   )
          }

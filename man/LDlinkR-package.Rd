@@ -19,12 +19,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Timothy A. Myers \email{myersta@mail.nih.gov}
+\strong{Maintainer}: Timothy A. Myers \email{myersta@mail.nih.gov} (\href{https://orcid.org/0000-0001-8127-3446}{ORCID})
 
 Authors:
 \itemize{
   \item Stephen J. Chanock \email{chanocks@mail.nih.gov}
-  \item Mitchell J. Machiela \email{mitchell.machiela@nih.gov}
+  \item Mitchell J. Machiela \email{mitchell.machiela@nih.gov} (\href{https://orcid.org/0000-0001-6538-9705}{ORCID})
 }
 
 }
