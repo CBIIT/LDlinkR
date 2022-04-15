@@ -37,9 +37,11 @@ df_merge <- function(data_out, table_type) {
   }
 
   # Before eval 'table_type' arg, change column names of data_out_var
-  colnames(data_out_var)[colnames(data_out_var) %in%
-                           c("Position..hg19.", "Allele.Frequency")] <-
-    c("Position_hg19", "Allele_Frequency")
+  colnames(data_out_var) <- gsub("Position[^<>]+", paste("Position", genome_build, sep="_"), colnames(data_out_var))
+
+  # colnames(data_out_var)[colnames(data_out_var) %in%
+  #                          c("Position..hg19.", "Allele.Frequency")] <-
+  #  c("Position_hg19", "Allele_Frequency")
 
   # Evaluate 'table_type' parameter
   if (table_type == "variant") {
@@ -103,6 +105,9 @@ df_merge <- function(data_out, table_type) {
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
 #' @param table_type Choose from one of four options available to determine output
 #' format type...`haplotype`, `variant`, `both` and `merged`. Default = "haplotype".
+#' @param genome_build Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
+#' `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
+#' data sets.  Default is GRCh37 (hg19).
 #'
 #' @return a data frame or list
 #' @importFrom httr GET content stop_for_status http_error
@@ -113,7 +118,13 @@ df_merge <- function(data_out, table_type) {
 #' \dontrun{LDhap(c("rs3", "rs4", "rs148890987"), "CEU", token = Sys.getenv("LDLINK_TOKEN"))}
 #' \dontrun{LDhap("rs148890987", c("YRI", "CEU"), token = Sys.getenv("LDLINK_TOKEN"))}
 #'
-LDhap <- function(snps, pop="CEU", token=NULL, file = FALSE, table_type="haplotype") {
+LDhap <- function(snps,
+                  pop="CEU",
+                  token=NULL,
+                  file = FALSE,
+                  table_type="haplotype",
+                  genome_build = "grch37"
+                  ) {
 
 
   LD_config <- list(ldhap.url="https://ldlink.nci.nih.gov/LDlinkRest/ldhap",
@@ -122,13 +133,14 @@ LDhap <- function(snps, pop="CEU", token=NULL, file = FALSE, table_type="haploty
                                 "CDX","KHV","CEU","TSI","FIN","GBR","IBS",
                                 "GIH","PJL","BEB","STU","ITU",
                                 "ALL", "AFR", "AMR", "EAS", "EUR", "SAS"),
-                    avail_table_type=c("haplotype", "variant", "both", "merged")
+             avail_table_type=c("haplotype", "variant", "both", "merged"),
+         avail_genome_build = c("grch37", "grch38", "grch38_high_coverage")
   )
-
 
   url <- LD_config[["ldhap.url"]]
   avail_pop <- LD_config[["avail_pop"]]
   avail_table_type <- LD_config[["avail_table_type"]]
+  avail_genome_build <- LD_config[["avail_genome_build"]]
 
   # ensure file option is a character string
   file <- as.character(file)
@@ -170,6 +182,15 @@ LDhap <- function(snps, pop="CEU", token=NULL, file = FALSE, table_type="haploty
     stop("Not a valid option for table_type.")
   }
 
+  # Ensure input for 'genome_build' is valid.
+  if(length(genome_build) > 1) {
+    stop("Invalid input.  Please choose only one available genome build.")
+  }
+
+  if(!(all(genome_build %in% avail_genome_build))) {
+    stop("Not an available genome build.")
+  }
+
   if(is.null(token)) {
     stop("Enter valid access token. Please register using the LDlink API Access tab: https://ldlink.nci.nih.gov/?tab=apiaccess")
   }
@@ -177,8 +198,9 @@ LDhap <- function(snps, pop="CEU", token=NULL, file = FALSE, table_type="haploty
 
   # Request body
   snps_to_upload <- paste(unlist(snps), collapse = "%0A")
-  body <- list(paste("snps=", snps_to_upload, sep=""),
-               paste("pop=", pop, sep=""),
+  body <- list(paste("snps=", snps_to_upload, sep = ""),
+               paste("pop=", pop, sep = ""),
+               paste("genome_build=", genome_build, sep = ""),
                paste("token=", token, sep=""))
 
   # URL query string
