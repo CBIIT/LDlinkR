@@ -28,7 +28,6 @@ License: GPL (>= 2)
 URL: https://ldlink.nci.nih.gov
 BugReports: https://github.com/CBIIT/LDlinkR/issues
 Encoding: UTF-8
-LazyData: true
 Imports: 
     httr (>= 1.4.0),
     utils (>= 3.4.2)
