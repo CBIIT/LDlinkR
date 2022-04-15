@@ -20,6 +20,8 @@
 #' is 0.1 which returns all GTEx eQTL associations with P-value less than 0.1.
 #' @param win_size set genomic window size for LD calculation. Specify a value greater than or equal to zero and less than or
 #' equal to 1,000,000 basepairs (bp). Default value is -/+ 500,000bp.
+#' @param genome_build Choose between "grch37" for GRCh37 (hg19),"grch38" for GRCh38 (hg38), or "grch38_high_coverage"
+#' for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 #' @param token LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
 #'
@@ -37,6 +39,7 @@
 #'                    r2d_threshold = "0.1",
 #'                    p_threshold = "0.1",
 #'                    win_size = "500000",
+#'                    genome_build = "grch37"
 #'                    token = Sys.getenv("LDLINK_TOKEN")
 #'                   )
 #'          }
@@ -44,6 +47,7 @@
 LDexpress <- function(snps, pop = "CEU", tissue = "ALL",
                       r2d = "r2", r2d_threshold = 0.1,
                       p_threshold = 0.1, win_size = 500000,
+                      genome_build = "grch37",
                       token = NULL, file = FALSE) {
 
      LD_config <- list(ldexpress_url_base = "https://ldlink.nci.nih.gov/LDlinkRest/ldexpress",
@@ -76,8 +80,9 @@ LDexpress <- function(snps, pop = "CEU", tissue = "ALL",
                                      "CER_ECT", "CER_END", "COL_SIG", "COL_TRA", "ESO_GAS_JUN", "ESO_MUC", "ESO_MUS", "FAL_TUB",
                                      "HEA_ATR", "HEA_LEF", "KID_COR", "KID_MED", "LIV", "LUN", "MIN_SAL_GLA", "MUS_SKE",
                                      "NER_TIB", "OVA", "PAN", "PIT", "PRO", "SKI_NOT_SUN_EXP_SUP", "SKI_SUN_EXP_LOW_LEG",
-                                     "SMA_INT_TER_ILE", "SPL", "STO", "TES", "THY", "UTE", "VAG", "WHO_BLO", "ALL")
-                      )
+                                     "SMA_INT_TER_ILE", "SPL", "STO", "TES", "THY", "UTE", "VAG", "WHO_BLO", "ALL"),
+             avail_genome_build = c("grch37", "grch38", "grch38_high_coverage")
+           )
 
 
 url <- LD_config[["ldexpress_url_base"]]
@@ -85,6 +90,7 @@ avail_pop <- LD_config[["avail_pop"]]
 avail_ld <- LD_config[["avail_ld"]]
 tissue_ldexpress <- LD_config[["avail_tissue_ldexpress"]]
 tissue_abbrev <- LD_config[["avail_tissue_abbrev"]]
+avail_genome_build <- LD_config[["avail_genome_build"]]
 
 # ensure file option is a character string
 #  file <- as.character(file)
@@ -215,6 +221,16 @@ tissue_abbrev <- LD_config[["avail_tissue_abbrev"]]
     stop("Invalid input for file option.")
   }
 
+# Ensure input for 'genome_build' is valid.
+  if(length(genome_build) > 1) {
+    stop("Invalid input.  Please choose only one available genome build.")
+  }
+
+  if(!(all(genome_build %in% avail_genome_build))) {
+    stop("Not an available genome build.")
+  }
+
+
 # Request body
 snps_to_upload <- paste(unlist(snps), collapse = "\n")
 pop_to_upload <- paste(unlist(pop), collapse = "+")
@@ -229,7 +245,8 @@ jsonbody <- list(snps = snps_to_upload,
                  r2_d = r2d,
                  r2_d_threshold = r2d_threshold,
                  p_threshold = p_threshold,
-                 window = win_size
+                 window = win_size,
+                 gen_build = genome_build
                 )
 
 # before full 'POST command', check if LDlink server is up and accessible...
@@ -254,6 +271,9 @@ data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = 
 
 # Rename LD D-prime column from D. to D'
 colnames(data_out)[colnames(data_out)=="D."] <- "D'"
+
+# Add genome build to 'Position' column name
+colnames(data_out)[colnames(data_out)=="Position"] <- paste("Position", genome_build, sep="_")
 
 # Convert any number of '.' and replace with '_'
 names(data_out) <- gsub(x = names(data_out),
