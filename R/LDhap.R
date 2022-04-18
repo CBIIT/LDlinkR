@@ -1,7 +1,7 @@
 # LDlinkR::LDhap
 
 ########### Secondary Function:  Called by primary function LDhap ##########
-df_merge <- function(data_out, table_type) {
+df_merge <- function(data_out, table_type, genome_build) {
 
   ### Count the number of snps listed in data_out ###
   for (i in 1:dim(data_out)[1]) {
@@ -36,12 +36,9 @@ df_merge <- function(data_out, table_type) {
     # return(data_out_hap)
   }
 
-  # Before eval 'table_type' arg, change column names of data_out_var
+  # Before eval 'table_type' arg, use regex [^<>]+ to change column names of data_out_var
   colnames(data_out_var) <- gsub("Position[^<>]+", paste("Position", genome_build, sep="_"), colnames(data_out_var))
-
-  # colnames(data_out_var)[colnames(data_out_var) %in%
-  #                          c("Position..hg19.", "Allele.Frequency")] <-
-  #  c("Position_hg19", "Allele_Frequency")
+  colnames(data_out_var) <- gsub("Allele[^<>]+", "Allele_Frequency", colnames(data_out_var))
 
   # Evaluate 'table_type' parameter
   if (table_type == "variant") {
@@ -90,7 +87,7 @@ df_merge <- function(data_out, table_type) {
     # End else if
   }
 
-# End bracket
+  # End bracket
 }
 ############################## End Sec. Function ##############################
 
