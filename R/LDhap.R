@@ -130,8 +130,8 @@ LDhap <- function(snps,
                                 "CDX","KHV","CEU","TSI","FIN","GBR","IBS",
                                 "GIH","PJL","BEB","STU","ITU",
                                 "ALL", "AFR", "AMR", "EAS", "EUR", "SAS"),
-             avail_table_type=c("haplotype", "variant", "both", "merged"),
-         avail_genome_build = c("grch37", "grch38", "grch38_high_coverage")
+                    avail_table_type=c("haplotype", "variant", "both", "merged"),
+                    avail_genome_build = c("grch37", "grch38", "grch38_high_coverage")
   )
 
   url <- LD_config[["ldhap.url"]]
@@ -224,7 +224,7 @@ LDhap <- function(snps,
   }
 
   # Call function to create a new data.frame by merging data returned from the LDlink web site
-  data_out_hap <- df_merge(data_out, table_type)
+  data_out_hap <- df_merge(data_out, table_type, genome_build)
 
   # Evaluate 'file' option
   # File output depends on 'table_type' option selected, opt. 'both' output is returned
