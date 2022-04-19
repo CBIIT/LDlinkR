@@ -132,7 +132,7 @@ LDhap <- function(snps,
                                 "ALL", "AFR", "AMR", "EAS", "EUR", "SAS"),
                     avail_table_type=c("haplotype", "variant", "both", "merged"),
                     avail_genome_build = c("grch37", "grch38", "grch38_high_coverage")
-  )
+                   )
 
   url <- LD_config[["ldhap.url"]]
   avail_pop <- LD_config[["avail_pop"]]
