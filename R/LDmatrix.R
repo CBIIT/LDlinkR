@@ -133,7 +133,7 @@ LDmatrix <- function(snps,
 
   # Check for error in response data
   if(grepl("error", data_out)) {
-    # grep function below will return integer index of the column wherr "error" is found
+    # grep function below will return integer index of the column where "error" is found
     stop(data_out[(grep("error", data_out, value = FALSE)),])
   }
 
