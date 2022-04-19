@@ -8,7 +8,9 @@
 #' @param r2d r2d, either "r2" for LD R2 or "d" for LD D', default = "r2"
 #' @param token LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
-#'
+#' @param genome_build Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
+#' `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
+#' data sets.  Default is GRCh37 (hg19).
 #' @return a data frame
 #' @importFrom httr POST content http_error stop_for_status
 #' @importFrom utils capture.output read.delim write.table
@@ -20,26 +22,33 @@
 #'                     token = Sys.getenv("LDLINK_TOKEN"))
 #'                  }
 #'
-LDmatrix <- function(snps, pop="CEU", r2d="r2", token=NULL, file = FALSE) {
+LDmatrix <- function(snps,
+                     pop="CEU",
+                     r2d="r2",
+                     token=NULL,
+                     file = FALSE,
+                     genome_build = "grch37") {
 
-LD_config <- list(ldmatrix_url="https://ldlink.nci.nih.gov/LDlinkRest/ldmatrix",
-                  avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
-                              "MXL","PUR","CLM","PEL","CHB","JPT","CHS",
-                              "CDX","KHV","CEU","TSI","FIN","GBR","IBS",
-                              "GIH","PJL","BEB","STU","ITU",
-                              "ALL", "AFR", "AMR", "EAS", "EUR", "SAS"),
-                  avail_ld=c("r2", "d")
-                )
+  LD_config <- list(ldmatrix_url="https://ldlink.nci.nih.gov/LDlinkRest/ldmatrix",
+                    avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
+                                "MXL","PUR","CLM","PEL","CHB","JPT","CHS",
+                                "CDX","KHV","CEU","TSI","FIN","GBR","IBS",
+                                "GIH","PJL","BEB","STU","ITU",
+                                "ALL", "AFR", "AMR", "EAS", "EUR", "SAS"),
+                    avail_ld=c("r2", "d"),
+                    avail_genome_build = c("grch37", "grch38", "grch38_high_coverage")
+  )
 
 
-url <- LD_config[["ldmatrix_url"]]
-avail_pop <- LD_config[["avail_pop"]]
-avail_ld <- LD_config[["avail_ld"]]
+  url <- LD_config[["ldmatrix_url"]]
+  avail_pop <- LD_config[["avail_pop"]]
+  avail_ld <- LD_config[["avail_ld"]]
+  avail_genome_build <- LD_config[["avail_genome_build"]]
 
-# ensure file option is a character string
+  # ensure file option is a character string
   file <- as.character(file)
 
-# Define regular expressions used to check arguments for valid input below
+  # Define regular expressions used to check arguments for valid input below
   rsid_pattern <- "^rs\\d{1,}"
   # Syntax               Description
   # ^rs                  rsid starts with 'rs'
@@ -53,7 +62,7 @@ avail_ld <- LD_config[["avail_ld"]]
   # (\\d{1,9})$          followed by 1 to 9 digits only to the end of string
 
 
-# Checking arguments for valid input
+  # Checking arguments for valid input
   if(!(length(snps) > 1) & (length(snps) <= 1000)) {
     stop("Input is between 2 to 1000 variants.")
   }
@@ -80,36 +89,55 @@ avail_ld <- LD_config[["avail_ld"]]
     stop("Invalid input for file option.")
   }
 
-
-# Request body
-snps_to_upload <- paste(unlist(snps), collapse = "\n")
-pop_to_upload <- paste(unlist(pop), collapse = "+")
-jsonbody <- list(snps=snps_to_upload, pop=pop_to_upload, r2_d=r2d)
-
-# URL string
-url_str <- paste(url, "?", "&token=", token, sep="")
-
-# before 'POST command', check if LDlink server is up and accessible...
-# if server is down pkg should fail gracefully with informative message (not error)
-if (httr::http_error(url)) { # if server is down use message (and not an error)
-  message("The LDlink server is down or not accessible. Please try again later.")
-  return(NULL)
-} else { # network is up then proceed
-  message("\nLDlink server is working...\n")
-}
-
-# POST command
-raw_out <-  httr::POST(url=url_str, body=jsonbody, encode="json")
-httr::stop_for_status(raw_out)
-# Parse response object
-data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t")
-
-# Check for error in response data
-  if(grepl("error", data_out[2,1])) {
-    stop(data_out[2,1])
+  # Ensure input for 'genome_build' is valid.
+  if(length(genome_build) > 1) {
+    stop("Invalid input.  Please choose only one available genome build.")
   }
 
-# Evaluate 'file' option
+  if(!(all(genome_build %in% avail_genome_build))) {
+    stop("Not an available genome build.")
+  }
+
+  # Request body
+  # snps_to_upload <- paste(unlist(snps), collapse = "\n")
+  # pop_to_upload <- paste(unlist(pop), collapse = "+")
+  # jsonbody <- list(snps=snps_to_upload, pop=pop_to_upload, r2_d=r2d)
+
+  snps_to_upload <- paste(unlist(snps), collapse = "%0A")
+  pop_to_upload <- paste(unlist(pop), collapse = "%2B")
+  jsonbody <- list(paste("snps=", snps_to_upload, sep = ""),
+                   paste("pop=", pop_to_upload, sep = ""),
+                   paste("genome_build=", genome_build, sep = ""),
+                   paste("token=", token, sep="")
+  )
+
+  # URL string
+  # url_str <- paste(url, "?", "&token=", token, sep="")
+  url_str <- paste(url, "?", paste(unlist(jsonbody), collapse = "&"), sep="")
+
+  # before 'GET command', check if LDlink server is up and accessible...
+  # if server is down pkg should fail gracefully with informative message (not error)
+  if (httr::http_error(url)) { # if server is down use message (and not an error)
+    message("The LDlink server is down or not accessible. Please try again later.")
+    return(NULL)
+  } else { # network is up then proceed
+    message("\nLDlink server is working...\n")
+  }
+
+  # GET command
+  # raw_out <-  httr::POST(url=url_str, body=jsonbody, encode="json")
+  raw_out <- httr::GET(url=url_str)
+  httr::stop_for_status(raw_out)
+  # Parse response object
+  data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t")
+
+  # Check for error in response data
+  if(grepl("error", data_out)) {
+    # grep function below will return integer index of the column wherr "error" is found
+    stop(data_out[(grep("error", data_out, value = FALSE)),])
+  }
+
+  # Evaluate 'file' option
   if (file == FALSE) {
     return(data_out)
   } else if (is.character(file)) {
