@@ -12,7 +12,7 @@
 #' `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
 #' data sets.  Default is GRCh37 (hg19).
 #' @return a data frame
-#' @importFrom httr POST content http_error stop_for_status
+#' @importFrom httr GET content http_error stop_for_status
 #' @importFrom utils capture.output read.delim write.table
 #' @export
 #'
@@ -99,10 +99,6 @@ LDmatrix <- function(snps,
   }
 
   # Request body
-  # snps_to_upload <- paste(unlist(snps), collapse = "\n")
-  # pop_to_upload <- paste(unlist(pop), collapse = "+")
-  # jsonbody <- list(snps=snps_to_upload, pop=pop_to_upload, r2_d=r2d)
-
   snps_to_upload <- paste(unlist(snps), collapse = "%0A")
   pop_to_upload <- paste(unlist(pop), collapse = "%2B")
   jsonbody <- list(paste("snps=", snps_to_upload, sep = ""),
