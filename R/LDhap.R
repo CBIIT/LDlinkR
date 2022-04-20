@@ -219,8 +219,9 @@ LDhap <- function(snps,
   data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, as.is = T, sep="\t")
 
   # Check for error in response data
-  if(grepl("error", data_out[2,1])) {
-    stop(data_out[2,1])
+  if(grepl("error", data_out)) {
+    # grep function below will return integer index of the column where "error" is found
+    stop(data_out[(grep("error", data_out, value = FALSE)),])
   }
 
   # Call function to create a new data.frame by merging data returned from the LDlink web site
