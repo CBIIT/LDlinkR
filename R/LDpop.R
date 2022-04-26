@@ -94,7 +94,7 @@ body <- list(paste("var1=", var1, sep=""),
 # URL query string
 url_str <- paste(url, "?", paste(unlist(body), collapse = "&"), sep="")
 
-# before 'POST command', check if LDlink server is up and accessible...
+# before 'GET' command', check if LDlink server is up and accessible...
 # if server is down pkg should fail gracefully with informative message (not error)
 if (httr::http_error(url)) { # if server is down use message (and not an error)
   message("The LDlink server is down or not accessible. Please try again later.")
