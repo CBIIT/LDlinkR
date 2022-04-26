@@ -56,6 +56,9 @@ df_pair_tbl <- data.frame(var1 = z[[1]][1],
 #' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
 #' @param output two output options available, "text", which displays a two-by-two matrix displaying haplotype counts and allele frequencies along with other statistics, or "table", which displays the same data in rows and columns, default = "table"
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
+#' @param genome_build Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
+#' `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
+#' data sets.  Default is GRCh37 (hg19).
 #'
 #' @return text or data frame, depending on the output option
 #' @importFrom httr GET content stop_for_status http_error
@@ -66,7 +69,13 @@ df_pair_tbl <- data.frame(var1 = z[[1]][1],
 #' \dontrun{LDpair(var1 = "rs3", var2 = "rs4", pop = "YRI", token = Sys.getenv("LDLINK_TOKEN"))}
 #' \dontrun{LDpair("rs3", "rs4", "YRI", token = Sys.getenv("LDLINK_TOKEN"), "text")}
 #'
-LDpair <- function(var1, var2, pop = "CEU", token=NULL, output = "table", file = FALSE) {
+LDpair <- function(var1,
+                   var2,
+                   pop = "CEU",
+                   token=NULL,
+                   output = "table",
+                   file = FALSE,
+                   genome_build = "grch37") {
 
 LD_config <- list(ldpair_url="https://ldlink.nci.nih.gov/LDlinkRest/ldpair",
                   avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
@@ -74,13 +83,15 @@ LD_config <- list(ldpair_url="https://ldlink.nci.nih.gov/LDlinkRest/ldpair",
                               "CDX","KHV","CEU","TSI","FIN","GBR","IBS",
                               "GIH","PJL","BEB","STU","ITU",
                               "ALL", "AFR", "AMR", "EAS", "EUR", "SAS"),
-                  avail_output=c("text", "table")
+                  avail_output=c("text", "table"),
+                  avail_genome_build = c("grch37", "grch38", "grch38_high_coverage")
                  )
 
 
   url <- LD_config[["ldpair_url"]]
   avail_pop <- LD_config[["avail_pop"]]
   avail_output <- LD_config[["avail_output"]]
+  avail_genome_build <- LD_config[["avail_genome_build"]]
 
 # ensure file option is a character string
 file <- as.character(file)
@@ -132,17 +143,26 @@ file <- as.character(file)
     stop("Invalid input for file option.")
   }
 
+  # Ensure input for 'genome_build' is valid.
+  if(length(genome_build) > 1) {
+    stop("Invalid input.  Please choose only one available genome build.")
+  }
+
+  if(!(all(genome_build %in% avail_genome_build))) {
+    stop("Not an available genome build.")
+  }
 
 # Request body
-# snps_to_upload <- paste(unlist(snps), collapse = "%0A")
-pop_to_upload <- paste(unlist(pop), collapse = "%2B")
-body <- list(paste("var1=", var1, sep=""),
-             paste("var2=", var2, sep=""),
-             paste("pop=", pop_to_upload, sep=""),
-             paste("token=", token, sep=""))
+  pop_to_upload <- paste(unlist(pop), collapse = "%2B")
+  body <- list(paste("var1=", var1, sep=""),
+               paste("var2=", var2, sep=""),
+               paste("pop=", pop_to_upload, sep=""),
+               paste("genome_build=", genome_build, sep=""),
+               paste("json_out=", "false", sep=""), # See LDlink API Access documentation
+               paste("token=", token, sep=""))
 
 # URL query string
-url_str <- paste(url, "?", paste(unlist(body), collapse = "&"), sep="")
+  url_str <- paste(url, "?", paste(unlist(body), collapse = "&"), sep="")
 
 # before 'GET command', check if LDlink server is up and accessible...
 # if server is down pkg should fail gracefully with informative message (not error)
@@ -159,22 +179,38 @@ httr::stop_for_status(raw_out)
 # Parse response object from web server
 data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, as.is = T, sep="\t")
 
-# Check for error/warning in parsed response object
-  if(grepl("error", data_out[2,1])) {
-    stop(data_out[2,1])
-  }
+# Check for error/warning in response data
+if(sum(grepl("error", data_out), na.rm = TRUE)) {
+  # subset rows in data_out that contain text 'error'
+  error_msg <- subset(data_out, grepl("error", data_out[,1]))
 
-  if(grepl("WARNING", data_out[22,])) {
-    message(data_out[22,])
-  }
+  # delete any column names so that they don't go to output
+  names(error_msg) <- NULL
+
+  error_msg <- paste(error_msg, collapse = " ")
+
+  stop(error_msg)
+}
+
+if(sum(grepl("WARNING", data_out), na.rm = TRUE)) {
+  # subset rows in data_out that contain text 'error'
+  warning_msg <- subset(data_out, grepl("WARNING", data_out[,1]))
+
+  # delete any column names so that they don't go to output
+  names(warning_msg) <- NULL
+
+  warning_msg <- paste(warning_msg, collapse = " ")
+
+  message(warning_msg)
+}
 
 # Evaluate 'output' option for either "text" or "table"
   if(output == "text") {
     if(file == FALSE) {
-      cat(content(raw_out, "text"))
+      cat(httr::content(raw_out, "text"))
     } else if (is.character(file)) {
-      cat(content(raw_out, "text"))
-      writeLines(capture.output(cat(content(raw_out, "text"))), "text_out.txt")
+      cat(httr::content(raw_out, "text"))
+      writeLines(capture.output(cat(httr::content(raw_out, "text"))), "text_out.txt")
       cat(paste("\nFile saved to ","text_out.txt",".", sep=""))
      }
   } else if (output == "table") {
