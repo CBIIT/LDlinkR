@@ -99,19 +99,14 @@ LDmatrix <- function(snps,
   }
 
   # Request body
-  snps_to_upload <- paste(unlist(snps), collapse = "%0A")
-  pop_to_upload <- paste(unlist(pop), collapse = "%2B")
-  jsonbody <- list(paste("snps=", snps_to_upload, sep = ""),
-                   paste("pop=", pop_to_upload, sep = ""),
-                   paste("genome_build=", genome_build, sep = ""),
-                   paste("token=", token, sep="")
-  )
+  snps_to_upload <- paste(unlist(snps), collapse = "\n")
+  pop_to_upload <- paste(unlist(pop), collapse = "+")
+  jsonbody <- list(snps=snps_to_upload, pop=pop_to_upload, r2_d=r2d, genome_build=genome_build)
 
   # URL string
-  # url_str <- paste(url, "?", "&token=", token, sep="")
-  url_str <- paste(url, "?", paste(unlist(jsonbody), collapse = "&"), sep="")
+  url_str <- paste(url, "?", "&token=", token, sep="")
 
-  # before 'GET command', check if LDlink server is up and accessible...
+  # Before 'POST command', check if LDlink server is up and accessible...
   # if server is down pkg should fail gracefully with informative message (not error)
   if (httr::http_error(url)) { # if server is down use message (and not an error)
     message("The LDlink server is down or not accessible. Please try again later.")
@@ -122,7 +117,7 @@ LDmatrix <- function(snps,
 
   # GET command
   # raw_out <-  httr::POST(url=url_str, body=jsonbody, encode="json")
-  raw_out <- httr::GET(url=url_str)
+  raw_out <-  httr::POST(url=url_str, body=jsonbody, encode="json")
   httr::stop_for_status(raw_out)
   # Parse response object
   data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t")
