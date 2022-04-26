@@ -18,8 +18,8 @@
 #'
 #' @examples
 #' \dontrun{LDmatrix(c("rs3", "rs4", "rs148890987"),
-#'                     "YRI", "r2",
-#'                     token = Sys.getenv("LDLINK_TOKEN"))
+#'                   "YRI", "r2",
+#'                   token = Sys.getenv("LDLINK_TOKEN"))
 #'                  }
 #'
 LDmatrix <- function(snps,
@@ -128,9 +128,16 @@ LDmatrix <- function(snps,
   data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t")
 
   # Check for error in response data
-  if(grepl("error", data_out)) {
-    # grep function below will return integer index of the column where "error" is found
-    stop(data_out[(grep("error", data_out, value = FALSE)),])
+  if(sum(grepl("error", data_out), na.rm = TRUE)) {
+    # subset rows in data_out that contain text 'error'
+    error_msg <- subset(data_out, grepl("error", data_out[,1]))
+
+    # delete any column names so that they don't go to output
+    names(error_msg) <- NULL
+
+    error_msg <- paste(error_msg, collapse = " ")
+
+    stop(error_msg)
   }
 
   # Evaluate 'file' option
