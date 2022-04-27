@@ -5,6 +5,8 @@
 * Update test-ldhap with additional tests
 * Update vignette with new `LDhap` usage examples.
 * Make LDhap able to write to file for both types of data returned by the new 'table_type' options.
+* Add feature 'genome_build' to support different genome builds, GRCh37(hg19), GRCh38(hg38), and GRCh38 High Coverage.
+* Improve/update error and warning message returned in the response data from the LDlink API server.
 
 # LDlinkR 1.1.2
 * Submission date: 2021-02-19
