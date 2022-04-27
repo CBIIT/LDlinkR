@@ -192,7 +192,7 @@ if(sum(grepl("error", data_out), na.rm = TRUE)) {
   stop(error_msg)
 }
 
-if(sum(grepl("WARNING", data_out), na.rm = TRUE)) {
+if(sum(grepl("WARNING", data_out, ignore.case = TRUE), na.rm = TRUE)) {
   # subset rows in data_out that contain text 'error'
   warning_msg <- subset(data_out, grepl("WARNING", data_out[,1]))
 
