@@ -182,7 +182,7 @@ data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = 
 # Check for error/warning in response data
 if(sum(grepl("error", data_out, ignore.case = TRUE), na.rm = TRUE)) {
   # subset rows in data_out that contain text 'error'
-  error_msg <- subset(data_out, grepl("error", data_out[,1]))
+  error_msg <- subset(data_out, grepl("error", data_out[,1], ignore.case = TRUE))
 
   # delete any column names so that they don't go to output
   names(error_msg) <- NULL
@@ -194,7 +194,7 @@ if(sum(grepl("error", data_out, ignore.case = TRUE), na.rm = TRUE)) {
 
 if(sum(grepl("WARNING", data_out, ignore.case = TRUE), na.rm = TRUE)) {
   # subset rows in data_out that contain text 'error'
-  warning_msg <- subset(data_out, grepl("WARNING", data_out[,1]))
+  warning_msg <- subset(data_out, grepl("WARNING", data_out[,1], ignore.case = TRUE))
 
   # delete any column names so that they don't go to output
   names(warning_msg) <- NULL
