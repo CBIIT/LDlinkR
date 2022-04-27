@@ -9,6 +9,9 @@
 #' @param r2d either "r2" for LD R2 or "d" for LD D', default = "r2"
 #' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
+#' @param genome_build Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
+#' `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
+#' data sets.  Default is GRCh37 (hg19).
 #'
 #' @return a data frame
 #' @importFrom httr GET content stop_for_status http_error
@@ -21,20 +24,28 @@
 #'                token = Sys.getenv("LDLINK_TOKEN"))
 #'              }
 #'
-LDpop <- function(var1, var2, pop = "CEU", r2d="r2", token=NULL, file = FALSE) {
+LDpop <- function(var1,
+                  var2,
+                  pop = "CEU",
+                  r2d="r2",
+                  token=NULL,
+                  file = FALSE,
+                  genome_build = "grch37") {
 
 LD_config <- list(ldpop_url="https://ldlink.nci.nih.gov/LDlinkRest/ldpop",
-                    avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
+                  avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
                                 "MXL","PUR","CLM","PEL","CHB","JPT","CHS",
                                 "CDX","KHV","CEU","TSI","FIN","GBR","IBS",
                                 "GIH","PJL","BEB","STU","ITU",
                                 "ALL", "AFR", "AMR", "EAS", "EUR", "SAS"),
-                    avail_ld=c("r2", "d"))
+                  avail_ld=c("r2", "d"),
+       avail_genome_build = c("grch37", "grch38", "grch38_high_coverage"))
 
 
   url <- LD_config[["ldpop_url"]]
   avail_pop <- LD_config[["avail_pop"]]
   avail_ld <- LD_config[["avail_ld"]]
+  avail_genome_build <- LD_config[["avail_genome_build"]]
 
 # ensure file option is a character string
 file <- as.character(file)
@@ -82,6 +93,15 @@ file <- as.character(file)
     stop("Enter valid access token. Please register using the LDlink API Access tab: https://ldlink.nci.nih.gov/?tab=apiaccess")
   }
 
+  # Ensure input for 'genome_build' is valid.
+  if(length(genome_build) > 1) {
+    stop("Invalid input.  Please choose only one available genome build.")
+  }
+
+  if(!(all(genome_build %in% avail_genome_build))) {
+    stop("Not an available genome build.")
+  }
+
 # Request body
 # snps_to_upload <- paste(unlist(snps), collapse = "%0A")
 pop_to_upload <- paste(unlist(pop), collapse = "%2B")
@@ -89,6 +109,7 @@ body <- list(paste("var1=", var1, sep=""),
              paste("var2=", var2, sep=""),
              paste("pop=", pop_to_upload, sep=""),
              paste("r2_d=", r2d, sep=""),
+             paste("genome_build=", genome_build, sep=""),
              paste("token=", token, sep=""))
 
 # URL query string
