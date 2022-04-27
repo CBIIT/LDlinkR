@@ -252,7 +252,7 @@ jsonbody <- list(snps = snps_to_upload,
 
 # before full 'POST command', check if LDlink server is up and accessible...
 # if server is down pkg should fail gracefully with informative message (not error)
-r_url <- POST(url)
+r_url <- httr::POST(url)
 if (httr::http_error(r_url)) { # if server is down use message (and not an error)
   message("The LDlink server is down or not accessible. Please try again later.")
   return(NULL)
@@ -284,10 +284,31 @@ names(data_out) <- gsub(x = names(data_out),
 # convert 'factor' to 'character'
 data_out[] <- lapply(data_out, as.character)
 
-# Check for error in response data
-if(grepl("error", data_out[1,1])) {
-  stop(data_out[1,1])
- }
+# Check for error/warning in response data
+if(sum(grepl("error", data_out, ignore.case = TRUE), na.rm = TRUE)) {
+  # subset rows in data_out that contain text 'error'
+  error_msg <- subset(data_out, grepl("error", data_out[,1], ignore.case = TRUE))
+
+  # delete any column names so that they don't go to output
+  names(error_msg) <- NULL
+
+  error_msg <- paste(error_msg, collapse = " ")
+
+  stop(error_msg)
+}
+
+if(sum(grepl("warning", data_out, ignore.case = TRUE), na.rm = TRUE)) {
+  # subset rows in data_out that contain text 'error'
+  warning_msg <- subset(data_out, grepl("warning", data_out[,1], ignore.case = TRUE))
+
+  # delete any column names so that they don't go to output
+  names(warning_msg) <- NULL
+
+  # warning_msg <- paste(warning_msg, collapse = " ")
+
+  message(warning_msg[grep("warning", data_out, value = FALSE, ignore.case = FALSE)])
+}
+
 
 # Evaluate 'file' option
   if (file == FALSE) {
