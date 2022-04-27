@@ -37,7 +37,7 @@ LDmatrix <- function(snps,
                                 "ALL", "AFR", "AMR", "EAS", "EUR", "SAS"),
                     avail_ld=c("r2", "d"),
                     avail_genome_build = c("grch37", "grch38", "grch38_high_coverage")
-  )
+                   )
 
 
   url <- LD_config[["ldmatrix_url"]]
