@@ -218,10 +218,27 @@ LDhap <- function(snps,
   # Parse response object, raw_out
   data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, as.is = T, sep="\t")
 
-  # Check for error in response data
-  if(grepl("error", data_out)) {
-    # grep function below will return integer index of the column where "error" is found
-    stop(data_out[(grep("error", data_out, value = FALSE)),])
+  # Check for error/warning in response data
+  if(sum(grepl("error", data_out, ignore.case = TRUE), na.rm = TRUE)) {
+    # subset rows in data_out that contain text 'error'
+    error_msg <- subset(data_out, grepl("error", data_out[,1], ignore.case = TRUE))
+
+    # delete any column names so that they don't go to output
+    names(error_msg) <- NULL
+
+    error_msg <- paste(error_msg, collapse = " ")
+
+    stop(error_msg)
+  }
+
+  if(sum(grepl("warning", data_out, ignore.case = TRUE), na.rm = TRUE)) {
+    # subset rows in data_out that contain text 'error'
+    warning_msg <- subset(data_out, grepl("warning", data_out[,1], ignore.case = TRUE))
+
+    # delete any column names so that they don't go to output
+    names(warning_msg) <- NULL
+
+    message(warning_msg[grep("warning", data_out, value = FALSE, ignore.case = FALSE)])
   }
 
   # Call function to create a new data.frame by merging data returned from the LDlink web site
