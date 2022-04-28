@@ -7,8 +7,8 @@
 #' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"
 #' @param r2d either "r2" for LD R2 or "d" for LD D', default = "r2"
 #' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
-#' @param append logical. If TRUE, output for each query variant is appended to a text file. If FALSE, output of each query variant is saved in its own text file.
-#'
+#' @param append A logical. If TRUE, output for each query variant is appended to a text file. If FALSE, output of each query variant is saved in its own text file.
+#' Default is FALSE.
 #' @return text file(s) are saved to the current working directory.
 #' @importFrom utils write.table
 #' @export
