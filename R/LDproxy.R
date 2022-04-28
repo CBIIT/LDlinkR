@@ -8,6 +8,9 @@
 #' @param r2d either "r2" for LD R2 or "d" for LD D', default = "r2"
 #' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
+#' @param genome_build Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
+#' `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
+#' data sets.  Default is GRCh37 (hg19).
 #'
 #' @return a data frame
 #' @importFrom httr GET content stop_for_status http_error
@@ -17,7 +20,12 @@
 #' @examples
 #' \dontrun{LDproxy("rs456", "YRI", "r2", token = Sys.getenv("LDLINK_TOKEN"))}
 #'
-LDproxy <- function(snp, pop="CEU", r2d="r2", token=NULL, file = FALSE) {
+LDproxy <- function(snp,
+                    pop="CEU",
+                    r2d="r2",
+                    token=NULL,
+                    file = FALSE,
+                    genome_build = "grch37") {
 
 
 LD_config <- list(ldproxy.url="https://ldlink.nci.nih.gov/LDlinkRest/ldproxy",
@@ -26,12 +34,14 @@ LD_config <- list(ldproxy.url="https://ldlink.nci.nih.gov/LDlinkRest/ldproxy",
                                 "CDX","KHV","CEU","TSI","FIN","GBR","IBS",
                                 "GIH","PJL","BEB","STU","ITU",
                                 "ALL", "AFR", "AMR", "EAS", "EUR", "SAS"),
-                    avail_ld=c("r2", "d"))
+                     avail_ld=c("r2", "d"),
+           avail_genome_build=c("grch37", "grch38", "grch38_high_coverage"))
 
 
   url <- LD_config[["ldproxy.url"]]
   avail_pop <- LD_config[["avail_pop"]]
   avail_ld <- LD_config[["avail_ld"]]
+  avail_genome_build <- LD_config[["avail_genome_build"]]
 
 # ensure file option is a character string
 file <- as.character(file)
@@ -74,10 +84,20 @@ file <- as.character(file)
     stop("Enter valid access token. Please register using the LDlink API Access tab: https://ldlink.nci.nih.gov/?tab=apiaccess")
   }
 
+ # Ensure input for 'genome_build' is valid.
+  if(length(genome_build) > 1) {
+    stop("Invalid input.  Please choose only one available genome build.")
+  }
+
+  if(!(all(genome_build %in% avail_genome_build))) {
+    stop("Not an available genome build.")
+  }
+
 # Request body
 body <- list(paste("var=", snp, sep=""),
              paste("pop=", pop, sep=""),
              paste("r2_d=", r2d, sep=""),
+             paste("genome_build=", genome_build, sep=""),
              paste("token=", token, sep=""))
 
 # URL query string
@@ -98,11 +118,30 @@ httr::stop_for_status(raw_out)
 # Parse response object, raw_out
 data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t") # Parse response object
 
-# Check for error in response data
-if(grepl("error", data_out[1,1])) {
-  message(data_out[1,1])
-  return(as.data.frame(data_out[1,1]))
-  }
+# Check for error/warning in response data
+if(sum(grepl("error", data_out, ignore.case = TRUE), na.rm = TRUE)) {
+  # subset rows in data_out that contain text 'error'
+  error_msg <- subset(data_out, grepl("error", data_out[,1], ignore.case = TRUE))
+
+  # delete any column names so that they don't go to output
+  names(error_msg) <- NULL
+
+  error_msg <- paste(error_msg, collapse = " ")
+
+  stop(error_msg)
+}
+
+if(sum(grepl("WARNING", data_out, ignore.case = TRUE), na.rm = TRUE)) {
+  # subset rows in data_out that contain text 'error'
+  warning_msg <- subset(data_out, grepl("WARNING", data_out[,1], ignore.case = TRUE))
+
+  # delete any column names so that they don't go to output
+  names(warning_msg) <- NULL
+
+  warning_msg <- paste(warning_msg, collapse = " ")
+
+  message(warning_msg)
+}
 
 # Evaluate 'file' option
   if (file == FALSE) {
