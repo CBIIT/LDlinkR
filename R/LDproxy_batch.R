@@ -21,8 +21,6 @@ LDproxy_batch <- function(snp, pop="CEU", r2d="r2", token=NULL, append = FALSE) 
 
   snp <- as.data.frame(snp)
 
-  snp <- as.data.frame(snp)
-
   if(append == FALSE) {
     for (i in 1:nrow(snp)) {
       myfile <- paste(snp[i,], ".txt", sep="")
