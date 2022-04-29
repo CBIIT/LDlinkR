@@ -34,11 +34,15 @@ LDproxy_batch <- function(snp, pop="CEU", r2d="r2", token=NULL, append = FALSE) 
                     quote = FALSE,
                     row.names = TRUE,
                     sep = "\t")
-        cat("File for query variant ", snp[i,], " saved to ", myfile,".\n", sep="")
+        file_path <- getwd()
+        cat("File for query variant ", snp[i,], " saved to ", file_path, "/", myfile,".\n", sep="")
       }
     }
   } else if (append == TRUE) {
+    myfile <- "combined_query_snp_list.txt"
     for (i in 1:nrow(snp)) {
+      cat("\nSubmitting request for query variant ", snp[i,],".", sep = "")
+      cat("\nChecking status of server...")
       df_proxy <- LDproxy(snp=snp[i,], pop, r2d, token)
       if(!(grepl("error", df_proxy[1,1])))
       {
@@ -59,6 +63,8 @@ LDproxy_batch <- function(snp, pop="CEU", r2d="r2", token=NULL, append = FALSE) 
               )
       }
     }
+    file_path <- getwd()
+    cat("File for all query variants saved to ", file_path, "/", myfile,".\n", sep="")
   }
 }
 ############################## End Function ##############################
