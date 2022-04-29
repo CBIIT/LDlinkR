@@ -24,6 +24,8 @@ LDproxy_batch <- function(snp, pop="CEU", r2d="r2", token=NULL, append = FALSE) 
   if(append == FALSE) {
     for (i in 1:nrow(snp)) {
       myfile <- paste(snp[i,], ".txt", sep="")
+      cat("\nSubmitting request for query variant ", snp[i,],".", sep = "")
+      cat("\nChecking status of server...")
       df_proxy <- LDproxy(snp=snp[i,], pop, r2d, token)
       if(!(grepl("error", df_proxy[1,1])))
       {
@@ -32,6 +34,7 @@ LDproxy_batch <- function(snp, pop="CEU", r2d="r2", token=NULL, append = FALSE) 
                     quote = FALSE,
                     row.names = TRUE,
                     sep = "\t")
+        cat("File for query variant ", snp[i,], " saved to ", myfile,".\n", sep="")
       }
     }
   } else if (append == TRUE) {
