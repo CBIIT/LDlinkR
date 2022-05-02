@@ -41,154 +41,163 @@ LDtrait <- function(snps,
                     win_size = 500000,
                     token = NULL, file = FALSE) {
 
-  LD_config <- list(ldtrait_url_base = "https://ldlink.nci.nih.gov/LDlinkRest/ldtrait",
-                    avail_pop = c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
-                                  "MXL","PUR","CLM","PEL","CHB","JPT","CHS",
-                                  "CDX","KHV","CEU","TSI","FIN","GBR","IBS",
-                                  "GIH","PJL","BEB","STU","ITU",
-                                  "ALL", "AFR", "AMR", "EAS", "EUR", "SAS"),
-                    avail_ld = c("r2", "d")
+LD_config <- list(ldtrait_url_base = "https://ldlink.nci.nih.gov/LDlinkRest/ldtrait",
+                  avail_pop = c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
+                                "MXL","PUR","CLM","PEL","CHB","JPT","CHS",
+                                "CDX","KHV","CEU","TSI","FIN","GBR","IBS",
+                                "GIH","PJL","BEB","STU","ITU",
+                                "ALL", "AFR", "AMR", "EAS", "EUR", "SAS"),
+                  avail_ld = c("r2", "d")
 
-  )
+)
 
-  url <- LD_config[["ldtrait_url_base"]]
-  avail_pop <- LD_config[["avail_pop"]]
-  avail_ld <- LD_config[["avail_ld"]]
+ldtrait_url <- LD_config[["ldtrait_url_base"]]
+avail_pop <- LD_config[["avail_pop"]]
+avail_ld <- LD_config[["avail_ld"]]
 
-  # Define regular expressions used to check arguments for valid input below
-  rsid_pattern <- "^rs\\d{1,}"
-  # Syntax               Description
-  # ^rs                  rsid starts with 'rs'
-  # \\d{1,}              followed by 1 or more digits
+# Define regular expressions used to check arguments for valid input below
+rsid_pattern <- "^rs\\d{1,}"
+# Syntax               Description
+# ^rs                  rsid starts with 'rs'
+# \\d{1,}              followed by 1 or more digits
 
-  chr_coord_pattern <- "(^chr)(\\d{1,2}|X|x|Y|y):(\\d{1,9})$"
-  # Syntax               Description
-  # (^chr)               chromosome coordinate starts with 'chr'
-  # (\\d{1,2}|X|x|Y|y)   followed by one or two digits, 'X', 'x', 'Y', 'y', to designate chromosome
-  # :                    followed by a colon
-  # (\\d{1,9})$          followed by 1 to 9 digits only to the end of string
+chr_coord_pattern <- "(^chr)(\\d{1,2}|X|x|Y|y):(\\d{1,9})$"
+# Syntax               Description
+# (^chr)               chromosome coordinate starts with 'chr'
+# (\\d{1,2}|X|x|Y|y)   followed by one or two digits, 'X', 'x', 'Y', 'y', to designate chromosome
+# :                    followed by a colon
+# (\\d{1,9})$          followed by 1 to 9 digits only to the end of string
 
 
-  # Checking arguments for valid input
-  if(!(length(snps) >= 1) & (length(snps) <= 50)) {
-    stop("Input is between 1 to 50 variants.")
+# Checking arguments for valid input
+if(!(length(snps) >= 1) & (length(snps) <= 50)) {
+  stop("Input is between 1 to 50 variants.")
+}
+
+for(i in 1:length(snps)) {
+  if(!((grepl(rsid_pattern, snps[i], ignore.case = TRUE)) | (grepl(chr_coord_pattern, snps[i], ignore.case = TRUE))))  {
+    stop(paste("Invalid query format for variant: ",snps[i], ".", sep=""))
   }
+}
 
-  for(i in 1:length(snps)) {
-    if(!((grepl(rsid_pattern, snps[i], ignore.case = TRUE)) | (grepl(chr_coord_pattern, snps[i], ignore.case = TRUE))))  {
-      stop(paste("Invalid query format for variant: ",snps[i], ".", sep=""))
-    }
-  }
+if(!(all(pop %in% avail_pop))) {
+  stop("Not a valid population code.")
+}
 
-  if(!(all(pop %in% avail_pop))) {
-    stop("Not a valid population code.")
-  }
+if(length(pop) > 1) {
+  pop=paste(unlist(pop), collapse = "+")
+}
 
-  if(length(pop) > 1) {
-    pop=paste(unlist(pop), collapse = "+")
-  }
+if(!(r2d %in% avail_ld)) {
+  stop("Not a valid r2d.  Enter 'r2' or 'd'.")
+}
 
-  if(!(r2d %in% avail_ld)) {
-    stop("Not a valid r2d.  Enter 'r2' or 'd'.")
-  }
+# first, ensure 'r2d_threshold' is type 'numeric'
+r2d_threshold <- as.numeric(r2d_threshold)
 
-  # first, ensure 'r2d_threshold' is type 'numeric'
-  r2d_threshold <- as.numeric(r2d_threshold)
+if (!(r2d_threshold >= 0 & r2d_threshold <= 1)) {
+  stop(paste("'r2d' threshold must be between 0 and 1. Threshold input was ", r2d_threshold, ".", sep=""))
+} else {
+  # convert back to character
+  r2d_threshold <- as.character(r2d_threshold)
+}
 
-  if (!(r2d_threshold >= 0 & r2d_threshold <= 1)) {
-    stop(paste("'r2d' threshold must be between 0 and 1. Threshold input was ", r2d_threshold, ".", sep=""))
-  } else {
-    # convert back to character
-    r2d_threshold <- as.character(r2d_threshold)
-  }
+# first, ensure 'win_size' is type 'integer'
+win_size <- as.integer(win_size)
 
-  # first, ensure 'win_size' is type 'integer'
-  win_size <- as.integer(win_size)
+if (!(win_size >= 0 & win_size <= 1000000))
+{
+  stop(paste("Window size must be between 0 and 1000000 bp. Input window size was ", win_size, " bp.", sep=""))
+} else {
+  # convert back to character
+  win_size <- as.character(win_size)
+}
 
-  if (!(win_size >= 0 & win_size <= 1000000))
-  {
-    stop(paste("Window size must be between 0 and 1000000 bp. Input window size was ", win_size, " bp.", sep=""))
-  } else {
-    # convert back to character
-    win_size <- as.character(win_size)
-  }
+if(is.null(token)) {
+  stop("Enter valid access token. Please register using the LDlink API Access tab: https://ldlink.nci.nih.gov/?tab=apiaccess")
+}
 
-  if(is.null(token)) {
-    stop("Enter valid access token. Please register using the LDlink API Access tab: https://ldlink.nci.nih.gov/?tab=apiaccess")
-  }
+if(!(is.character(file) | file == FALSE)) {
+  stop("Invalid input for file option.")
+}
 
-  if(!(is.character(file) | file == FALSE)) {
-    stop("Invalid input for file option.")
-  }
+# Request body
+snps_to_upload <- paste(unlist(snps), collapse = "\n")
+pop_to_upload <- paste(unlist(pop), collapse = "+")
 
-  # Request body
-  snps_to_upload <- paste(unlist(snps), collapse = "\n")
-  pop_to_upload <- paste(unlist(pop), collapse = "+")
+jsonbody <- list(snps = snps_to_upload,
+                 pop = pop_to_upload,
+                 r2_d = r2d,
+                 r2_d_threshold = r2d_threshold,
+                 window = win_size
+)
 
-  jsonbody <- list(snps = snps_to_upload,
-                   pop = pop_to_upload,
-                   r2_d = r2d,
-                   r2_d_threshold = r2d_threshold,
-                   window = win_size
-  )
+# URL string
+url_str <- paste(ldtrait_url, "?", "token=", token, sep="")
 
-  # URL string
-  url_str <- paste(url, "?", "token=", token, sep="")
+# before 'POST command', check if LDlink server is up and accessible...
+# if server is down pkg should fail gracefully with informative message (not error)
+r_url <- httr::POST(ldtrait_url)
+if (httr::http_error(r_url)) { # if server is down use message (and not an error)
+  message("The LDlink server is down or not accessible. Please try again later.")
+  return(NULL)
+} else { # network is up then proceed
+  message("\nLDlink server is working...\n")
+}
 
-  # before 'POST command', check if LDlink server is up and accessible...
-  # if server is down pkg should fail gracefully with informative message (not error)
-  r_url <- POST(url)
-  if (httr::http_error(r_url)) { # if server is down use message (and not an error)
-    message("The LDlink server is down or not accessible. Please try again later.")
-    return(NULL)
-  } else { # network is up then proceed
-    message("\nLDlink server is working...\n")
-  }
+# POST command
+raw_out <-  httr::POST(url=url_str, body=jsonbody, encode="json")
+httr::stop_for_status(raw_out)
+# Parse response object
+data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t")
 
-  # POST command
-  raw_out <-  httr::POST(url=url_str, body=jsonbody, encode="json")
-  httr::stop_for_status(raw_out)
-  # Parse response object
-  data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t")
+# Check for error/warning in response data
+if(sum(grepl("error", data_out, ignore.case = TRUE), na.rm = TRUE)) {
+  # subset rows in data_out that contain text 'error'
+  error_msg <- subset(data_out, grepl("error", data_out[,1], ignore.case = TRUE))
 
-  # Rename LD D-prime column from D. to D'
-  colnames(data_out)[colnames(data_out)=="D."] <- "D'"
+  # delete any column names so that they don't go to output
+  names(error_msg) <- NULL
 
-  # Replace any number of '.' in column names with '_'
-  names(data_out) <- gsub(x = names(data_out),
-                          pattern = "(\\.)+",
-                          replacement = "_")
+  error_msg <- paste(error_msg, collapse = " ")
 
-  # Remove last '_' at end of column names
-  names(data_out) <- gsub(x = names(data_out),
-                          # regex pattern for underscore at the end
-                          pattern = "_$",
-                          replacement = "")
+  stop(error_msg)
+}
 
-  # convert 'factor' to 'character'
-  data_out[] <- lapply(data_out, as.character)
 
-  # Check for error in response data
-  if(grepl("error", data_out[1,1])) {
-    stop(data_out[1,1])
-  }
+# Rename LD D-prime column from D. to D'
+colnames(data_out)[colnames(data_out)=="D."] <- "D'"
 
-  # Evaluate 'file' option
-  if (file == FALSE) {
-    return(data_out)
-  } else if (is.character(file)) {
-    # `invisible(capture.output())` wrapped around `write.table`function,
-    # suppresses output to console
-    invisible(capture.output(write.table(data_out,
-                                         file = file,
-                                         quote = F,
-                                         row.names = F,
-                                         sep = "\t")
-    )
-    )
-    cat(paste("\nFile saved to ",file,".", sep=""))
-    return(data_out)
-  }
+# Replace any number of '.' in column names with '_'
+names(data_out) <- gsub(x = names(data_out),
+                        pattern = "(\\.)+",
+                        replacement = "_")
+
+# Remove last '_' at end of column names
+names(data_out) <- gsub(x = names(data_out),
+                        # regex pattern for underscore at the end
+                        pattern = "_$",
+                        replacement = "")
+
+# convert 'factor' to 'character'
+data_out[] <- lapply(data_out, as.character)
+
+# Evaluate 'file' option
+if (file == FALSE) {
+  return(data_out)
+} else if (is.character(file)) {
+  # `invisible(capture.output())` wrapped around `write.table`function,
+  # suppresses output to console
+  invisible(capture.output(write.table(data_out,
+                                       file = file,
+                                       quote = F,
+                                       row.names = F,
+                                       sep = "\t")
+                          )
+            )
+  cat(paste("\nFile saved to ",file,".", sep=""))
+  return(data_out)
+ }
 
 }
 ############ End Primary Function ##################
