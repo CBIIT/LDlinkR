@@ -8,6 +8,9 @@
 #' @param maf_threshold minor allele frequency threshold between 0-1, default = 0.01
 #' @param token LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
+#' @param genome_build Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
+#' `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
+#' data sets.  Default is GRCh37 (hg19).
 #'
 #' @return a data frame
 #' @importFrom httr POST content stop_for_status http_error
@@ -24,19 +27,22 @@ SNPclip <- function(snps,
                     r2_threshold="0.1",
                     maf_threshold="0.01",
                     token=NULL,
-                    file = FALSE) {
+                    file = FALSE,
+                    genome_build = "grch37") {
 
 LD_config <- list(snpclip_url="https://ldlink.nci.nih.gov/LDlinkRest/snpclip",
                   avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
                               "MXL","PUR","CLM","PEL","CHB","JPT","CHS",
                               "CDX","KHV","CEU","TSI","FIN","GBR","IBS",
                               "GIH","PJL","BEB","STU","ITU",
-                              "ALL", "AFR", "AMR", "EAS", "EUR", "SAS")
+                              "ALL", "AFR", "AMR", "EAS", "EUR", "SAS"),
+                  avail_genome_build = c("grch37", "grch38", "grch38_high_coverage")
                              )
 
 
 url <- LD_config[["snpclip_url"]]
 avail_pop <- LD_config[["avail_pop"]]
+avail_genome_build <- LD_config[["avail_genome_build"]]
 
 # ensure file option is a character string
   file <- as.character(file)
@@ -104,6 +110,14 @@ avail_pop <- LD_config[["avail_pop"]]
     stop("Invalid input for file option.")
   }
 
+  # Ensure input for 'genome_build' is valid.
+  if(length(genome_build) > 1) {
+    stop("Invalid input.  Please choose only one available genome build.")
+  }
+
+  if(!(all(genome_build %in% avail_genome_build))) {
+    stop("Not an available genome build.")
+  }
 
 # Request body
 snps_to_upload <- paste(unlist(snps), collapse = "\n")
@@ -111,14 +125,15 @@ pop_to_upload <- paste(unlist(pop), collapse = "+")
 jsonbody <- list(snps = snps_to_upload,
                  pop = pop_to_upload,
                  r2_threshold = r2_threshold,
-                 maf_threshold = maf_threshold)
+                 maf_threshold = maf_threshold,
+                 genome_build = genome_build)
 
 # URL string
 url_str <- paste(url, "?", "&token=", token, sep="")
 
 # before full 'POST command', check if LDlink server is up and accessible...
 # if server is down pkg should fail gracefully with informative message (not error)
-r_url <- POST(url)
+r_url <- httr::POST(url)
 if (httr::http_error(r_url)) { # if server is down use message (and not an error)
   message("The LDlink server is down or not accessible. Please try again later.")
   return(NULL)
@@ -132,7 +147,11 @@ raw_out <-  httr::POST(url=url_str, body=jsonbody, encode="json")
 httr::stop_for_status(raw_out)
 # Parse response object
 data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t")
-colnames(data_out)[1] <- c("RS_Number")
+
+# Replace any number of '.' in column names with '_'
+names(data_out) <- gsub(x = names(data_out),
+                        pattern = "(\\.)+",
+                        replacement = "_")
 
 # Check for error/warnings in response data
   if(grepl("error", data_out[nrow(data_out),1], ignore.case = TRUE)) {
