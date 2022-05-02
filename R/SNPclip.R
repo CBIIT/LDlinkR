@@ -19,7 +19,12 @@
 #'                     token = Sys.getenv("LDLINK_TOKEN"))
 #'                  }
 #'
-SNPclip <- function(snps, pop="CEU", r2_threshold="0.1", maf_threshold="0.01",  token=NULL, file = FALSE) {
+SNPclip <- function(snps,
+                    pop="CEU",
+                    r2_threshold="0.1",
+                    maf_threshold="0.01",
+                    token=NULL,
+                    file = FALSE) {
 
 LD_config <- list(snpclip_url="https://ldlink.nci.nih.gov/LDlinkRest/snpclip",
                   avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
@@ -103,9 +108,10 @@ avail_pop <- LD_config[["avail_pop"]]
 # Request body
 snps_to_upload <- paste(unlist(snps), collapse = "\n")
 pop_to_upload <- paste(unlist(pop), collapse = "+")
-jsonbody <- list(snps=snps_to_upload, pop=pop_to_upload,
-                 r2_threshold=r2_threshold,
-                 maf_threshold=maf_threshold)
+jsonbody <- list(snps = snps_to_upload,
+                 pop = pop_to_upload,
+                 r2_threshold = r2_threshold,
+                 maf_threshold = maf_threshold)
 
 # URL string
 url_str <- paste(url, "?", "&token=", token, sep="")
