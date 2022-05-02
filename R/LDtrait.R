@@ -17,6 +17,9 @@
 #' equal to 1,000,000bp. Default value is -/+ 500,000 bp.
 #' @param token LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
+#' @param genome_build Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
+#' `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
+#' data sets.  Default is GRCh37 (hg19).
 #'
 #' @return A data frame of all query variant RS numbers with a list of queried variants
 #' in LD with a variant reported in the GWAS Catalog (\url{https://www.ebi.ac.uk/gwas/docs/file-downloads}.
@@ -39,7 +42,9 @@ LDtrait <- function(snps,
                     r2d = "r2",
                     r2d_threshold = 0.1,
                     win_size = 500000,
-                    token = NULL, file = FALSE) {
+                    token = NULL,
+                    file = FALSE,
+                    genome_build = "grch37") {
 
 LD_config <- list(ldtrait_url_base = "https://ldlink.nci.nih.gov/LDlinkRest/ldtrait",
                   avail_pop = c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
@@ -47,13 +52,14 @@ LD_config <- list(ldtrait_url_base = "https://ldlink.nci.nih.gov/LDlinkRest/ldtr
                                 "CDX","KHV","CEU","TSI","FIN","GBR","IBS",
                                 "GIH","PJL","BEB","STU","ITU",
                                 "ALL", "AFR", "AMR", "EAS", "EUR", "SAS"),
-                  avail_ld = c("r2", "d")
-
+                  avail_ld = c("r2", "d"),
+                  avail_genome_build=c("grch37", "grch38", "grch38_high_coverage")
 )
 
 ldtrait_url <- LD_config[["ldtrait_url_base"]]
 avail_pop <- LD_config[["avail_pop"]]
 avail_ld <- LD_config[["avail_ld"]]
+avail_genome_build <- LD_config[["avail_genome_build"]]
 
 # Define regular expressions used to check arguments for valid input below
 rsid_pattern <- "^rs\\d{1,}"
@@ -121,6 +127,15 @@ if(!(is.character(file) | file == FALSE)) {
   stop("Invalid input for file option.")
 }
 
+# Ensure input for 'genome_build' is valid.
+if(length(genome_build) > 1) {
+  stop("Invalid input.  Please choose only one available genome build.")
+}
+
+if(!(all(genome_build %in% avail_genome_build))) {
+  stop("Not an available genome build.")
+}
+
 # Request body
 snps_to_upload <- paste(unlist(snps), collapse = "\n")
 pop_to_upload <- paste(unlist(pop), collapse = "+")
@@ -129,8 +144,9 @@ jsonbody <- list(snps = snps_to_upload,
                  pop = pop_to_upload,
                  r2_d = r2d,
                  r2_d_threshold = r2d_threshold,
-                 window = win_size
-)
+                 window = win_size,
+                 genome_build = genome_build
+                )
 
 # URL string
 url_str <- paste(ldtrait_url, "?", "token=", token, sep="")
@@ -164,7 +180,6 @@ if(sum(grepl("error", data_out, ignore.case = TRUE), na.rm = TRUE)) {
   stop(error_msg)
 }
 
-
 # Rename LD D-prime column from D. to D'
 colnames(data_out)[colnames(data_out)=="D."] <- "D'"
 
@@ -195,7 +210,7 @@ if (file == FALSE) {
                                        sep = "\t")
                           )
             )
-  cat(paste("\nFile saved to ",file,".", sep=""))
+  cat(paste("\nFile saved to ",file,".\n\n", sep=""))
   return(data_out)
  }
 
