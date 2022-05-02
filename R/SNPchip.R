@@ -76,13 +76,23 @@ format_tbl <- function(out_raw) {
   snp_count <- count_snps(out_raw)
 
   out <- out_raw[1:count_snps(out_raw), 1:2]
-  colnames(out) <- c("RS_Number", "Position_GRCh37")
-  out$Position_GRCh37 <- c(paste("chr", out[,2], sep=""))
+
+  # Replace any number of '.' in column names with '_'
+  names(out) <- gsub(x = names(out),
+                     pattern = "(\\.)+",
+                     replacement = "_")
+
+  # Remove last '_' at end of column names
+  names(out) <- gsub(x = names(out),
+                     # regex pattern for underscore at the end
+                     pattern = "_$",
+                     replacement = "")
+
   arrays <- as.character(out_raw[1:snp_count,3])
 
-  ### Entries from vairant list not found on any of the selected arrays
+  ### Entries from variant list not found on any of the selected arrays
   if (!(sum(is.na(out_raw[,3])) == 0)) {
-    return(out)
+    return(NULL)
   }
   #############
 
@@ -115,6 +125,9 @@ format_tbl <- function(out_raw) {
 #' @param chip chip or arrays, platform code(s) for a SNP chip array, ALL_Illumina, ALL_Affy or ALL, default=ALL
 #' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
+#' @param genome_build Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
+#' `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
+#' data sets.  Default is GRCh37 (hg19).
 #'
 #' @return a data frame
 #' @importFrom httr POST content stop_for_status http_error
@@ -131,7 +144,11 @@ format_tbl <- function(out_raw) {
 #'                  }
 #' \dontrun{SNPchip("rs148890987", "ALL_Affy", token = Sys.getenv("LDLINK_TOKEN"))}
 #'
-SNPchip <- function(snps, chip="ALL", token=NULL, file = FALSE) {
+SNPchip <- function(snps,
+                    chip="ALL",
+                    token=NULL,
+                    file = FALSE,
+                    genome_build = "grch37") {
 
 LD_config <- list(snpchip_url_base="https://ldlink.nci.nih.gov/LDlinkRest/snpchip",
                   avail_chip=c("I_100","I_1M","I_1M-D","I_240S","I_300","I_300-D","I_550v1",
@@ -148,12 +165,14 @@ LD_config <- list(snpchip_url_base="https://ldlink.nci.nih.gov/LDlinkRest/snpchi
                                "A_10X","A_250N","A_250S","A_50H","A_50X","A_AFR","A_ASI","A_CHB2",
                                "A_DMETplus","A_EAS","A_EUR","A_Exome1A","A_Exome319","A_Hu","A_Hu-CHB",
                                "A_LAT","A_Onco","A_OncoCNV","A_SNP5.0","A_SNP6.0", "ALL_Illumina",
-                               "ALL_Affy", "ALL")
+                               "ALL_Affy", "ALL"),
+                   avail_genome_build = c("grch37", "grch38", "grch38_high_coverage")
                              )
 
 
 url <- LD_config[["snpchip_url_base"]]
 avail_chip <- LD_config[["avail_chip"]]
+avail_genome_build <- LD_config[["avail_genome_build"]]
 
 # ensure file option is a character string
   file <- as.character(file)
@@ -206,10 +225,21 @@ if (length(chip) == 1) {
    }
 }
 
+# Ensure input for 'genome_build' is valid.
+if(length(genome_build) > 1) {
+   stop("Invalid input.  Please choose only one available genome build.")
+ }
+
+if(!(all(genome_build %in% avail_genome_build))) {
+   stop("Not an available genome build.")
+ }
+
 # Request body
 snps_to_upload <- paste(unlist(snps), collapse = "\n")
 chip_to_upload <- paste(unlist(chip), collapse = "+")
-jsonbody <- list(snps=snps_to_upload, platforms=chip_to_upload)
+jsonbody <- list(snps = snps_to_upload,
+                 platforms = chip_to_upload,
+                 genome_build = genome_build)
 
 # URL string
 url_str <- paste(url, "?", "token=", token, sep="")
