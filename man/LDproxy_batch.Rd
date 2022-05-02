@@ -4,7 +4,14 @@
 \alias{LDproxy_batch}
 \title{Query LDproxy using a list of query variants, one per line.}
 \usage{
-LDproxy_batch(snp, pop = "CEU", r2d = "r2", token = NULL, append = FALSE)
+LDproxy_batch(
+  snp,
+  pop = "CEU",
+  r2d = "r2",
+  token = NULL,
+  append = FALSE,
+  genome_build = "grch37"
+)
 }
 \arguments{
 \item{snp}{a character string or data frame listing rsID's or chromosome coordinates (e.g. "chr7:24966446"), one per line}
@@ -15,7 +22,12 @@ LDproxy_batch(snp, pop = "CEU", r2d = "r2", token = NULL, append = FALSE)
 
 \item{token}{LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
 
-\item{append}{logical. If TRUE, output for each query variant is appended to a text file. If FALSE, output of each query variant is saved in its own text file.}
+\item{append}{A logical. If TRUE, output for each query variant is appended to a text file. If FALSE, output of each query variant is saved in its own text file.
+Default is FALSE.}
+
+\item{genome_build}{Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
+`grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
+data sets.  Default is GRCh37 (hg19).}
 }
 \value{
 text file(s) are saved to the current working directory.

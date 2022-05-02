@@ -4,7 +4,13 @@
 \alias{SNPchip}
 \title{Find commercial genotyping chip arrays for variants of interest.}
 \usage{
-SNPchip(snps, chip = "ALL", token = NULL, file = FALSE)
+SNPchip(
+  snps,
+  chip = "ALL",
+  token = NULL,
+  file = FALSE,
+  genome_build = "grch37"
+)
 }
 \arguments{
 \item{snps}{between 1 - 5,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")}
@@ -14,6 +20,10 @@ SNPchip(snps, chip = "ALL", token = NULL, file = FALSE)
 \item{token}{LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
 
 \item{file}{Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.}
+
+\item{genome_build}{Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
+`grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
+data sets.  Default is GRCh37 (hg19).}
 }
 \value{
 a data frame

@@ -11,7 +11,8 @@ LDtrait(
   r2d_threshold = 0.1,
   win_size = 5e+05,
   token = NULL,
-  file = FALSE
+  file = FALSE,
+  genome_build = "grch37"
 )
 }
 \arguments{
@@ -34,6 +35,10 @@ equal to 1,000,000bp. Default value is -/+ 500,000 bp.}
 \item{token}{LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
 
 \item{file}{Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.}
+
+\item{genome_build}{Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
+`grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
+data sets.  Default is GRCh37 (hg19).}
 }
 \value{
 A data frame of all query variant RS numbers with a list of queried variants

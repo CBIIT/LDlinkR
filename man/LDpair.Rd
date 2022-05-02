@@ -5,7 +5,15 @@
 \title{Investigates potentially correlated alleles for a
 pair of variants.}
 \usage{
-LDpair(var1, var2, pop = "CEU", token = NULL, output = "table", file = FALSE)
+LDpair(
+  var1,
+  var2,
+  pop = "CEU",
+  token = NULL,
+  output = "table",
+  file = FALSE,
+  genome_build = "grch37"
+)
 }
 \arguments{
 \item{var1}{the first RS number or genomic coordinate (e.g. "chr7:24966446")}
@@ -19,6 +27,10 @@ LDpair(var1, var2, pop = "CEU", token = NULL, output = "table", file = FALSE)
 \item{output}{two output options available, "text", which displays a two-by-two matrix displaying haplotype counts and allele frequencies along with other statistics, or "table", which displays the same data in rows and columns, default = "table"}
 
 \item{file}{Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.}
+
+\item{genome_build}{Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
+`grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
+data sets.  Default is GRCh37 (hg19).}
 }
 \value{
 text or data frame, depending on the output option

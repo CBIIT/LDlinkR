@@ -5,7 +5,14 @@
 \title{Calculates population specific haplotype frequencies of all
 haplotypes observed for a list of query variants.}
 \usage{
-LDhap(snps, pop = "CEU", token = NULL, file = FALSE, table_type = "haplotype")
+LDhap(
+  snps,
+  pop = "CEU",
+  token = NULL,
+  file = FALSE,
+  table_type = "haplotype",
+  genome_build = "grch37"
+)
 }
 \arguments{
 \item{snps}{list of between 1 - 30 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")}
@@ -18,6 +25,10 @@ LDhap(snps, pop = "CEU", token = NULL, file = FALSE, table_type = "haplotype")
 
 \item{table_type}{Choose from one of four options available to determine output
 format type...`haplotype`, `variant`, `both` and `merged`. Default = "haplotype".}
+
+\item{genome_build}{Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
+`grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
+data sets.  Default is GRCh37 (hg19).}
 }
 \value{
 a data frame or list
