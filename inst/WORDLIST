@@ -16,9 +16,11 @@ LDpair
 LDpop
 LDproxy
 LDtrait
+LazyData
 MAF
 METACRAN
 OME
+ORCID
 Omentum
 README
 RStudio
@@ -44,6 +46,7 @@ et
 eval
 germline
 github
+grch
 gtex
 hg
 https
