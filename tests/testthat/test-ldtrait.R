@@ -14,7 +14,18 @@ test_that("ldtrait throws an error for invalid input arguments", {
                          token = Sys.getenv("LDLINK_TOKEN")
                          )
                )
-
+  expect_error(ldtrait(snps = "rs456",
+                       r2d = "r2",
+                       token = Sys.getenv("LDLINK_TOKEN"),
+                       genome_build = "grch999"
+                      )
+               )
+  expect_error(ldtrait(snps = "rs456",
+                       r2d = "r2",
+                       token = Sys.getenv("LDLINK_TOKEN"),
+                       genome_build = c("grch37", "grch38")
+                      )
+               )
 })
 
 test_that("ldtrait throws an error when thresholds are outside acceptable range", {

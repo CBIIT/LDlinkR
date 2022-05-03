@@ -10,6 +10,24 @@ test_that("LDproxy_batch throws an error for bad query variant", {
   expect_error(LDproxy_batch(snp = snps_bad_qry, "YRI", "r2", token = Sys.getenv("LDLINK_TOKEN")))
 })
 
+test_that("LDproxy_batch throws an error for bad genome_build", {
+  skip_on_cran()
+  expect_error(LDproxy_batch(snp = snps_good_qry,
+                             pop = "YRI",
+                             r2d = "r2",
+                             token = Sys.getenv("LDLINK_TOKEN"),
+                             genome_build = "grch999"
+                             )
+               )
+  expect_error(LDproxy_batch(snp = snps_good_qry,
+                             pop = "YRI",
+                             r2d = "r2",
+                             token = Sys.getenv("LDLINK_TOKEN"),
+                             genome_build = c("grch37", "grch38")
+                            )
+              )
+})
+
 test_that("LDproxy_batch throws an error for bad token", {
   skip_on_cran()
   expect_condition(LDproxy_batch(snps_good_qry, "YRI", token = "faketoken"))
