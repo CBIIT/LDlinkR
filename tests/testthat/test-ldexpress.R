@@ -2,15 +2,25 @@ context("test-ldexpress")
 
 test_that("ldexpress throws an error for invalid input arguments", {
   skip_on_cran()
-  expect_error(LDexpress(snps = "rs0", pop = "CEU", tissue =  c("ADI_SUB", "ADI_VIS_OME"),
+  expect_error(LDexpress(snps = "r345", pop = "CEU", tissue =  c("ADI_SUB", "ADI_VIS_OME"),
                          token = Sys.getenv("LDLINK_TOKEN")
+                        )
+               )
+  expect_error(LDexpress(snps = "r345", pop = "CEU", tissue = "ADI_SUB",
+                         token = Sys.getenv("LDLINK_TOKEN"),
+                         genome_build = "grch40"
+                        )
+               )
+  expect_error(LDexpress(snps = "r345", pop = "CEU", tissue = "ADI_SUB",
+                         token = Sys.getenv("LDLINK_TOKEN"),
+                         genome_build = c("grch37", "grch38")
                         )
                )
   expect_error(LDexpress(snps = "rs4", pop = "CE", tissue =  c("ADI_SUB", "ADI_VIS_OME"),
                          token = Sys.getenv("LDLINK_TOKEN")
                          )
               )
-  expect_error(LDexpress(snps = "rs0", r2d = "r", tissue =  c("ADI_SUB", "ADI_VIS_OME"),
+  expect_error(LDexpress(snps = "rs3", r2d = "r", tissue =  c("ADI_SUB", "ADI_VIS_OME"),
                          token = Sys.getenv("LDLINK_TOKEN")
                          )
                )

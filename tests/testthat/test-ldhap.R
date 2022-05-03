@@ -3,7 +3,23 @@ context("test-ldhap")
 test_that("ldhap throws an error", {
   skip_on_cran()
   expect_error(LDhap(c("r3", "rs4", "rs148890987"), "CEU", token = Sys.getenv("LDLINK_TOKEN")))
-})
+  # invalid genome_build
+  expect_error(LDhap(snps <- c("rs3", "rs4"),
+                     pop <- "CEU",
+                     token <- Sys.getenv("LDLINK_TOKEN"),
+                     table_type <- "both",
+                     genome_build <-  "grch40"
+                     )
+               )
+  # more than one genome_build
+  expect_error(LDhap(snps <- c("rs3", "rs4"),
+                     pop <- "CEU",
+                     token <- Sys.getenv("LDLINK_TOKEN"),
+                     table_type <- "both",
+                     genome_build <-  c("grch37", "grch38")
+                    )
+               )
+      })
 
 test_that("ldhap throws an error when `snps` option is NULL", {
   skip_on_cran()
