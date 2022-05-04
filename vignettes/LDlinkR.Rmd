@@ -366,6 +366,7 @@ Generates a data frame of pairwise linkage disequilibrium statistics. Input is a
 -   `r2d`, use either "r2" for pairwise R^2^ statistics or "d" for pairwise D' statistics
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
+- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
 #### Usage: Multiple query variants, single population, R^2^ and genome build GRCh38 (hg38).
 
@@ -434,7 +435,13 @@ Output is a table with rows and columns equal to the number of query variants an
 
 #### Function
 
-    LDpair(var1, var2, pop = "CEU", token = NULL, output = "table", file = FALSE)
+    LDpair(var1, 
+           var2, 
+           pop = "CEU", 
+           token = NULL, 
+           output = "table", 
+           file = FALSE,
+           genome_build = "grch37")
 
 Investigates potentially correlated alleles for a pair of variants. Input is two query variants and a 1000 Genomes Project reference population(s) of interest.
 
