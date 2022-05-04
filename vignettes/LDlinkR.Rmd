@@ -38,7 +38,7 @@ A haplotype is a cluster of genetic variants that are inherited together. Humans
 
 [1000 Genomes Project](https://www.internationalgenome.org/) (source: [GRCh37](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/), [GRCh38](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/), and [GRCh38 High Coverage](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20201028_3202_phased/)) - Publicly available reference haplotypes from the 1000 Genomes Project are used by LDlink to calculate population-specific measures of linkage disequilibrium. Haplotypes are available for continental populations (ex: European, African, and Admixed American) and sub-populations (ex: Finnish, Gambian, and Peruvian). All LDlink modules require the selection of at least one 1000 Genomes Project sub-population, but several sub-populations can be selected simultaneously. Available haplotypes vary by sub-population based on sample size.
 
-[UCSC RefSeq](https://genome.ucsc.edu/cgi-bin/hgTables) (source: GRCh37 and GRCh38) - Publicly available gene transcripts from the UCSC Table Browser are used by LDlink's LDassoc (currently not available in the*LDlinkR* package), LDmatrix, and LDproxy modules to display genes within the genomic window of interest.
+[UCSC RefSeq](https://genome.ucsc.edu/cgi-bin/hgTables) (source: GRCh37 and GRCh38) - Publicly available gene transcripts from the UCSC Table Browser are used by LDlink's LDassoc (currently not available in the *LDlinkR* package), LDmatrix, and LDproxy modules to display genes within the genomic window of interest.
 
 [RegulomeDB](https://regulomedb.org/) (source: GRCh37) - Publicly available scores from RegulomeDB are used by LDlink's LDassoc (currently not available in the *LDlinkR* package) and LDproxy modules to rank available datatypes for a single coordinate. GRCh38 support is added via [liftOver](https://genome.ucsc.edu/cgi-bin/hgLiftOver).
 
@@ -47,6 +47,16 @@ A haplotype is a cluster of genetic variants that are inherited together. Humans
 [GTEx Portal](https://www.gtexportal.org/home/) (source: GRCh38) - Publicly available single-tissue cis-QTL data from the GTEx Portal is used by LDlink's LDexpress module to show significant variant-gene associations in multiple tissue types. GRCh37 support is added via GTEx lookup table.
 
 [GWAS Catalog](https://www.ebi.ac.uk/gwas/home) (source: GRCh38) - Publicly available NHGRI-EBI Catalog of human genome-wide association studies from GWAS Catalog is used by LDlink's LDtrait module to search if variants have previously been associated with a trait or disease. GRCh37 support is added via [dbSNP](https://www.ncbi.nlm.nih.gov/snp/).
+
+## Calculations
+
+LDlink modules report the following measures of linkage disequilibrium: D prime, R squared, and goodness-of-fit statistics. Below is a brief description of each measure.
+
+D prime (D') - an indicator of allelic segregation for two genetic variants. D' values range from 0 to 1 with higher values indicating tight linkage of alleles. A D' value of 0 indicates no linkage of alleles. A D' value of 1 indicates at least one expected haplotype combination is not observed.
+
+R squared (R2) - a measure of correlation of alleles for two genetic variants. R2 values range from 0 to 1 with higher values indicating a higher degree of correlation. An R2 value of 0 indicates alleles are independent, whereas an R2 value of 1 indicates an allele of one variant perfectly predicts an allele of another variant. R2 is sensitive to allele frequency.
+
+Goodness of Fit (Χ2 and p-value) - statistical test testing whether observed haplotype counts follow frequencies expected from variant allele frequencies. High chi-square statistics and low p-values are evidence that haplotype counts deviate from expected values and suggest linkage disequilibrium may be present.
 
 ## Installation
 
