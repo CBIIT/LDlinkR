@@ -93,10 +93,11 @@ In this basic example, the `LDproxy` function is used to explore proxy and putat
 my_proxies <- LDproxy(snp = "rs456", 
                       pop = "YRI", 
                       r2d = "r2", 
-                      token = "YourTokenHere123"
+                      token = "YourTokenHere123",
+                      genome_build = "grch38"
                      )
 ```
-This example uses a single reference SNP ID (rsID) for the query variant, a population of interest (YRI = Yoruba in Ibadan, Nigeria) and "r2" for the desired output to be based on estimated R<sup>2</sup>. The output is stored in the variable `my_proxies`.  **Note:** Replace "YourTokenHere123" with your personal access token. See section above, "Personal Access Token".
+This example uses a single reference SNP ID (rsID) for the query variant, a population of interest (YRI = Yoruba in Ibadan, Nigeria), "r2" for the desired output to be based on estimated R<sup>2</sup>, and genome build GRCH38 (hg38). The output is stored in the variable `my_proxies`.  **Note:** Replace "YourTokenHere123" with your personal access token. See section above, "Personal Access Token".
 
 <br>
 
@@ -107,20 +108,20 @@ head(my_proxies)
 ```
 
 ```
-##    RS_Number         Coord Alleles    MAF Distance Dprime     R2
-## 1      rs456 chr7:24962419   (G/C) 0.1944        0      1 1.0000
-## 2      rs457 chr7:24962426   (T/C) 0.1944        7      1 1.0000
-## 3 rs28475742 chr7:24964633   (G/T) 0.1944     2214      1 1.0000
-## 4      rs123 chr7:24966446   (C/A) 0.1944     4027      1 1.0000
-## 5      rs125 chr7:24959703   (C/T) 0.2037    -2716      1 0.9436
-## 6      rs128 chr7:24958977   (C/T) 0.2037    -3442      1 0.9436
-##   Correlated_Alleles RegulomeDB Function
-## 1            G=G,C=C          5     <NA>
-## 2            G=T,C=C          5     <NA>
-## 3            G=G,C=T          4     <NA>
-## 4            G=C,C=A         1f     <NA>
-## 5            G=C,C=T          5     <NA>
-## 6            G=C,C=T          7     <NA>
+##    RS_Number         Coord Alleles    MAF Distance Dprime     R2 Correlated_Alleles
+## 1 rs58333091 chr7:24922800   (G/C) 0.1963        0      1 1.0000            G=G,C=C
+## 2 rs60614713 chr7:24922807   (T/C) 0.1963        7      1 1.0000            G=T,C=C
+## 3 rs59826225 chr7:24925014   (G/T) 0.1963     2214      1 1.0000            G=G,C=T
+## 4      rs123 chr7:24926827   (C/A) 0.1963     4027      1 1.0000            G=C,C=A
+## 5 rs10341080 chr7:24920084   (C/T) 0.2056    -2716      1 0.9434            G=C,C=T
+## 6 rs56794736 chr7:24919358   (C/T) 0.2056    -3442      1 0.9434            G=C,C=T
+##   RegulomeDB Function
+## 1          4     <NA>
+## 2         2b     <NA>
+## 3          4     <NA>
+## 4         1f     <NA>
+## 5         3a     <NA>
+## 6          7     <NA>
 ```
 
 <br>
