@@ -242,7 +242,12 @@ head(my_output)
 
 #### Function
 
-    LDhap(snps, pop="CEU", token=NULL, file = FALSE, table_type="haplotype")
+    LDhap(snps, 
+          pop = "CEU", 
+          token = NULL, 
+          file = FALSE, 
+          table_type = "haplotype",
+          genome_build = "grch37")
 
 Calculates population specific haplotype frequencies of all haplotypes observed for a list of query variants. Input is a list of variant RS numbers (concatenated list) and a population group.
 
@@ -253,25 +258,25 @@ Calculates population specific haplotype frequencies of all haplotypes observed 
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
 -    `table_type`, Choose from one of four options available to determine output format type...`haplotype`, `variant`, `both` and `merged`. Default = "haplotype".
+- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
-#### Usage: Multiple query variants, single population
+#### Usage: Multiple query variants, single population, and genome build GRCh38 High Coverage
 
 ```{r eval=FALSE}
 LDhap(snps = c("rs3", "rs4", "rs148890987"), 
       pop = "CEU", 
-      token = Sys.getenv("LDLINK_TOKEN")
+      token = Sys.getenv("LDLINK_TOKEN"),
+      genome_build = "grch38_high_coverage"
      )
 ```
 
-    ##   rs148890987 rs3 rs4 Count Frequency
-    ## 1           C   C   A   176    0.8889
-    ## 2           T   T   G    11    0.0556
-    ## 3           T   C   A     7    0.0354
-    ## 4           C   T   G     4    0.0202
+    ##   rs3 rs4 rs148890987 Count Frequency
+    ## 1   C   A           C   183    0.9242
+    ## 2   T   G           C    15    0.0758
 
 <br>
 
-#### Usage: Multiple query variants, multiple populations
+#### Usage: Multiple query variants, multiple populations using default genome build GRCh37 (hg19)
 
 ```{r eval=FALSE}
 LDhap(snps = c("rs3", "rs4", "rs148890987"),
@@ -280,11 +285,11 @@ LDhap(snps = c("rs3", "rs4", "rs148890987"),
      )
 ```
 
-    ##   rs148890987 rs3 rs4 Count Frequency
-    ## 1           C   C   A   355    0.8575
-    ## 2           C   T   G    41     0.099
-    ## 3           T   T   G    11    0.0266
-    ## 4           T   C   A     7    0.0169
+    ##   rs3 rs4 rs148890987 Count Frequency
+    ## 1   C   A           C   355    0.8575
+    ## 2   T   G           C    41     0.099
+    ## 3   T   G           T    11    0.0266
+    ## 4   C   A           T     7    0.0169
 
 Output is a table of alleles, haplotype count and haplotype frequencies.
 
@@ -296,20 +301,21 @@ Output is a table of alleles, haplotype count and haplotype frequencies.
 LDhap(snps = c("rs660670", "rs556780", "rs355", "rs356", "rs542746"),
       pop = "CEU",
       token = Sys.getenv("LDLINK_TOKEN"),
-      table_type = "merged"
+      table_type = "merged",
+      genome_build = "grch38"
      )
 ```
 
-    ## RS_Number  Position_hg19    Allele_Frequency Haplotypes       
-    ## 1  rs542746 chr13:32434192    G=0.924, A=0.076          G      A
-    ## 2  rs556780 chr13:32437160    G=0.924, A=0.076          G      A
-    ## 3  rs660670 chr13:32438024    A=0.924, G=0.076          A      G
-    ## 4     rs355 chr13:32457979    A=0.924, G=0.076          A      G
-    ## 5     rs356 chr13:32458800    T=0.924, A=0.076          T      A
-    ## 6                              Haplotype_Count        183     15
-    ## 7                          Haplotype_Frequency     0.9242 0.0758
+    ##   RS_Number Position_grch38    Allele_Frequency Haplotypes       
+    ## 1  rs660670  chr13:31863887    A=0.924, G=0.076          A      G
+    ## 2  rs556780  chr13:31863023    G=0.924, A=0.076          G      A
+    ## 3     rs355  chr13:31883842    A=0.924, G=0.076          A      G
+    ## 4     rs356  chr13:31884663    T=0.924, A=0.076          T      A
+    ## 5  rs542746  chr13:31860055    G=0.924, A=0.076          G      A
+    ## 6                               Haplotype_Count        183     15
+    ## 7                           Haplotype_Frequency     0.9242 0.0758
     
-Out put is a table with query variants, genomic position (hg19), etc.
+Output is a table with query variants, genomic position GRCH38 (hg38), etc.
 
 <br>
 
@@ -324,17 +330,17 @@ LDhap(snps = c("rs660670", "rs556780", "rs355", "rs356", "rs542746"),
 ```
 
     ## [[1]]
-    ##  RS_Number  Position_hg19 Allele_Frequency
-    ## 1  rs542746 chr13:32434192 G=0.924, A=0.076
-    ## 2  rs556780 chr13:32437160 G=0.924, A=0.076
-    ## 3  rs660670 chr13:32438024 A=0.924, G=0.076
-    ## 4     rs355 chr13:32457979 A=0.924, G=0.076
-    ## 5     rs356 chr13:32458800 T=0.924, A=0.076
+    ##   RS_Number Position_grch37 Allele_Frequency
+    ## 1  rs660670  chr13:32438024 A=0.924, G=0.076
+    ## 2  rs556780  chr13:32437160 G=0.924, A=0.076
+    ## 3     rs355  chr13:32457979 A=0.924, G=0.076
+    ## 4     rs356  chr13:32458800 T=0.924, A=0.076
+    ## 5  rs542746  chr13:32434192 G=0.924, A=0.076
     ## 
     ## [[2]]
-    ##   rs542746 rs556780 rs660670 rs355 rs356 Count Frequency
-    ## 1        G        G        A     A     T   183    0.9242
-    ## 2        A        A        G     G     A    15    0.0758
+    ##   rs660670 rs556780 rs355 rs356 rs542746 Count Frequency
+    ## 1        A        G     A     T        G   183    0.9242
+    ## 2        G        A     G     A        A    15    0.0758
 
 Output is a list that contains both the 'variant' and 'haplotype' output format types.
 
