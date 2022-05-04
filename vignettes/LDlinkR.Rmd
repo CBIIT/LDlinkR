@@ -35,7 +35,7 @@ A haplotype is a cluster of genetic variants that are inherited together. Humans
 
 ## LDlink Data Sources
 
-[dbSNP](https://www.ncbi.nlm.nih.gov/snp/) [(source: GRCh37 and GRCh38)](https://ftp.ncbi.nih.gov/snp/) - To investigate patterns of linkage disequilibrium, LDlink focuses on two main classes of genetic variation: single nucleotide polymorphisms (SNPs) and insertions/deletions (indels). Every module of LDlink requires the entry of at least one variant as identified by a RefSNP number (RS number) or genomic position (chr#:position). RS numbers have been assigned by dbSNP and are well-curated identifiers that follow the format "rs" followed by 1 to 8 numbers. The current implementation of LDlink references dbSNP and only accepts input for bi-allelic variants.
+[dbSNP](https://www.ncbi.nlm.nih.gov/snp/) [(source: GRCh37 and GRCh38)](https://ftp.ncbi.nih.gov/snp/) - To investigate patterns of linkage disequilibrium, LDlink focuses on two main classes of genetic variation: single nucleotide polymorphisms (SNPs) and insertions/deletions (indels). Every module of LDlink requires the entry of at least one variant as identified by a RefSNP number (RS number) or genomic position (chr#:position). RS numbers are unique labels assigned by dbSNP and are well-curated identifiers that follow the format "rs" followed by a number. The current implementation of LDlink references dbSNP and only accepts input for bi-allelic variants.
 
 [1000 Genomes Project](https://www.internationalgenome.org/) (source: [GRCh37](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/), [GRCh38](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/), and [GRCh38 High Coverage](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20201028_3202_phased/)) - Publicly available reference haplotypes from the 1000 Genomes Project are used by LDlink to calculate population-specific measures of linkage disequilibrium. Haplotypes are available for continental populations (ex: European, African, and Admixed American) and sub-populations (ex: Finnish, Gambian, and Peruvian). All LDlink modules require the selection of at least one 1000 Genomes Project sub-population, but several sub-populations can be selected simultaneously. Available haplotypes vary by sub-population based on sample size.
 
@@ -350,7 +350,12 @@ Output is a list that contains both the 'variant' and 'haplotype' output format 
 
 #### Function
 
-    LDmatrix(snps, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
+    LDmatrix(snps, 
+             pop = "CEU", 
+             r2d = "r2", 
+             token = NULL, 
+             file = FALSE,
+             genome_build = "grch37")
 
 Generates a data frame of pairwise linkage disequilibrium statistics. Input is a list of between 2 to 1000 variants. Desired output can be based on estimates of R^2^ or D'.
 
@@ -362,35 +367,38 @@ Generates a data frame of pairwise linkage disequilibrium statistics. Input is a
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
 
-#### Usage: Multiple query variants, single population, R^2^
+#### Usage: Multiple query variants, single population, R^2^ and genome build GRCh38 (hg38).
 
 ```{r eval=FALSE}
 LDmatrix(snps = c("rs496202", "rs11147477", "rs201578600"), 
-         pop = "YRI", r2d = "r2", 
-         token = Sys.getenv("LDLINK_TOKEN")
+         pop = "YRI", 
+         r2d = "r2", 
+         token = Sys.getenv("LDLINK_TOKEN"),
+         genome_build = "grch38"
         )
 ```
-
-    ##     RS_number rs496202 rs201578600 rs11147477
-    ## 1    rs496202    1.000       0.660      0.504
-    ## 2 rs201578600    0.660       1.000      0.786
-    ## 3  rs11147477    0.504       0.786      1.000
+    
+    ##     RS_number rs496202 rs11147477 rs201578600
+    ## 1    rs496202    1.000      0.503       0.659
+    ## 2  rs11147477    0.503      1.000       0.786
+    ## 3 rs201578600    0.659      0.786       1.000
 
 <br>
 
-#### Usage: Multiple query variants (rsID & genomic coordinates), multiple populations, D'
+#### Usage: Multiple query variants (mixed use of rsID's & genomic coordinates), multiple populations, D'
 
 ```{r eval=FALSE}
 LDmatrix(snps = c("chr13:32444611", "rs11147477", "rs201578600"), 
-         pop = c("YRI", "CEU"), r2d = "d", 
+         pop = c("YRI", "CEU"), 
+         r2d = "d", 
          token = Sys.getenv("LDLINK_TOKEN")
         )
 ```
 
-    ##     RS_number rs496202 rs201578600 rs11147477
-    ## 1    rs496202    1.000       0.973      0.738
-    ## 2 rs201578600    0.973       1.000      0.971
-    ## 3  rs11147477    0.738       0.971      1.000
+    ##     RS_number rs496202 rs11147477 rs201578600
+    ## 1    rs496202    1.000      0.738       0.973
+    ## 2  rs11147477    0.738      1.000       0.971
+    ## 3 rs201578600    0.973      0.971       1.000
 
 <br>
 
@@ -410,13 +418,13 @@ LDmatrix(snps = my_variants[,1],
         )
 ```
 
-    ##    RS_number rs60676332 rs7805287 rs127 rs456 rs10239961 rs114
-    ## 1 rs60676332      1.000     0.094 0.180 0.151      0.363 0.148
-    ## 2  rs7805287      0.094     1.000 0.818 0.789      0.464 0.710
-    ## 3      rs127      0.180     0.818 1.000 0.929      0.912 0.886
-    ## 4      rs456      0.151     0.789 0.929 1.000      1.000 0.963
-    ## 5 rs10239961      0.363     0.464 0.912 1.000      1.000 0.459
-    ## 6      rs114      0.148     0.710 0.886 0.963      0.459 1.000
+    ##   RS_number rs456 rs114 rs127 rs7805287 rs60676332 rs10239961
+    ## 1      rs456 1.000 0.963 0.929     0.789      0.151      1.000
+    ## 2      rs114 0.963 1.000 0.886     0.710      0.148      0.459
+    ## 3      rs127 0.929 0.886 1.000     0.818      0.180      0.912
+    ## 4  rs7805287 0.789 0.710 0.818     1.000      0.094      0.464
+    ## 5 rs60676332 0.151 0.148 0.180     0.094      1.000      0.363
+    ## 6 rs10239961 1.000 0.459 0.912     0.464      0.363      1.000
 
 Output is a table with rows and columns equal to the number of query variants and pairwise linkage disequilibrium statistics.
 
