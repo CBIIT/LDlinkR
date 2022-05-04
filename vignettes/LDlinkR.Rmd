@@ -453,15 +453,17 @@ Investigates potentially correlated alleles for a pair of variants. Input is two
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `output`, two output format options are available, "text", which displays a two-by-two matrix displaying haplotype counts and allele frequencies along with other statistics, or "table", which displays the same data in rows and columns, default = "table"
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
+- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
-#### Usage: With `output` argument set to "text"
+#### Usage: With `output` argument set to "text" and genome build GRCh38 (hg38)
 
 ```{r eval=FALSE}
 LDpair(var1 = "rs496202", 
        var2 = "rs11147477", 
        pop = "YRI", 
        token = Sys.getenv("LDLINK_TOKEN"), 
-       output = "text"
+       output = "text",
+       genome_build = "grch38"
       )
 ```
 
@@ -495,22 +497,21 @@ LDpair(var1 = "rs496202",
 
 <br>
 
-#### Usage: With no `output` argument option specified, using default "table"
+#### Usage: With no `output` argument option specified, using default "table".
 
 ```{r eval=FALSE}
 LDpair(var1 = "rs496202", 
        var2 = "rs11147477", 
        pop = "YRI", 
-       token = Sys.getenv("LDLINK_TOKEN")
+       token = Sys.getenv("LDLINK_TOKEN"),
+       genome_build = "grch38"
       )
 ```
 
-    ##       var1       var2 pops       var1_pos       var2_pos var1_a1 var1_a2
-    ## 1 rs496202 rs11147477  YRI chr13:32444611 chr13:32509120       C       G
-    ##   var1_a1_freq var1_a2_freq var2_a1 var2_a2 var2_a1_freq var2_a2_freq
-    ## 1        0.171        0.829       C       T        0.852        0.148
-    ##   d_prime     r2    chisq p_val
-    ## 1  0.7737 0.5037 108.8005 1e-04
+    ##       var1       var2 pops       var1_pos       var2_pos var1_a1 var1_a2 var1_a1_freq var1_a2_freq var2_a1
+    ## 1 rs496202 rs11147477  YRI chr13:31870474 chr13:31934983       C       G        0.173        0.827       C
+    ##   var2_a2 var2_a1_freq var2_a2_freq d_prime    r2   chisq p_val
+    ## 1       T         0.85         0.15  0.7733 0.503 107.638 1e-04
     ##                                           corr_alleles
     ## 1 rs496202(C)-rs11147477(T), rs496202(G)-rs11147477(C)
 
