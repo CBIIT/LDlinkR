@@ -1,8 +1,9 @@
 ---
 title: '*LDlinkR*: An R Package for Rapidly Calculating Linkage Disequilibrium Statistics in Diverse Populations'
 author: "Timothy A. Myers, Stephen J. Chanock and Mitchell J. Machiela"
-date: "2022-05-01"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
+width: 300
 vignette: >
   %\VignetteIndexEntry{*LDlinkR*: An R Package for Rapidly Calculating Linkage Disequilibrium Statistics in Diverse Populations}
   %\VignetteEngine{knitr::rmarkdown}
@@ -165,6 +166,7 @@ Search if a list of genomic variants (or variants in LD with those variants) is 
 -   `r2d_threshold`, R-squared or D' (depends on 'r2d' user input parameter) threshold for LD filtering. Any variants within -/+ of the specified genomic window and R^2^ or D' less than the threshold will be removed. Value needs to be in the range 0 to 1. Default value is 0.1.
 -   `p_threshold`, define the eQTL significance threshold used for returning query results. Default value is 0.1 which returns all GTEx eQTL associations with P-value less than 0.1.
 -   `win_size`, set genomic base pair window size for LD calculation. Specify a value greater than or equal to zero and less than or equal to 1000000 basepairs (bp). Default value is -/+ 500000 bp.
+- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
 
@@ -185,36 +187,31 @@ In the above example, output is a data frame stored in the variable `my_output`.
 head(my_output)
 ```
 
-    ##   Query      RS_ID       Position                R2                D'
-    ## 1   rs4 rs10637519 chr13:32430479 0.174249321651574 0.965976331360947
-    ## 2   rs4 rs10637519 chr13:32430479 0.174249321651574 0.965976331360947
-    ## 3   rs4   rs473641 chr13:32431244 0.174249321651574 0.965976331360947
-    ## 4   rs4   rs473641 chr13:32431244 0.174249321651574 0.965976331360947
-    ## 5   rs4   rs671746 chr13:32431263 0.174249321651574 0.965976331360947
-    ## 6   rs4   rs671746 chr13:32431263 0.174249321651574 0.965976331360947
-    ##    Gene_Symbol        Gencode_ID                       Tissue
-    ## 1 RP1-257C22.2 ENSG00000279314.1       Adipose - Subcutaneous
-    ## 2 RP1-257C22.2 ENSG00000279314.1 Adipose - Visceral (Omentum)
-    ## 3 RP1-257C22.2 ENSG00000279314.1       Adipose - Subcutaneous
-    ## 4 RP1-257C22.2 ENSG00000279314.1 Adipose - Visceral (Omentum)
-    ## 5 RP1-257C22.2 ENSG00000279314.1       Adipose - Subcutaneous
-    ## 6 RP1-257C22.2 ENSG00000279314.1 Adipose - Visceral (Omentum)
-    ##   Non_effect_Allele_Freq Effect_Allele_Freq Effect_Size     P_value
-    ## 1                G=0.565          GTC=0.435    0.225642  2.2578e-07
-    ## 2                G=0.565          GTC=0.435    0.207161  1.0227e-05
-    ## 3                A=0.565            G=0.435    0.225642  2.2578e-07
-    ## 4                A=0.565            G=0.435    0.207161  1.0227e-05
-    ## 5                C=0.565            T=0.435    0.226558 1.93289e-07
-    ## 6                C=0.565            T=0.435    0.207161  1.0227e-05
+    ##   Query      RS_ID Position_grch37                R2                D'  Gene_Symbol        Gencode_ID
+    ## 1   rs4 rs10637519  chr13:32430479 0.174249321651574 0.965976331360947 RP1-257C22.2 ENSG00000279314.1
+    ## 2   rs4 rs10637519  chr13:32430479 0.174249321651574 0.965976331360947 RP1-257C22.2 ENSG00000279314.1
+    ## 3   rs4   rs473641  chr13:32431244 0.174249321651574 0.965976331360947 RP1-257C22.2 ENSG00000279314.1
+    ## 4   rs4   rs473641  chr13:32431244 0.174249321651574 0.965976331360947 RP1-257C22.2 ENSG00000279314.1
+    ## 5   rs4   rs671746  chr13:32431263 0.174249321651574 0.965976331360947 RP1-257C22.2 ENSG00000279314.1
+    ## 6   rs4   rs671746  chr13:32431263 0.174249321651574 0.965976331360947 RP1-257C22.2 ENSG00000279314.1
+    ##                         Tissue Non_effect_Allele_Freq Effect_Allele_Freq Effect_Size     P_value
+    ## 1 Adipose - Visceral (Omentum)                G=0.565          GTC=0.435    0.207161  1.0227e-05
+    ## 2       Adipose - Subcutaneous                G=0.565          GTC=0.435    0.225642  2.2578e-07
+    ## 3 Adipose - Visceral (Omentum)                A=0.565            G=0.435    0.207161  1.0227e-05
+    ## 4       Adipose - Subcutaneous                A=0.565            G=0.435    0.225642  2.2578e-07
+    ## 5 Adipose - Visceral (Omentum)                C=0.565            T=0.435    0.207161  1.0227e-05
+    ## 6       Adipose - Subcutaneous                C=0.565            T=0.435    0.226558 1.93289e-07
 
-#### Usage: Multiple query variants, single population, a tissue type using the full LDexpress tissue name, no spaces.
+
+#### Usage: Multiple query variants, single population, a tissue type using the full LDexpress tissue name, no spaces, and genome build GRCh38.
 
 ```{r eval=FALSE}
 my_output <- LDexpress(snps = c("rs345", "rs456"),
                        pop = "YRI",
                        tissue =  "Adipose_Visceral_Omentum",
+                       genome_build = "grch38",
                        token = Sys.getenv("LDLINK_TOKEN")
-  )
+                      )
 ```
 
 In the above example, output is a data frame stored in the variable `my_output`. See below.
@@ -223,53 +220,21 @@ In the above example, output is a data frame stored in the variable `my_output`.
 head(my_output)
 ```
 
-    ##   Query      RS_ID       Position                R2 D'  Gene_Symbol
-    ## 1 rs345 rs12877069 chr13:32430415 0.222088835534214  1 RP1-257C22.2
-    ## 2 rs345 rs10637519 chr13:32430479  0.10989010989011  1 RP1-257C22.2
-    ## 3 rs345   rs473641 chr13:32431244  0.10989010989011  1 RP1-257C22.2
-    ## 4 rs345   rs671746 chr13:32431263  0.10989010989011  1 RP1-257C22.2
-    ## 5 rs345  rs9315146 chr13:32432193 0.222088835534214  1 RP1-257C22.2
-    ## 6 rs345   rs657190 chr13:32432232 0.107871720116618  1 RP1-257C22.2
-    ##          Gencode_ID                       Tissue Non_effect_Allele_Freq
-    ## 1 ENSG00000279314.1 Adipose - Visceral (Omentum)                C=0.685
-    ## 2 ENSG00000279314.1 Adipose - Visceral (Omentum)                G=0.519
-    ## 3 ENSG00000279314.1 Adipose - Visceral (Omentum)                A=0.519
-    ## 4 ENSG00000279314.1 Adipose - Visceral (Omentum)                C=0.519
-    ## 5 ENSG00000279314.1 Adipose - Visceral (Omentum)                A=0.685
-    ## 6 ENSG00000279314.1 Adipose - Visceral (Omentum)                T=0.514
-    ##   Effect_Allele_Freq Effect_Size     P_value
-    ## 1            T=0.315    0.355769 6.11598e-05
-    ## 2          GTC=0.481    0.207161  1.0227e-05
-    ## 3            G=0.481    0.207161  1.0227e-05
-    ## 4            T=0.481    0.207161  1.0227e-05
-    ## 5            G=0.315    0.276884 2.20517e-08
-    ## 6            C=0.486    0.207916 9.95318e-06
 
-```{r eval=FALSE}
-tail(my_output)
-```
-
-    ##    Query     RS_ID       Position                R2                D'
-    ## 63 rs345 rs5802624 chr13:32499700 0.154247745609872                 1
-    ## 64 rs345 rs2521196 chr13:32514328 0.414333042720139 0.824864864864865
-    ## 65 rs345  rs367507 chr13:32516037 0.414333042720139 0.824864864864865
-    ## 66 rs345  rs203417 chr13:32525482 0.490379008746356 0.828571428571429
-    ## 67 rs345  rs916756 chr13:32527529  0.14623556197823 0.785430463576159
-    ## 68 rs456 rs2529051  chr7:24594306 0.129422301836095 0.586206896551724
-    ##     Gene_Symbol         Gencode_ID                       Tissue
-    ## 63 RP1-257C22.2  ENSG00000279314.1 Adipose - Visceral (Omentum)
-    ## 64 RP1-257C22.2  ENSG00000279314.1 Adipose - Visceral (Omentum)
-    ## 65 RP1-257C22.2  ENSG00000279314.1 Adipose - Visceral (Omentum)
-    ## 66 RP1-257C22.2  ENSG00000279314.1 Adipose - Visceral (Omentum)
-    ## 67 RP1-257C22.2  ENSG00000279314.1 Adipose - Visceral (Omentum)
-    ## 68        DFNA5 ENSG00000105928.13 Adipose - Visceral (Omentum)
-    ##    Non_effect_Allele_Freq Effect_Allele_Freq Effect_Size     P_value
-    ## 63                C=0.398           CT=0.602   -0.252523  2.7687e-07
-    ## 64                G=0.144            C=0.856   -0.418973 3.26939e-05
-    ## 65                C=0.144            A=0.856   -0.418973 3.26939e-05
-    ## 66                T=0.125            C=0.875   -0.413808 4.17407e-05
-    ## 67                A=0.301            G=0.699   -0.460883 5.90627e-16
-    ## 68                A=0.083            G=0.917   -0.134336 1.09618e-05
+    ##   Query      RS_ID Position_grch38                R2  D' Gene_Symbol        Gencode_ID
+    ## 1 rs345 rs12877069  chr13:32430415 0.222088835534214  1 RP1-257C22.2 ENSG00000279314.1
+    ## 2 rs345 rs10637519  chr13:32430479  0.10989010989011  1 RP1-257C22.2 ENSG00000279314.1
+    ## 3 rs345   rs473641  chr13:32431244  0.10989010989011  1 RP1-257C22.2 ENSG00000279314.1
+    ## 4 rs345   rs671746  chr13:32431263  0.10989010989011  1 RP1-257C22.2 ENSG00000279314.1
+    ## 5 rs345  rs9315146  chr13:32432193 0.222088835534214  1 RP1-257C22.2 ENSG00000279314.1
+    ## 6 rs345   rs657190  chr13:32432232 0.107871720116618  1 RP1-257C22.2 ENSG00000279314.1
+                               Tissue Non_effect_Allele_Freq Effect_Allele_Freq Effect_Size     P_value
+    ## 1 Adipose - Visceral (Omentum)                C=0.685            T=0.315    0.355769 6.11598e-05
+    ## 2 Adipose - Visceral (Omentum)                G=0.519          GTC=0.481    0.207161  1.0227e-05
+    ## 3 Adipose - Visceral (Omentum)                A=0.519            G=0.481    0.207161  1.0227e-05
+    ## 4 Adipose - Visceral (Omentum)                C=0.519            T=0.481    0.207161  1.0227e-05
+    ## 5 Adipose - Visceral (Omentum)                A=0.685            G=0.315    0.276884 2.20517e-08
+    ## 6 Adipose - Visceral (Omentum)                T=0.514            C=0.486    0.207916 9.95318e-06
 
 ------------------------------------------------------------------------
 
