@@ -53,7 +53,8 @@ You will need to:
 ``` r
 LDhap(snps = c("rs3", "rs4", "rs148890987"), 
       pop = "YRI", 
-      token = "YourTokenHere123")
+      token = "YourTokenHere123",
+      genome_build = "grch38")
 ```
 
 <br>
@@ -92,7 +93,7 @@ In this basic example, the `LDproxy` function is used to explore proxy and putat
 my_proxies <- LDproxy(snp = "rs456", 
                       pop = "YRI", 
                       r2d = "r2", 
-                      token = Sys.getenv("LDLINK_TOKEN")
+                      token = "YourTokenHere123"
                      )
 ```
 This example uses a single reference SNP ID (rsID) for the query variant, a population of interest (YRI = Yoruba in Ibadan, Nigeria) and "r2" for the desired output to be based on estimated R<sup>2</sup>. The output is stored in the variable `my_proxies`.  **Note:** Replace "YourTokenHere123" with your personal access token. See section above, "Personal Access Token".
