@@ -525,7 +525,13 @@ Output from the `output` argument "table" option converts the data from the two-
 
 #### Function
 
-    LDpop(var1, var2, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
+    LDpop(var1, 
+          var2, 
+          pop = "CEU", 
+          r2d = "r2", 
+          token = NULL, 
+          file = FALSE,
+          genome_build = "grch37")
 
 Investigates allele frequencies and linkage disequilibrium patterns across 1000G populations.
 
@@ -537,6 +543,7 @@ Investigates allele frequencies and linkage disequilibrium patterns across 1000G
 -   `r2d`, use "r2" if desired output is based on estimated R^2^ or "d" if D'
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
+- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
 #### Usage
 
@@ -545,12 +552,13 @@ LDpop(var1 = "rs496202",
       var2 = "rs11147477", 
       pop = "YRI", 
       r2d = "r2", 
-      token = Sys.getenv("LDLINK_TOKEN")
+      token = Sys.getenv("LDLINK_TOKEN"),
+      genome_build = "grch38_high_coverage"
      )
 ```
 
-    ##   Population   N rs496202_Allele_Freq rs11147477_Allele_Freq     R2     D'
-    ## 1        YRI 108 G: 82.87%, C: 17.13%   C: 85.19%, T: 14.81% 0.5037 0.7737
+    ##                  Population Abbrev   N rs496202_Allele_Freq rs11147477_Allele_Freq     R2     D'    Chisq P
+    ## 1 Yoruba in Ibadan, Nigeria    YRI 108 G: 82.87%, C: 17.13%   C: 85.19%, T: 14.81% 0.5037 0.7737 108.8005 0
 
 ------------------------------------------------------------------------
 
