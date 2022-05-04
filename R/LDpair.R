@@ -23,8 +23,8 @@ df_pair_tbl <- data.frame(var1 = z[[1]][1],
                           r2 = as.numeric(z[[18]][3]),
                           chisq = as.numeric(z[[19]][3]),
                           p_val = as.numeric(substr(z[[20]][3], 2, (nchar(z[[20]][3])))),
-                        stringsAsFactors = FALSE
-                        )
+                          stringsAsFactors = FALSE
+                         )
 
  if (nrow(data_out) == 22) {
    if (grepl("warning", z[[22]][1], ignore.case = TRUE))  {
