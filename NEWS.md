@@ -10,6 +10,7 @@
 * Fix CRAN note about 'LazyData' by removing line from Description file.
 * Update README file.
 * Add testthat tests for feature genome_build
+* Add three new Illumina chips to SNPchip
 
 # LDlinkR 1.1.2
 * Submission date: 2021-02-19
