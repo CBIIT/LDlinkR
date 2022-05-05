@@ -168,7 +168,7 @@ httr::stop_for_status(raw_out)
 data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t")
 
 # Check for error/warning in response data
-if(sum(grepl("error", data_out, ignore.case = TRUE), na.rm = TRUE)) {
+if(!sum(grepl("error", data_out, ignore.case = TRUE), na.rm = TRUE)) {
   # subset rows in data_out that contain text 'error'
   error_msg <- subset(data_out, grepl("error", data_out[,1], ignore.case = TRUE))
 
