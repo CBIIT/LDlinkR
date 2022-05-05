@@ -48,7 +48,8 @@ array_abbrev <- function(array_name) {
              "Affymetrix Axiom Exome 1A",	"Affymetrix Axiom Exome 319",
              "Affymetrix Axiom GW Hu",	"Affymetrix Axiom GW Hu-CHB",
              "Affymetrix Axiom GW LAT",	"Affymetrix OncoScan",	"Affymetrix OncoScan CNV",
-             "Affymetrix SNP 5.0",	"Affymetrix SNP 6.0")
+             "Affymetrix Axiom Precision Medicine Research", "Affymetrix SNP 5.0",
+             "Affymetrix SNP 6.0","Affymetrix Axiom UK Biobank")
   abbrev <- c("I_100",	"I_1M",	"I_1M-D",	"I_240S",	"I_300",	"I_300-D",
               "I_550v1",	"I_550v3",	"I_610-Q",	"I_650Y",	"I_660W-Q",
               "I_CNV-12",	"I_CNV370-D",	"I_CNV370-Q",	"I_CVD",	"I_CardioMetab",
@@ -64,7 +65,7 @@ array_abbrev <- function(array_name) {
               "I_Psyc-24v1.1", "A_10X",	"A_250N",	"A_250S",	"A_50H",	"A_50X",	"A_AFR",
               "A_ASI", "A_CHB2",	"A_DMETplus",	"A_EAS",	"A_EUR",	"A_Exome1A",
               "A_Exome319", "A_Hu",	"A_Hu-CHB",	"A_LAT",	"A_Onco",	"A_OncoCNV",
-              "A_SNP5.0", "A_SNP6.0")
+              "A_SNP5.0", "A_SNP6.0", "A_UKBA")
 
   return(abbrev[match(trimws(array_name),arrays)])
 }
@@ -165,8 +166,8 @@ LD_config <- list(snpchip_url_base="https://ldlink.nci.nih.gov/LDlinkRest/snpchi
                                "I_OZH-8v1.1","I_OZH-8v1.2","I_OncoArray","I_Psyc-24v1","I_Psyc-24v1.1",
                                "A_10X","A_250N","A_250S","A_50H","A_50X","A_AFR","A_ASI","A_CHB2",
                                "A_DMETplus","A_EAS","A_EUR","A_Exome1A","A_Exome319","A_Hu","A_Hu-CHB",
-                               "A_LAT","A_Onco","A_OncoCNV","A_SNP5.0","A_SNP6.0", "ALL_Illumina",
-                               "ALL_Affy", "ALL"),
+                               "A_LAT","A_Onco","A_OncoCNV", "A_PMRA", "A_SNP5.0","A_SNP6.0",
+                               "A_UKBA", "ALL_Illumina", "ALL_Affy", "ALL"),
                    avail_genome_build = c("grch37", "grch38", "grch38_high_coverage")
                              )
 
