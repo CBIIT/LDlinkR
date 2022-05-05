@@ -11,6 +11,7 @@
 * Update README file.
 * Add testthat tests for feature genome_build
 * Add three new Illumina chips to SNPchip
+* Add two new Affymetrix chips to SNPchip
 
 # LDlinkR 1.1.2
 * Submission date: 2021-02-19
