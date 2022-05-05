@@ -166,7 +166,7 @@ Search if a list of genomic variants (or variants in LD with those variants) is 
 -   `r2d_threshold`, R-squared or D' (depends on 'r2d' user input parameter) threshold for LD filtering. Any variants within -/+ of the specified genomic window and R^2^ or D' less than the threshold will be removed. Value needs to be in the range 0 to 1. Default value is 0.1.
 -   `p_threshold`, define the eQTL significance threshold used for returning query results. Default value is 0.1 which returns all GTEx eQTL associations with P-value less than 0.1.
 -   `win_size`, set genomic base pair window size for LD calculation. Specify a value greater than or equal to zero and less than or equal to 1000000 basepairs (bp). Default value is -/+ 500000 bp.
-- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
+-   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
 
@@ -257,8 +257,8 @@ Calculates population specific haplotype frequencies of all haplotypes observed 
 -   `pop`, a 1000 Genomes Project population, uses three letter population code, (e.g. YRI or CEU), multiple allowed, default = "CEU"
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
--    `table_type`, Choose from one of four options available to determine output format type...`haplotype`, `variant`, `both` and `merged`. Default = "haplotype".
-- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
+-   `table_type`, Choose from one of four options available to determine output format type...`haplotype`, `variant`, `both` and `merged`. Default = "haplotype".
+-   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
 #### Usage: Multiple query variants, single population, and genome build GRCh38 High Coverage
 
@@ -366,7 +366,7 @@ Generates a data frame of pairwise linkage disequilibrium statistics. Input is a
 -   `r2d`, use either "r2" for pairwise R^2^ statistics or "d" for pairwise D' statistics
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
-- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
+-   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
 #### Usage: Multiple query variants, single population, R^2^ and genome build GRCh38 (hg38).
 
@@ -453,7 +453,7 @@ Investigates potentially correlated alleles for a pair of variants. Input is two
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `output`, two output format options are available, "text", which displays a two-by-two matrix displaying haplotype counts and allele frequencies along with other statistics, or "table", which displays the same data in rows and columns, default = "table"
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
-- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
+-   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
 #### Usage: With `output` argument set to "text" and genome build GRCh38 (hg38)
 
@@ -543,7 +543,7 @@ Investigates allele frequencies and linkage disequilibrium patterns across 1000G
 -   `r2d`, use "r2" if desired output is based on estimated R^2^ or "d" if D'
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
-- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
+-   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
 #### Usage
 
@@ -582,7 +582,7 @@ Explore proxy and putative functional variants for a single query variant. Input
 -   `r2d`, use "r2" if desired output is based on estimated R^2^ or "d" if D'
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
-- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
+-   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
 #### Usage: single reference population and default genome build GRCh37 (hg19).
 
@@ -639,7 +639,7 @@ Query *LDproxy* using a list of query variants. *LDproxy_batch* will make sequen
 -   `r2d`, use "r2" if desired output is based on estimated R^2^ or "d" if D'
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `append`, a logical, if TRUE, output for each query variant is appended to a single text file and saved to the current working directory. If FALSE, output for each query variant is saved in its own text file with the query variant as the filename. Default value is FALSE.
-- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
+-   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
 #### Usage: multiple variants, default `pop` and `r2d`
 
@@ -697,7 +697,7 @@ Search if a list of variants (or variants in LD with those variants) have been p
 -   `win_size`, set genomic base pair window size for LD calculation. Specify a value greater than or equal to zero and less than or equal to 1000000 basepairs (bp). Default value is -/+ 500000 bp.
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess).
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE.
-- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
+-   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
 #### Usage: Single query variant, multiple reference populations and genome build GRCh38(hg38)
 
