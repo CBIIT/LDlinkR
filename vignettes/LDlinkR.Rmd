@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ------------------------------------------------------------------------
 
-## Description
+## Introduction
 
 [LDlink](https://ldlink.nci.nih.gov) is an interactive and powerful suite of web-based tools for querying germline variants in human population groups of interest to generate interactive tables and plots. All population genotype data originates from Phase 3 (Version 5) of the [1000 Genomes Project](https://www.internationalgenome.org/) and variant RS numbers are indexed based on [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) 155.
 
@@ -756,7 +756,12 @@ Output of the above function is below.
 
 #### Function
 
-    SNPchip(snps, chip = "ALL", token = NULL, file = FALSE)
+    SNPchip(snps, 
+            chip = "ALL", 
+            token = NULL, 
+            file = FALSE,
+            genome_build = "grch37"
+           )
 
 Used to find commercial genotyping chip arrays for variants. Input is a list of between 1 - 5000 variants (one per line) and desired commercial chip arrays to search. Input variants do not need to be on the same chromosome.
 
@@ -765,7 +770,8 @@ Used to find commercial genotyping chip arrays for variants. Input is a list of 
 -   `snps`, between 1 - 5,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
 -   `chip`, chip or arrays, platform code(s) for a SNP chip array, ALL_Illumina, ALL_Affy or ALL, default=ALL, use the `list_chips` utility (see below) to lookup available commercial SNP chip arrays and their codes.
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
--   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
+-   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE.
+-   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
 #### Usage: Multiple variants, search "ALL" available chip arrays
 
@@ -785,21 +791,22 @@ SNPchip(snps = c("rs3", "rs4", "rs148890987"),
 
 <br>
 
-#### Usage: Multiple variants, search two Affymetrix arrays
+#### Usage: Multiple variants, search two Affymetrix arrays, and genome build GRCh38 (hg38)
 
 ```{r eval=FALSE}
 SNPchip(snps = c("rs3", "rs4", "rs148890987"), 
         chip = c("A_SNP5.0", "A_CHB2"), 
-        token = Sys.getenv("LDLINK_TOKEN")
+        token = Sys.getenv("LDLINK_TOKEN"),
+        genome_build = "grch38"
        )
 ```
 
     ## WARNING: The following RS number did not have any platforms found: rs148890987, rs3.
 
-    ##     RS_Number Position_GRCh37 A_SNP5.0 A_CHB2
-    ## 1 rs148890987  chr13:32403784        0      0
-    ## 2         rs3  chr13:32446842        0      0
-    ## 3         rs4  chr13:32447222        1      1
+    ##     RS_Number Position_GRCh38 A_SNP5.0 A_CHB2
+    ## 1 rs148890987     13:31829647        0      0
+    ## 2         rs3     13:31872705        0      0
+    ## 3         rs4     13:31873085        1      1
 
 <br>
 
