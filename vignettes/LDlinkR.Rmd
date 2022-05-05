@@ -834,7 +834,14 @@ Output is a data frame of query variant rows (RS number), genomic coordinate (GR
 
 #### Function
 
-    SNPclip(snps, pop = "CEU", r2_threshold = "0.1", maf_threshold = "0.01", token = NULL, file = FALSE)
+    SNPclip(snps, 
+            pop = "CEU",
+            r2_threshold = "0.1", 
+            maf_threshold = "0.01", 
+            token = NULL, 
+            file = FALSE,
+            genome_build = "grch37"
+            )
 
 Prune a list of variants by linkage disequilibrium. Input is a list of variant RS numbers (one per line) and a population group.
 
@@ -845,7 +852,8 @@ Prune a list of variants by linkage disequilibrium. Input is a list of variant R
 -   `r2_threshold`, Used to set the R^2^ threshold for LD pruning. One of each pair of variants with a R^2^ greater than the threshold is removed. Value needs to be in the range 0 to 1. Default value is 0.1.
 -   `maf_threshold`, Used to set minor allele frequency (MAF) threshold for LD pruning. Variants with a MAF less than or equal to the threshold are removed. Value needs to be in the range 0 to 1. Default value is 0.01.
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
--   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
+-   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE.
+-   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
 #### Usage: Multiple Variants
 
@@ -854,9 +862,12 @@ SNPclip(snps =  c("rs3", "rs4", "rs148890987", "rs115955931"),
         pop = "YRI", 
         r2_threshold =  "0.1", 
         maf_threshold = "0.01", 
-        token = Sys.getenv("LDLINK_TOKEN")
+        token = Sys.getenv("LDLINK_TOKEN"),
+        genome_build = "grch37"
        )
 ```
+
+
 
     ##     RS_Number       Position          Alleles
     ## 1         rs3 chr13:32446842 C=0.829, T=0.171
