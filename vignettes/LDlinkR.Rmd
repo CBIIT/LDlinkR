@@ -681,8 +681,9 @@ LDtrait(snps,
         r2d_threshold = 0.1,
         win_size = 500000,
         token = NULL,
-        file = FALSE
-        )
+        file = FALSE,
+        genome_build = "grch37"
+       )
 ```
 
 Search if a list of variants (or variants in LD with those variants) have been previously associated with a trait or disease. Trait and disease data is updated nightly from the [GWAS Catalog](https://www.ebi.ac.uk/gwas/docs/file-downloads).
@@ -694,31 +695,31 @@ Search if a list of variants (or variants in LD with those variants) have been p
 -   `r2d`, use "r2" to filter desired output from a threshold based on estimated LD R2 (R squared) or "d" for LD D' (D-prime), default = "r2".
 -   `r2d_threshold`, R-squared or D' (depends on 'r2d' user input parameter) threshold for LD filtering. Any variants within -/+ of the specified genomic window and R^2^ or D' less than the threshold will be removed. Value needs to be in the range 0 to 1. Default value is 0.1.
 -   `win_size`, set genomic base pair window size for LD calculation. Specify a value greater than or equal to zero and less than or equal to 1000000 basepairs (bp). Default value is -/+ 500000 bp.
--   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
--   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
+-   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess).
+-   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE.
+- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
-#### Usage: Single query variant and multiple reference populations
+#### Usage: Single query variant, multiple reference populations and genome build GRCh38(hg38)
 
 ```{r eval=FALSE}
 LDtrait(snps = "rs456",
         pop = c("YRI", "CEU"),
-        token = Sys.getenv("LDLINK_TOKEN")
+        token = Sys.getenv("LDLINK_TOKEN"),
+        genome_build = "grch38"
        )
 ```
 
 The following is the output from the above function call.
 
-    ##   Query                      GWAS_Trait  RS_Number Position_GRCh37
-    ## 1 rs456 Highest math class taken (MTAG) rs10248878   chr7:24908737
-    ## 2 rs456   Educational attainment (MTAG)      rs457   chr7:24962426
-    ##            Alleles                R2                D' Risk_Allele
-    ## 1 C=0.174, T=0.826 0.412346020761246 0.920415224913495      0.5967
-    ## 2 C=0.698, T=0.302                 1                 1      0.4495
-    ##   Effect_Size_95_CI    Beta_or_OR P_value
-    ## 1            0.0104 0.0071-0.0137   7e-10
-    ## 2            0.0072 0.0047-0.0097   4e-08
+    ##   Query                      GWAS_Trait  RS_Number Position_GRCh38          Alleles
+    ## 1 rs456 Highest math class taken (MTAG) rs10248878   chr7:24869118 C=0.175, T=0.825
+    ## 2 rs456   Educational attainment (MTAG)      rs457   chr7:24922807 C=0.697, T=0.303
+    ##                 R2                D' Risk_Allele Effect_Size_95_CI    Beta_or_OR P_value
+    ## 1 0.41175133337888 0.920247773906311      0.5967            0.0104 0.0071-0.0137   7e-10
+    ## 2                1                 1      0.4495            0.0072 0.0047-0.0097   4e-08
 
-#### Usage: Multiple query variants, multiple reference populations and *win_size* set to 750000 basepairs (bp).
+
+#### Usage: Multiple query variants, multiple reference populations and *win_size* set to 750000 basepairs (bp), default genome build GRCh37(hg19).
 
 ```{r eval=FALSE}
 LDtrait(snps = c("rs114", "rs496202", "rs345"),
