@@ -9,6 +9,7 @@
 * Improve/update error and warning message returned in the response data from the LDlink API server.
 * Fix CRAN note about 'LazyData' by removing line from Description file.
 * Update README file.
+* Add testthat tests for feature genome_build
 
 # LDlinkR 1.1.2
 * Submission date: 2021-02-19
