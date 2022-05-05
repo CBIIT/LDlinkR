@@ -623,7 +623,12 @@ Includes information on all variants -/+ 500 Kb of the query variant with a pair
 
 #### Function
 
-    LDproxy_batch(snp, pop = "CEU", r2d = "r2", token = NULL, append = FALSE)
+    LDproxy_batch(snp, 
+                  pop = "CEU", 
+                  r2d = "r2", 
+                  token = NULL, 
+                  append = FALSE,
+                  genome_build = "grch37")
 
 Query *LDproxy* using a list of query variants. *LDproxy_batch* will make sequential queries, one query per variant. Concurrent queries are not permitted by the LDlink API. Output is saved as text file(s) to the current working directory. Depending on the number of query variants and reference populations selected, this function could time some time to run.
 
@@ -634,6 +639,7 @@ Query *LDproxy* using a list of query variants. *LDproxy_batch* will make sequen
 -   `r2d`, use "r2" if desired output is based on estimated R^2^ or "d" if D'
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `append`, a logical, if TRUE, output for each query variant is appended to a single text file and saved to the current working directory. If FALSE, output for each query variant is saved in its own text file with the query variant as the filename. Default value is FALSE.
+- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
 #### Usage: multiple variants, default `pop` and `r2d`
 
