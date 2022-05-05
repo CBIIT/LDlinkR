@@ -566,7 +566,12 @@ LDpop(var1 = "rs496202",
 
 #### Function
 
-    LDproxy(snp, pop = "CEU", r2d = "r2", token = NULL, file = FALSE)
+    LDproxy(snp, 
+            pop = "CEU", 
+            r2d = "r2", 
+            token = NULL, 
+            file = FALSE,
+            genome_build = "grch37")
 
 Explore proxy and putative functional variants for a single query variant. Input is a single RS number and a population group. Depending on the number of query populations, this function could take some time to run.
 
@@ -577,8 +582,9 @@ Explore proxy and putative functional variants for a single query variant. Input
 -   `r2d`, use "r2" if desired output is based on estimated R^2^ or "d" if D'
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
+- `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 
-#### Usage: single reference population
+#### Usage: single reference population and default genome build GRCh37 (hg19).
 
 ```{r eval=FALSE}
 my_proxies <- LDproxy(snp = "rs456", 
@@ -602,11 +608,11 @@ head(my_proxies)
     ## 5      rs125 chr7:24959703   (C/T) 0.2037    -2716      1 0.9436
     ## 6      rs128 chr7:24958977   (C/T) 0.2037    -3442      1 0.9436
     ##   Correlated_Alleles RegulomeDB Function
-    ## 1            G=G,C=C          5     <NA>
-    ## 2            G=T,C=C          5     <NA>
+    ## 1            G=G,C=C          4     <NA>
+    ## 2            G=T,C=C         2b     <NA>
     ## 3            G=G,C=T          4     <NA>
     ## 4            G=C,C=A         1f     <NA>
-    ## 5            G=C,C=T          5     <NA>
+    ## 5            G=C,C=T         3a     <NA>
     ## 6            G=C,C=T          7     <NA>
 
 Includes information on all variants -/+ 500 Kb of the query variant with a pairwise R^2^ value greater than 0.01.
