@@ -1,4 +1,6 @@
 # LDlinkR <img src="man/figures/logo.png" align="right" height=140/>
+### Calculating Linkage Disequilibrium in Human Populations of Interest
+<br>
 
 <!-- badges: start -->
 
@@ -10,7 +12,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/LDlinkR?color=blue)](ht
 [![Website ldlink.nci.nih.gov](https://img.shields.io/website-up-down-brightgreen-red/http/ldlink.nci.nih.gov.svg)](https://ldlink.nci.nih.gov/?tab=home)
 <!-- badges: end -->
 
-### Calculating Linkage Disequilibrium in Human Populations of Interest
+
 
 ## Description
 
