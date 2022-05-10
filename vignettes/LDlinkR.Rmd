@@ -41,7 +41,7 @@ A haplotype is a cluster of genetic variants that are inherited together. Humans
 
 [UCSC RefSeq](https://genome.ucsc.edu/cgi-bin/hgTables) (source: GRCh37 and GRCh38) - Publicly available gene transcripts from the UCSC Table Browser are used by LDlink's LDassoc (currently not available in the *LDlinkR* package), LDmatrix, and LDproxy modules to display genes within the genomic window of interest.
 
-[RegulomeDB](https://regulomedb.org/) (source: GRCh37) - Publicly available scores from RegulomeDB are used by LDlink's LDassoc (currently not available in the *LDlinkR* package) and LDproxy modules to rank available datatypes for a single coordinate. GRCh38 support is added via [liftOver](https://genome.ucsc.edu/cgi-bin/hgLiftOver).
+[RegulomeDB](https://regulomedb.org/) (source: GRCh37) - Publicly available scores from RegulomeDB are used by LDlink's LDassoc (currently not available in the *LDlinkR* package) and LDproxy modules to rank available data types for a single coordinate. GRCh38 support is added via [liftOver](https://genome.ucsc.edu/cgi-bin/hgLiftOver).
 
 [Genetic Map](https://mathgen.stats.ox.ac.uk/impute/1000GP_Phase3.html) (source: GRCh37) - Publicly available combined recombination rates (cM/Mb) from the 1000 Genomes Project are used by LDlink's LDassoc (currently not available in the *LDlinkR* package) and LDproxy modules to show recombination at specific coordinates. GRCh38 support is added via [liftOver](https://genome.ucsc.edu/cgi-bin/hgLiftOver).
 
