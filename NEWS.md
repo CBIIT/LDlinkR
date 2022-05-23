@@ -1,3 +1,7 @@
+# LDlinkR 1.2.1
+* Update version number
+* Fix bug in LDexpress that returned GRCH37 results when genome build was GRCh38 or GRCh38 High Coverage.
+
 # LDlinkR 1.2.0
 * Submission date: 2022-05-11
 * Issue #13 - Add new argument to `LDhap` (table_type) with four options for different types data output.
