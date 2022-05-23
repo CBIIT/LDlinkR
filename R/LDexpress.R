@@ -247,7 +247,7 @@ jsonbody <- list(snps = snps_to_upload,
                  r2_d_threshold = r2d_threshold,
                  p_threshold = p_threshold,
                  window = win_size,
-                 gen_build = genome_build
+                 genome_build = genome_build
                 )
 
 # before full 'POST command', check if LDlink server is up and accessible...
