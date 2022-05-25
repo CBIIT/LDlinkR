@@ -6,9 +6,9 @@
 \alias{LDlinkR-package}
 \title{LDlinkR: Calculating Linkage Disequilibrium (LD) in Human Population Groups of Interest}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Provides access to the 'LDlink' API (<https://ldlink.nci.nih.gov/?tab=apiaccess>) using the R console. This programmatic access facilitates researchers who are interested in performing batch queries in 1000 Genomes Project (2015) <doi:10.1038/nature15393> data using 'LDlink'. 'LDlink' is an interactive and powerful suite of web-based tools for querying germline variants in human population groups of interest. For more details, please see Machiela et al. (2015) <doi:10.1093/bioinformatics/btv402>.
+Provides access to the 'LDlink' API (\url{https://ldlink.nci.nih.gov/?tab=apiaccess}) using the R console. This programmatic access facilitates researchers who are interested in performing batch queries in 1000 Genomes Project (2015) \doi{10.1038/nature15393} data using 'LDlink'. 'LDlink' is an interactive and powerful suite of web-based tools for querying germline variants in human population groups of interest. For more details, please see Machiela et al. (2015) \doi{10.1093/bioinformatics/btv402}.
 }
 \seealso{
 Useful links:
