@@ -119,28 +119,9 @@ httr::stop_for_status(raw_out)
 data_out <- read.delim(textConnection(httr::content(raw_out, "text", encoding = "UTF-8")), header=T, sep="\t") # Parse response object
 
 # Check for error/warning in response data
-if(sum(grepl("error", data_out, ignore.case = TRUE), na.rm = TRUE)) {
-  # subset rows in data_out that contain text 'error'
-  error_msg <- subset(data_out, grepl("error", data_out[,1], ignore.case = TRUE))
-
-  # delete any column names so that they don't go to output
-  names(error_msg) <- NULL
-
-  error_msg <- paste(error_msg, collapse = " ")
-
-  stop(error_msg)
-}
-
-if(sum(grepl("WARNING", data_out, ignore.case = TRUE), na.rm = TRUE)) {
-  # subset rows in data_out that contain text 'error'
-  warning_msg <- subset(data_out, grepl("WARNING", data_out[,1], ignore.case = TRUE))
-
-  # delete any column names so that they don't go to output
-  names(warning_msg) <- NULL
-
-  warning_msg <- paste(warning_msg, collapse = " ")
-
-  message(warning_msg)
+if(grepl("error", data_out[1,1])) {
+  message(data_out[1,1])
+  return(as.data.frame(data_out[1,1]))
 }
 
 # Evaluate 'file' option
