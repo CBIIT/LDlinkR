@@ -1,6 +1,6 @@
 ## Submission of the 7th release
 * Fix bug in LDexpress() that returned GRCH37 results when genome build was GRCh38 or GRCh38 High Coverage.
-* Fix bug in LDproxy() handling of error/warning warning messages in response data.
+* Fix bug in LDproxy() handling of error/warning messages in response data.
 
 ## Test environments
 * local R installation, R 4.1.2, MacOS Monterey v.12.3.1
