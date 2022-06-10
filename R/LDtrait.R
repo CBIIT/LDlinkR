@@ -4,7 +4,7 @@
 #' previously associated with a trait or disease. Trait and disease data is updated
 #' nightly from the GWAS Catalog (\url{https://www.ebi.ac.uk/gwas/docs/file-downloads}.
 #'
-#' @param snps between 1 - 50 variants, using an rsID or chromosome coordinate (GRCh37) (e.g. "chr7:24966446").
+#' @param snps between 1 - 50 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446").
 #' All input variants must match a bi-allelic variant.
 #' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU".
 #' Use the `list_pop` function to see a list of available human reference populations.
