@@ -1,3 +1,6 @@
+# LDlinkR 1.2.2
+* Issue #19, fix bug in LDtrait error handling of response data.
+
 # LDlinkR 1.2.1
 * Update version number
 * Fix bug in LDexpress that returned GRCH37 results when genome build was GRCh38 or GRCh38 High Coverage.
