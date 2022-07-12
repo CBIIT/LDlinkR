@@ -16,7 +16,7 @@ LDtrait(
 )
 }
 \arguments{
-\item{snps}{between 1 - 50 variants, using an rsID or chromosome coordinate (GRCh37) (e.g. "chr7:24966446").
+\item{snps}{between 1 - 50 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446").
 All input variants must match a bi-allelic variant.}
 
 \item{pop}{a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU".
