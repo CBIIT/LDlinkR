@@ -22,8 +22,8 @@ test_that("ldhap throws an error", {
       })
 
 test_that("ldhap throws an error when `snps` option is NULL", {
-  skip_on_cran()
-  expect_error(LDhap(snps = NULL, "CEU", token = Sys.getenv("LDLINK_TOKEN")))
+ skip_on_cran()
+ expect_error(LDhap(snps = NULL, "CEU", token = Sys.getenv("LDLINK_TOKEN")))
 })
 
 test_that("ldhap throws an error when `table_type` is not a valid option", {
@@ -51,12 +51,12 @@ test_that("ldhap works, with one snp, minimum allowed, and `table_type set` to '
   expect_named(LDhap(snps = "rs3", "YRI", token = Sys.getenv("LDLINK_TOKEN"), table_type = "variant"))
 })
 
- test_that("ldhap works, with `table_type` set to 'both', which returns a
+test_that("ldhap works, with `table_type` set to 'both', which returns a
             list (a recursive vector) instead of data.frame", {
-  skip_on_cran()
-  # with `table_type` set to 'both', which returns a list (a recursive vector) instead of data.frame
-  expect_vector(LDhap(c("rs3", "rs4", "rs148890987"), "CEU", token = Sys.getenv("LDLINK_TOKEN"), table_type = "both"))
- })
+              skip_on_cran()
+              # with `table_type` set to 'both', which returns a list (a recursive vector) instead of data.frame
+              expect_vector(LDhap(c("rs3", "rs4", "rs148890987"), "CEU", token = Sys.getenv("LDLINK_TOKEN"), table_type = "both"))
+            })
 
 test_that("ldhap works, with `table_type` set to 'merged'", {
   skip_on_cran()
