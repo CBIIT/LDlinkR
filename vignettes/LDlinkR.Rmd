@@ -57,7 +57,7 @@ LDlink modules report the following measures of linkage disequilibrium: D prime,
 
 **R squared (R<sup>2</sup>)** - a measure of correlation of alleles for two genetic variants. R<sup>2</sup> values range from 0 to 1 with higher values indicating a higher degree of correlation. An R<sup>2</sup> value of 0 indicates alleles are independent, whereas an R<sup>2</sup> value of 1 indicates an allele of one variant perfectly predicts an allele of another variant. R<sup>2</sup> is sensitive to allele frequency.
 
-**Goodness of Fit (Χ<sup>2</sup> and p-value)** - statistical test testing whether observed haplotype counts follow frequencies expected from variant allele frequencies. High chi-square statistics and low p-values are evidence that haplotype counts deviate from expected values and suggest linkage disequilibrium may be present.
+**Goodness of Fit (X<sup>2</sup> and p-value)** - statistical test testing whether observed haplotype counts follow frequencies expected from variant allele frequencies. High chi-square statistics and low p-values are evidence that haplotype counts deviate from expected values and suggest linkage disequilibrium may be present.
 
 ## Installation
 
