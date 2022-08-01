@@ -28,7 +28,6 @@ OME
 ORCID
 Omentum
 README
-RStudio
 RefSNP
 RefSeq
 RegulomeDB
@@ -68,6 +67,7 @@ ldexpress
 ldhap
 ldlink
 liftOver
+metacran
 nci
 nih
 polymorphisms
@@ -77,4 +77,3 @@ rsID's
 snps
 testthat
 usethis
-Χ
