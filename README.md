@@ -68,7 +68,7 @@ LDhap(snps = c("rs3", "rs4", "rs148890987"),
 |`LDhap` |Calculates population specific haplotype frequencies of all haplotypes observed for a list of query variants.|
 |`LDmatrix` |Generates a data frame of pairwise linkage disequilibrium statistics.|
 |`LDpair`|Investigates potentially correlated alleles for a pair of variants.|
-|`LDpop` |Investigates allele frequencies and linkage disequilibrium patterns across [1000 Genomes Project](https://www.internationalgenome.org/) populations.|
+|`LDpop` |Investigates allele frequencies and linkage disequilibrium patterns across 1000 Genomes Project populations.|
 |`LDproxy` |Explore proxy and putative functional variants for a single query variant.|
 |`LDproxy_batch`|Query `LDproxy` using a list of query variants.|
 |`LDtrait` | Search the [GWAS Catalog](https://www.ebi.ac.uk/gwas/docs/file-downloads) (data updated nightly) to determine if a list of variants (or variants in LD with those variants) have been previously associated with a trait or disease.
@@ -81,7 +81,7 @@ LDhap(snps = c("rs3", "rs4", "rs148890987"),
 |Utility Function |Description|
 |:--------|:-----------|
 |`list_chips` |Provides a data frame listing the names and abbreviation codes for available commercial SNP Chip Arrays from Illumina and Affymetrix.|
-|`list_pop` |Provides a data frame listing the available reference populations from the [1000 Genomes Project](https://www.internationalgenome.org/).|
+|`list_pop` |Provides a data frame listing the available reference populations from the 1000 Genomes Project.|
 |`list_gtex_tissues` |Provides a data frame listing the GTEx full names, `LDexpress` full names (without spaces) and acceptable abbreviation codes of the 54 non-diseased tissue sites collected for the [GTEx Portal](https://gtexportal.org/home/) and used as input for the `LDexpress` function.|
 
 <br>
@@ -177,7 +177,7 @@ head(my_output)
 
 ## Utility function example
 
-The following example demonstrates the usage of the utility function `list_pop` which returns a listing of the available reference populations from the [1000 Genomes Project](https://www.internationalgenome.org/) and their corresponding population code and super population code used by *LDlinkR* functions. Usage of the other utility functions is similar.
+The following example demonstrates the usage of the utility function `list_pop` which returns a listing of the available reference populations from the 1000 Genomes Project and their corresponding population code and super population code used by *LDlinkR* functions. Usage of the other utility functions is similar.
 
 ```{r}
 list_pop()
