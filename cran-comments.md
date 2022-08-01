@@ -1,20 +1,26 @@
 ## Submission of the 7th release
-* Fix bug in LDexpress() that returned GRCH37 results when genome build was GRCh38 or GRCh38 High Coverage.
-* Fix bug in LDproxy() handling of error/warning messages in response data.
+* Fix bug in LDtrait() error handling of API response data.
+* Update CRAN downloads badge in README.md
 
 ## Test environments
 * local R installation, R 4.1.2, MacOS Monterey v.12.3.1
 * win-builder (devel, release, oldrelease)
 * Rhub
-  * Windows Server 2008 R2 SP1, R-release, 32/64 bit
+  * Windows Server 2022, R-devel, 64 bit
   * Ubuntu Linux 20.04.1 LTS, R-release, GCC
   * Fedora Linux, R-devel, clang, gfortran
-  * Debian Linux, R-devel, clang, ISO-8859-15 locale
-  * Apple Silicon (M1), macOS 11.6 Big Sur, R-release
-
+  
 ## R CMD check results
+There were no ERRORs or WARNINGs. 
 
-0 errors | 0 warnings | 0 notes
+There is one NOTE that is only found during R-hub Windows (Server 2022, R-devel 64-bit): 
+
+```
+* checking for detritus in the temp directory ... NOTE
+Found the following files/directories:
+  'lastMiKTeXException'
+```
+As noted in [R-hub issue #503](https://github.com/r-hub/rhub/issues/503), this could be due to a bug/crash in MiKTeX and can likely be ignored.
 
 ## Reverse Dependency Check
 None found
