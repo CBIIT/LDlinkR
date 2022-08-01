@@ -1,5 +1,7 @@
 # LDlinkR 1.2.2
 * Issue #19, fix bug in LDtrait error handling of response data.
+* Update CRAN downloads badge in README
+* Remove link for 1000 Genomes Project in README and vignette
 
 # LDlinkR 1.2.1
 * Update version number
