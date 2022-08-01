@@ -7,3 +7,5 @@ doc
 
 # Mac OSX
 .DS_Store
+/doc/
+/Meta/
