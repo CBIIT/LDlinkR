@@ -105,6 +105,7 @@ df_merge <- function(data_out, table_type, genome_build) {
 #' @param genome_build Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
 #' `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
 #' data sets.  Default is GRCh37 (hg19).
+#' @param api_root Optional alternative root url for API.
 #'
 #' @return a data frame or list
 #' @importFrom httr GET content stop_for_status http_error
@@ -120,11 +121,10 @@ LDhap <- function(snps,
                   token=NULL,
                   file = FALSE,
                   table_type="haplotype",
-                  genome_build = "grch37"
-                  ) {
+                  genome_build = "grch37",
+                  api_root="https://ldlink.nci.nih.gov") {
 
-
-  LD_config <- list(ldhap.url="https://ldlink.nci.nih.gov/LDlinkRest/ldhap",
+   LD_config <- list(ldhap.url=paste0(api_root,"/LDlinkRest/ldhap"),
                     avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
                                 "MXL","PUR","CLM","PEL","CHB","JPT","CHS",
                                 "CDX","KHV","CEU","TSI","FIN","GBR","IBS",

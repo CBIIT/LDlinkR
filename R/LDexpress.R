@@ -25,6 +25,7 @@
 #' data sets.  Default is GRCh37 (hg19).
 #' @param token LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
+#' @param api_root Optional alternative root url for API.
 #'
 #' @return A data frame of all query variant RS numbers, respective QTL which are in LD with query variant,
 #' and associated gene expression.
@@ -49,9 +50,9 @@ LDexpress <- function(snps, pop = "CEU", tissue = "ALL",
                       r2d = "r2", r2d_threshold = 0.1,
                       p_threshold = 0.1, win_size = 500000,
                       genome_build = "grch37",
-                      token = NULL, file = FALSE) {
+                      token = NULL, file = FALSE, api_root="https://ldlink.nci.nih.gov") {
 
-     LD_config <- list(ldexpress_url_base = "https://ldlink.nci.nih.gov/LDlinkRest/ldexpress",
+     LD_config <- list(ldexpress_url_base = paste0(api_root,"/LDlinkRest/ldexpress"),
                        avail_pop = c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
                                      "MXL","PUR","CLM","PEL","CHB","JPT","CHS",
                                      "CDX","KHV","CEU","TSI","FIN","GBR","IBS",
