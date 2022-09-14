@@ -43,7 +43,9 @@ test_that("ldhap throws an error, includes a total of 31 snps, exceeds maximum a
 
 test_that("ldhap works", {
   skip_on_cran()
-  expect_named(LDhap(c("rs3", "rs4", "rs148890987"), "CEU", token = Sys.getenv("LDLINK_TOKEN")))
+  expect_named(LDhap(snps = c("rs3", "rs4", "rs148890987"),
+                     pop = "CEU",
+                     token = Sys.getenv("LDLINK_TOKEN")))
 })
 
 test_that("ldhap works, with one snp, minimum allowed, and `table_type set` to 'variant'", {
