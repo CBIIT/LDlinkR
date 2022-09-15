@@ -77,9 +77,9 @@ LDpair <- function(var1,
                    output = "table",
                    file = FALSE,
                    genome_build = "grch37",
-                   api_root="https://ldlink.nci.nih.gov") {
+                   api_root="https://ldlink.nci.nih.gov/LDlinkRest") {
 
-LD_config <- list(ldpair_url=paste0(api_root,"/LDlinkRest/ldpair"),
+LD_config <- list(ldpair_url=paste0(api_root,"/ldpair"),
                   avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
                               "MXL","PUR","CLM","PEL","CHB","JPT","CHS",
                               "CDX","KHV","CEU","TSI","FIN","GBR","IBS",

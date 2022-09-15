@@ -32,9 +32,9 @@ LDpop <- function(var1,
                   token=NULL,
                   file = FALSE,
                   genome_build = "grch37",
-                  api_root="https://ldlink.nci.nih.gov") {
+                  api_root="https://ldlink.nci.nih.gov/LDlinkRest") {
 
-  LD_config <- list(ldpop_url=paste0(api_root,"/LDlinkRest/ldpop"),
+  LD_config <- list(ldpop_url=paste0(api_root,"/ldpop"),
                   avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
                                 "MXL","PUR","CLM","PEL","CHB","JPT","CHS",
                                 "CDX","KHV","CEU","TSI","FIN","GBR","IBS",

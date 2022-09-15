@@ -30,9 +30,9 @@ SNPclip <- function(snps,
                     token=NULL,
                     file = FALSE,
                     genome_build = "grch37",
-                    api_root="https://ldlink.nci.nih.gov") {
+                    api_root="https://ldlink.nci.nih.gov/LDlinkRest") {
 
-LD_config <- list(snpclip_url=paste0(api_root,"/LDlinkRest/snpclip"),
+LD_config <- list(snpclip_url=paste0(api_root,"/snpclip"),
                   avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
                               "MXL","PUR","CLM","PEL","CHB","JPT","CHS",
                               "CDX","KHV","CEU","TSI","FIN","GBR","IBS",

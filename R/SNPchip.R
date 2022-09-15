@@ -152,9 +152,9 @@ SNPchip <- function(snps,
                     token=NULL,
                     file = FALSE,
                     genome_build = "grch37",
-                    api_root="https://ldlink.nci.nih.gov") {
+                    api_root="https://ldlink.nci.nih.gov/LDlinkRest") {
 
-LD_config <- list(snpchip_url_base=paste0(api_root,"/LDlinkRest/snpchip"),
+LD_config <- list(snpchip_url_base=paste0(api_root,"/snpchip"),
                   avail_chip=c("I_100","I_1M","I_1M-D","I_240S","I_300","I_300-D","I_550v1",
                                "I_550v3","I_610-Q","I_650Y","I_660W-Q","I_CNV-12","I_CNV370-D",
                                "I_CNV370-Q","I_CVD","I_CardioMetab","I_Core-12","I_CoreE-12v1",

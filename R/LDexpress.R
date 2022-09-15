@@ -50,9 +50,9 @@ LDexpress <- function(snps, pop = "CEU", tissue = "ALL",
                       r2d = "r2", r2d_threshold = 0.1,
                       p_threshold = 0.1, win_size = 500000,
                       genome_build = "grch37",
-                      token = NULL, file = FALSE, api_root="https://ldlink.nci.nih.gov") {
+                      token = NULL, file = FALSE, api_root="https://ldlink.nci.nih.gov/LDlinkRest") {
 
-     LD_config <- list(ldexpress_url_base = paste0(api_root,"/LDlinkRest/ldexpress"),
+     LD_config <- list(ldexpress_url_base = paste0(api_root,"/ldexpress"),
                        avail_pop = c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
                                      "MXL","PUR","CLM","PEL","CHB","JPT","CHS",
                                      "CDX","KHV","CEU","TSI","FIN","GBR","IBS",

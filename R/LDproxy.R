@@ -27,9 +27,9 @@ LDproxy <- function(snp,
                     token=NULL,
                     file = FALSE,
                     genome_build = "grch37",
-                    api_root="https://ldlink.nci.nih.gov") {
+                    api_root="https://ldlink.nci.nih.gov/LDlinkRest") {
 
-  LD_config <- list(ldproxy.url=paste0(api_root,"/LDlinkRest/ldproxy"),
+  LD_config <- list(ldproxy.url=paste0(api_root,"/ldproxy"),
                     avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
                                 "MXL","PUR","CLM","PEL","CHB","JPT","CHS",
                                 "CDX","KHV","CEU","TSI","FIN","GBR","IBS",

@@ -28,7 +28,7 @@ LDproxy_batch <- function(snp,
                           token=NULL,
                           append = FALSE,
                           genome_build = "grch37",
-                          api_root="https://ldlink.nci.nih.gov") {
+                          api_root="https://ldlink.nci.nih.gov/LDlinkRest") {
 
   snp <- as.data.frame(snp)
 
