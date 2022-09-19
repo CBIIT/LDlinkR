@@ -1,3 +1,6 @@
+# LDlinkR 1.2.2.9000
+* Add feature to provide root URL to API
+
 # LDlinkR 1.2.2
 * Issue #19, fix bug in LDtrait error handling of response data.
 * Update CRAN downloads badge in README
