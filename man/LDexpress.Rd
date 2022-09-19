@@ -14,7 +14,8 @@ LDexpress(
   win_size = 5e+05,
   genome_build = "grch37",
   token = NULL,
-  file = FALSE
+  file = FALSE,
+  api_root = "https://ldlink.nci.nih.gov/LDlinkRest"
 )
 }
 \arguments{
@@ -48,6 +49,8 @@ data sets.  Default is GRCh37 (hg19).}
 \item{token}{LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
 
 \item{file}{Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.}
+
+\item{api_root}{Optional alternative root url for API.}
 }
 \value{
 A data frame of all query variant RS numbers, respective QTL which are in LD with query variant,

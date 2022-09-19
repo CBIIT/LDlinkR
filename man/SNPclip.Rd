@@ -11,7 +11,8 @@ SNPclip(
   maf_threshold = "0.01",
   token = NULL,
   file = FALSE,
-  genome_build = "grch37"
+  genome_build = "grch37",
+  api_root = "https://ldlink.nci.nih.gov/LDlinkRest"
 )
 }
 \arguments{
@@ -30,6 +31,8 @@ SNPclip(
 \item{genome_build}{Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
 `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
 data sets.  Default is GRCh37 (hg19).}
+
+\item{api_root}{Optional alternative root url for API.}
 }
 \value{
 a data frame

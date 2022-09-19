@@ -12,7 +12,8 @@ LDtrait(
   win_size = 5e+05,
   token = NULL,
   file = FALSE,
-  genome_build = "grch37"
+  genome_build = "grch37",
+  api_root = "https://ldlink.nci.nih.gov/LDlinkRest"
 )
 }
 \arguments{
@@ -39,6 +40,8 @@ equal to 1,000,000bp. Default value is -/+ 500,000 bp.}
 \item{genome_build}{Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
 `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
 data sets.  Default is GRCh37 (hg19).}
+
+\item{api_root}{Optional alternative root url for API.}
 }
 \value{
 A data frame of all query variant RS numbers with a list of queried variants

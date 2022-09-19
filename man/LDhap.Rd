@@ -11,7 +11,8 @@ LDhap(
   token = NULL,
   file = FALSE,
   table_type = "haplotype",
-  genome_build = "grch37"
+  genome_build = "grch37",
+  api_root = "https://ldlink.nci.nih.gov/LDlinkRest"
 )
 }
 \arguments{
@@ -29,6 +30,8 @@ format type...`haplotype`, `variant`, `both` and `merged`. Default = "haplotype"
 \item{genome_build}{Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
 `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
 data sets.  Default is GRCh37 (hg19).}
+
+\item{api_root}{Optional alternative root url for API.}
 }
 \value{
 a data frame or list
