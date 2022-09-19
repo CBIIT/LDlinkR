@@ -41,7 +41,8 @@ LDproxy_batch <- function(snp,
                           pop = pop,
                           r2d = r2d,
                           token = token,
-                          genome_build = genome_build)
+                          genome_build = genome_build,
+                          api_root = api_root)
       if(!(grepl("error", df_proxy[1,1])))
       {
         write.table(df_proxy, file = myfile,
@@ -63,7 +64,7 @@ LDproxy_batch <- function(snp,
                           r2d = r2d,
                           token = token,
                           genome_build = genome_build,
-                          api_root)
+                          api_root = api_root)
       if(!(grepl("error", df_proxy[1,1])))
       {
         # add new column, query_snp
