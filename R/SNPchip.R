@@ -130,6 +130,7 @@ format_tbl <- function(out_raw) {
 #' @param genome_build Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
 #' `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
 #' data sets.  Default is GRCh37 (hg19).
+#' @param api_root Optional alternative root url for API.
 #'
 #' @return a data frame
 #' @importFrom httr POST content stop_for_status http_error
@@ -150,9 +151,10 @@ SNPchip <- function(snps,
                     chip="ALL",
                     token=NULL,
                     file = FALSE,
-                    genome_build = "grch37") {
+                    genome_build = "grch37",
+                    api_root="https://ldlink.nci.nih.gov/LDlinkRest") {
 
-LD_config <- list(snpchip_url_base="https://ldlink.nci.nih.gov/LDlinkRest/snpchip",
+LD_config <- list(snpchip_url_base=paste0(api_root,"/snpchip"),
                   avail_chip=c("I_100","I_1M","I_1M-D","I_240S","I_300","I_300-D","I_550v1",
                                "I_550v3","I_610-Q","I_650Y","I_660W-Q","I_CNV-12","I_CNV370-D",
                                "I_CNV370-Q","I_CVD","I_CardioMetab","I_Core-12","I_CoreE-12v1",
