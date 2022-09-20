@@ -168,7 +168,7 @@ Search if a list of genomic variants (or variants in LD with those variants) is 
 -   `win_size`, set genomic base pair window size for LD calculation. Specify a value greater than or equal to zero and less than or equal to 1000000 basepairs (bp). Default value is -/+ 500000 bp.
 -   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nci.nih.gov/?tab=apiaccess)
--   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
+-   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE.
 
 #### Usage: Single query variant, multiple populations, multiple tissue types using tissue abbreviation
 
@@ -247,7 +247,8 @@ head(my_output)
           token = NULL, 
           file = FALSE, 
           table_type = "haplotype",
-          genome_build = "grch37")
+          genome_build = "grch37"
+         )
 
 Calculates population specific haplotype frequencies of all haplotypes observed for a list of query variants. Input is a list of variant RS numbers (concatenated list) and a population group.
 
@@ -355,7 +356,8 @@ Output is a list that contains both the 'variant' and 'haplotype' output format 
              r2d = "r2", 
              token = NULL, 
              file = FALSE,
-             genome_build = "grch37")
+             genome_build = "grch37"
+            )
 
 Generates a data frame of pairwise linkage disequilibrium statistics. Input is a list of between 2 to 1000 variants. Desired output can be based on estimates of R^2^ or D'.
 
@@ -441,7 +443,8 @@ Output is a table with rows and columns equal to the number of query variants an
            token = NULL, 
            output = "table", 
            file = FALSE,
-           genome_build = "grch37")
+           genome_build = "grch37"
+          )
 
 Investigates potentially correlated alleles for a pair of variants. Input is two query variants and a 1000 Genomes Project reference population(s) of interest.
 
@@ -531,7 +534,8 @@ Output from the `output` argument "table" option converts the data from the two-
           r2d = "r2", 
           token = NULL, 
           file = FALSE,
-          genome_build = "grch37")
+          genome_build = "grch37"
+         )
 
 Investigates allele frequencies and linkage disequilibrium patterns across 1000G populations.
 
@@ -571,7 +575,8 @@ LDpop(var1 = "rs496202",
             r2d = "r2", 
             token = NULL, 
             file = FALSE,
-            genome_build = "grch37")
+            genome_build = "grch37"
+           )
 
 Explore proxy and putative functional variants for a single query variant. Input is a single RS number and a population group. Depending on the number of query populations, this function could take some time to run.
 
@@ -628,7 +633,8 @@ Includes information on all variants -/+ 500 Kb of the query variant with a pair
                   r2d = "r2", 
                   token = NULL, 
                   append = FALSE,
-                  genome_build = "grch37")
+                  genome_build = "grch37"
+                 )
 
 Query *LDproxy* using a list of query variants. *LDproxy_batch* will make sequential queries, one query per variant. Concurrent queries are not permitted by the LDlink API. Output is saved as text file(s) to the current working directory. Depending on the number of query variants and reference populations selected, this function could time some time to run.
 
@@ -841,7 +847,7 @@ Output is a data frame of query variant rows (RS number), genomic coordinate (GR
             token = NULL, 
             file = FALSE,
             genome_build = "grch37"
-            )
+           )
 
 Prune a list of variants by linkage disequilibrium. Input is a list of variant RS numbers (one per line) and a population group.
 
