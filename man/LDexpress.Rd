@@ -69,7 +69,7 @@ GTEx Portal (\url{https://gtexportal.org/home/}).
                    r2d_threshold = "0.1",
                    p_threshold = "0.1",
                    win_size = "500000",
-                   genome_build = "grch37"
+                   genome_build = "grch37",
                    token = Sys.getenv("LDLINK_TOKEN")
                   )
          }
