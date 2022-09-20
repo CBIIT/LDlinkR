@@ -9,8 +9,8 @@ version](https://www.r-pkg.org/badges/version-ago/LDlinkR)](https://cran.r-proje
 [![metacran 
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/LDlinkR?color=blue)](https://cran.r-project.org/package=LDlinkR)
 ![CRAN/METACRAN](https://img.shields.io/cran/l/LDlinkR?color=yellow)
-[![Website ldlink.nci.nih.gov](https://img.shields.io/website-up-down-brightgreen-red/http/ldlink.nci.nih.gov.svg)](https://ldlink.nci.nih.gov/?tab=home)
 [![status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Website ldlink.nci.nih.gov](https://img.shields.io/website-up-down-brightgreen-red/http/ldlink.nci.nih.gov.svg)](https://ldlink.nci.nih.gov/?tab=home)
 <!-- badges: end -->
 
 
