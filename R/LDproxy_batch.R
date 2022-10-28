@@ -70,7 +70,7 @@ LDproxy_batch <- function(snp,
         # add new column, query_snp
         df_proxy["query_snp"] <- rep(snp[i,], nrow(df_proxy))
         # rearrange by column index
-        df_proxy <- df_proxy[, colnames(df_proxy)[c(11, 1:10)]]
+        df_proxy <- df_proxy[, colnames(df_proxy)[c(ncol(df_proxy), 1:(ncol(df_proxy)-1))]]
         # suppress warning message by write.table about appending
         # column names to file from write.table when append is TRUE
         # issue #2
