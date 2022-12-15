@@ -1,9 +1,10 @@
-## Submission of the 7th release
-* Fix bug in LDtrait() error handling of API response data.
-* Update CRAN downloads badge in README.md
+## Submission of the 8th release
+* Add feature to provide root URL to API
+* Fix bug that scrambled columns in LDproxy_batch when 'append' option is TRUE
+* Update Roxygen version to 7.2.2
 
 ## Test environments
-* local R installation, R 4.1.2, MacOS Monterey v.12.3.1
+* local R installation, R 4.1.2, MacOS Monterey v.12.6.1
 * win-builder (devel, release, oldrelease)
 * Rhub
   * Windows Server 2022, R-devel, 64 bit
@@ -12,15 +13,15 @@
   
 ## R CMD check results
 There were no ERRORs or WARNINGs. 
+There is one NOTE:
 
-There is one NOTE that is only found during R-hub Windows (Server 2022, R-devel 64-bit): 
+* ONLY found during Rhub Fedora Linux, R-devel, clang, gfortran:
 
 ```
-* checking for detritus in the temp directory ... NOTE
-Found the following files/directories:
-  'lastMiKTeXException'
+* checking HTML version of manual ... NOTE
+Skipping checking HTML validation: no command 'tidy' found
 ```
-As noted in [R-hub issue #503](https://github.com/r-hub/rhub/issues/503), this could be due to a bug/crash in MiKTeX and can likely be ignored.
+The HTML version of the manual validated locally and on all other platforms.  This would seem to be an issue with the path to `tidy` on the external Fedora Linux server.
 
 ## Reverse Dependency Check
 None found
