@@ -1,3 +1,6 @@
+# TBD
+* Change LDlink Domain URL to ldlink.nih.gov
+
 # LDlinkR 1.2.3
 * Add feature to provide root URL to API
 * Fix bug that scrambled columns in LDproxy_batch when 'append' option is TRUE
