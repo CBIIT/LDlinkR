@@ -98,7 +98,7 @@ df_merge <- function(data_out, table_type, genome_build) {
 #'
 #' @param snps list of between 1 - 30 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
 #' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"
-#' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
+#' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nih.gov/?tab=apiaccess}
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
 #' @param table_type Choose from one of four options available to determine output
 #' format type...`haplotype`, `variant`, `both` and `merged`. Default = "haplotype".
@@ -122,7 +122,7 @@ LDhap <- function(snps,
                   file = FALSE,
                   table_type="haplotype",
                   genome_build = "grch37",
-                  api_root="https://ldlink.nci.nih.gov/LDlinkRest") {
+                  api_root="https://ldlink.nih.gov/LDlinkRest") {
 
    LD_config <- list(ldhap.url=paste0(api_root,"/ldhap"),
                     avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
@@ -189,7 +189,7 @@ LDhap <- function(snps,
   }
 
   if(is.null(token)) {
-    stop("Enter valid access token. Please register using the LDlink API Access tab: https://ldlink.nci.nih.gov/?tab=apiaccess")
+    stop("Enter valid access token. Please register using the LDlink API Access tab: https://ldlink.nih.gov/?tab=apiaccess")
   }
 
 

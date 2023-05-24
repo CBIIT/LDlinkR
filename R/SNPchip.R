@@ -125,7 +125,7 @@ format_tbl <- function(out_raw) {
 #'
 #' @param snps between 1 - 5,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
 #' @param chip chip or arrays, platform code(s) for a SNP chip array, ALL_Illumina, ALL_Affy or ALL, default=ALL
-#' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
+#' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nih.gov/?tab=apiaccess}
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
 #' @param genome_build Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
 #' `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
@@ -152,7 +152,7 @@ SNPchip <- function(snps,
                     token=NULL,
                     file = FALSE,
                     genome_build = "grch37",
-                    api_root="https://ldlink.nci.nih.gov/LDlinkRest") {
+                    api_root="https://ldlink.nih.gov/LDlinkRest") {
 
 LD_config <- list(snpchip_url_base=paste0(api_root,"/snpchip"),
                   avail_chip=c("I_100","I_1M","I_1M-D","I_240S","I_300","I_300-D","I_550v1",
@@ -212,7 +212,7 @@ avail_genome_build <- LD_config[["avail_genome_build"]]
   }
 
   if(is.null(token)) {
-    stop("Enter valid access token. Please register using the LDlink API Access tab: https://ldlink.nci.nih.gov/?tab=apiaccess")
+    stop("Enter valid access token. Please register using the LDlink API Access tab: https://ldlink.nih.gov/?tab=apiaccess")
   }
 
   if(!(is.character(file) | file == FALSE)) {

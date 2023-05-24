@@ -53,7 +53,7 @@ df_pair_tbl <- data.frame(var1 = z[[1]][1],
 #' @param var1 the first RS number or genomic coordinate (e.g. "chr7:24966446")
 #' @param var2 the second RS number or genomic coordinate (e.g. "ch7:24966446")
 #' @param pop a 1000 Genomes Project population(s), (e.g. YRI or CEU), multiple allowed, default = "CEU"
-#' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
+#' @param token LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nih.gov/?tab=apiaccess}
 #' @param output two output options available, "text", which displays a two-by-two matrix displaying haplotype counts and allele frequencies along with other statistics, or "table", which displays the same data in rows and columns, default = "table"
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
 #' @param genome_build Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
@@ -77,7 +77,7 @@ LDpair <- function(var1,
                    output = "table",
                    file = FALSE,
                    genome_build = "grch37",
-                   api_root="https://ldlink.nci.nih.gov/LDlinkRest") {
+                   api_root="https://ldlink.nih.gov/LDlinkRest") {
 
 LD_config <- list(ldpair_url=paste0(api_root,"/ldpair"),
                   avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
@@ -134,7 +134,7 @@ file <- as.character(file)
   }
 
   if(is.null(token)) {
-    stop("Enter valid access token. Please register using the LDlink API Access tab: https://ldlink.nci.nih.gov/?tab=apiaccess")
+    stop("Enter valid access token. Please register using the LDlink API Access tab: https://ldlink.nih.gov/?tab=apiaccess")
   }
 
   if(!(all(output %in% avail_output))) {

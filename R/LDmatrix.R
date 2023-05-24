@@ -6,7 +6,7 @@
 #' @param snps list of between 2 - 1,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
 #' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"
 #' @param r2d r2d, either "r2" for LD R2 or "d" for LD D', default = "r2"
-#' @param token LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}
+#' @param token LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nih.gov/?tab=apiaccess}
 #' @param file Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.
 #' @param genome_build Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
 #' `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
@@ -30,7 +30,7 @@ LDmatrix <- function(snps,
                      token=NULL,
                      file = FALSE,
                      genome_build = "grch37",
-                     api_root="https://ldlink.nci.nih.gov/LDlinkRest") {
+                     api_root="https://ldlink.nih.gov/LDlinkRest") {
 
   LD_config <- list(ldmatrix_url=paste0(api_root,"/ldmatrix"),
                     avail_pop=c("YRI","LWK","GWD","MSL","ESN","ASW","ACB",
@@ -85,7 +85,7 @@ LDmatrix <- function(snps,
   }
 
   if(is.null(token)) {
-    stop("Enter valid access token. Please register using the LDlink API Access tab: https://ldlink.nci.nih.gov/?tab=apiaccess")
+    stop("Enter valid access token. Please register using the LDlink API Access tab: https://ldlink.nih.gov/?tab=apiaccess")
   }
 
   if(!(is.character(file) | file == FALSE)) {
