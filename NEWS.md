@@ -1,5 +1,5 @@
-# TBD
-* Change LDlink Domain URL to ldlink.nih.gov
+# LDlinkR 1.2.3.9000
+* Change LDlink Domain URL to https://ldlink.nih.gov/
 
 # LDlinkR 1.2.3
 * Add feature to provide root URL to API
