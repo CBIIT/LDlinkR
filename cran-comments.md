@@ -25,4 +25,3 @@ The HTML version of the manual validated locally and on all other platforms.  Th
 
 ## Reverse Dependency Check
 None found
-
