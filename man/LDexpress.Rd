@@ -15,7 +15,7 @@ LDexpress(
   genome_build = "grch37",
   token = NULL,
   file = FALSE,
-  api_root = "https://ldlink.nci.nih.gov/LDlinkRest"
+  api_root = "https://ldlink.nih.gov/LDlinkRest"
 )
 }
 \arguments{
@@ -46,7 +46,7 @@ equal to 1,000,000 basepairs (bp). Default value is -/+ 500,000bp.}
 `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
 data sets.  Default is GRCh37 (hg19).}
 
-\item{token}{LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
+\item{token}{LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nih.gov/?tab=apiaccess}}
 
 \item{file}{Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.}
 

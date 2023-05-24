@@ -11,7 +11,7 @@ LDproxy_batch(
   token = NULL,
   append = FALSE,
   genome_build = "grch37",
-  api_root = "https://ldlink.nci.nih.gov/LDlinkRest"
+  api_root = "https://ldlink.nih.gov/LDlinkRest"
 )
 }
 \arguments{
@@ -21,7 +21,7 @@ LDproxy_batch(
 
 \item{r2d}{either "r2" for LD R2 or "d" for LD D', default = "r2"}
 
-\item{token}{LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
+\item{token}{LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nih.gov/?tab=apiaccess}}
 
 \item{append}{A logical. If TRUE, output for each query variant is appended to a text file. If FALSE, output of each query variant is saved in its own text file.
 Default is FALSE.}

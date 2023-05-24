@@ -12,7 +12,7 @@ LDproxy(
   token = NULL,
   file = FALSE,
   genome_build = "grch37",
-  api_root = "https://ldlink.nci.nih.gov/LDlinkRest"
+  api_root = "https://ldlink.nih.gov/LDlinkRest"
 )
 }
 \arguments{
@@ -22,7 +22,7 @@ LDproxy(
 
 \item{r2d}{either "r2" for LD R2 or "d" for LD D', default = "r2"}
 
-\item{token}{LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
+\item{token}{LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nih.gov/?tab=apiaccess}}
 
 \item{file}{Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.}
 

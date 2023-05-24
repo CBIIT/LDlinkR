@@ -10,7 +10,7 @@ SNPchip(
   token = NULL,
   file = FALSE,
   genome_build = "grch37",
-  api_root = "https://ldlink.nci.nih.gov/LDlinkRest"
+  api_root = "https://ldlink.nih.gov/LDlinkRest"
 )
 }
 \arguments{
@@ -18,7 +18,7 @@ SNPchip(
 
 \item{chip}{chip or arrays, platform code(s) for a SNP chip array, ALL_Illumina, ALL_Affy or ALL, default=ALL}
 
-\item{token}{LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
+\item{token}{LDlink provided user token, default = NULL, register for token at  \url{https://ldlink.nih.gov/?tab=apiaccess}}
 
 \item{file}{Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.}
 

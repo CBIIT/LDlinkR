@@ -13,7 +13,7 @@ LDtrait(
   token = NULL,
   file = FALSE,
   genome_build = "grch37",
-  api_root = "https://ldlink.nci.nih.gov/LDlinkRest"
+  api_root = "https://ldlink.nih.gov/LDlinkRest"
 )
 }
 \arguments{
@@ -33,7 +33,7 @@ to be in the range 0 to 1. Default value is 0.1.}
 \item{win_size}{set genomic window size for LD calculation. Specify a value greater than or equal to zero and less than or
 equal to 1,000,000bp. Default value is -/+ 500,000 bp.}
 
-\item{token}{LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nci.nih.gov/?tab=apiaccess}}
+\item{token}{LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nih.gov/?tab=apiaccess}}
 
 \item{file}{Optional character string naming a path and file for saving results.  If file = FALSE, no file will be generated, default = FALSE.}
 
