@@ -3,7 +3,7 @@
 <br>
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/CBIIT/LDlinkR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CBIIT/LDlink/Ractions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/CBIIT/LDlinkR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CBIIT/LDlinkR/actions/workflows/R-CMD-check.yaml)
 [![CRAN
 version](https://www.r-pkg.org/badges/version-ago/LDlinkR)](https://cran.r-project.org/package=LDlinkR)
 [![metacran 
