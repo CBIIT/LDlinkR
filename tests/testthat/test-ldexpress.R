@@ -2,6 +2,7 @@ context("test-ldexpress")
 
 test_that("ldexpress throws an error for invalid input arguments", {
   skip_on_cran()
+  skip_on_ci()
   expect_error(LDexpress(snps = "r345", pop = "CEU", tissue =  c("ADI_SUB", "ADI_VIS_OME"),
                          token = Sys.getenv("LDLINK_TOKEN")
                         )
@@ -32,6 +33,7 @@ test_that("ldexpress throws an error for invalid input arguments", {
 
 test_that("ldexpress throws an error when thresholds are outside acceptable range", {
   skip_on_cran()
+  skip_on_ci()
   expect_error(LDexpress(snps = "rs4", tissue =  "Adipose_Subcutaneous", r2d_threshold = "99",
                          token = Sys.getenv("LDLINK_TOKEN")
                          )
