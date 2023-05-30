@@ -18,14 +18,14 @@ Authors@R:
              email = "mitchell.machiela@nih.gov",
              comment = c(ORCID = "0000-0001-6538-9705")))
 Maintainer: Timothy A. Myers <myersta@mail.nih.gov>
-Description: Provides access to the 'LDlink' API (<https://ldlink.nci.nih.gov/?tab=apiaccess>)
+Description: Provides access to the 'LDlink' API (<https://ldlink.nih.gov/?tab=apiaccess>)
     using the R console.  This programmatic access facilitates researchers who are 
     interested in performing batch queries in 1000 Genomes Project (2015) <doi:10.1038/nature15393> 
     data using 'LDlink'. 'LDlink' is an interactive and powerful suite of web-based tools for querying 
     germline variants in human population groups of interest. For more details, please see 
     Machiela et al. (2015) <doi:10.1093/bioinformatics/btv402>.
 License: GPL (>= 2)
-URL: https://ldlink.nci.nih.gov
+URL: https://ldlink.nih.gov
 BugReports: https://github.com/CBIIT/LDlinkR/issues
 Encoding: UTF-8
 Imports: 
