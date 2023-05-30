@@ -9,3 +9,6 @@ doc
 .DS_Store
 /doc/
 /Meta/
+
+# CRAN
+CRAN-SUBMISSION
