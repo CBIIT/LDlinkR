@@ -3,7 +3,7 @@
 <br>
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/CBIIT/LDlinkR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CBIIT/LDlinkR/actions/workflows/R-CMD-check.yaml)
+
 [![CRAN
 version](https://www.r-pkg.org/badges/version-ago/LDlinkR)](https://cran.r-project.org/package=LDlinkR)
 [![metacran 
@@ -11,6 +11,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/LDlinkR?color=blue)](ht
 ![CRAN/METACRAN](https://img.shields.io/cran/l/LDlinkR?color=yellow)
 [![status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Website ldlink.nih.gov](https://img.shields.io/website-up-down-brightgreen-red/http/ldlink.nih.gov.svg)](https://ldlink.nih.gov/?tab=home)
+[![R-CMD-check](https://github.com/timyers/ldlinkr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/timyers/ldlinkr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 
