@@ -1,13 +1,15 @@
-citHeader("To cite LDlinkR in publications use:")
+bibentry(
+         bibtype = "Article",
+         title   = "LDlinkR: An R Package for Rapidly Calculating Linkage Disequilibrium Statistics in Diverse Populations",
+         author  = c(as.person("Timothy A. Myers [aut]"),
+                     as.person("Stephen J. Chanock [aut]"),
+                     as.person("Mitchell J. Machiela [aut]")),
+         journal = "Frontiers in Genetics",
+         year    = "2020",
+         volume  = "11",
+         number  = "157",
+         doi     = "https://doi.org/10.3389/fgene.2020.00157",
 
-citEntry(
-  entry    = "Article",
-  title    = "LDlinkR: An R Package for Rapidly Calculating Linkage Disequilibrium Statistics in Diverse Populations",
-  author   = "Timothy A. Myers, Stephen J. Chanock and Mitchell J. Machiela",
-  journal  = "Frontiers in Genetics",
-  year     = 2020,
-  volume   = 11,
-  number   = 157,
-  doi      = "10.3389/fgene.2020.00157",
-  textVersion = "Myers TA, Chanock SJ and Machiela MJ (2020) LDlinkR: An R Package for Rapidly Calculating Linkage Disequilibrium Statistics in Diverse Populations. Front. Genet. 11:157. doi: 10.3389/fgene.2020.00157",
-)
+         header  = "To cite LDlinkR in publications use:"
+        )
+
