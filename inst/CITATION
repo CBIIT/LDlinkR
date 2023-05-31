@@ -8,7 +8,8 @@ bibentry(
          year    = "2020",
          volume  = "11",
          number  = "157",
-         doi     = "https://doi.org/10.3389/fgene.2020.00157",
+         doi     = "10.3389/fgene.2020.00157",
+         url     = "https://www.frontiersin.org/articles/10.3389/fgene.2020.00157",
 
          header  = "To cite LDlinkR in publications use:"
         )
