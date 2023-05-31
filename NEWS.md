@@ -1,6 +1,6 @@
 # LDlinkR 1.2.3.9000
-* Change LDlink Domain URL to https://ldlink.nih.gov/
-* Add Continuous Integration using Github Actions
+* Change LDlink Domain URL to https://ldlink.nih.gov/ (previous url root will no longer work following an unspecified amount of time).
+* Add Continuous Integration using Github Actions.
 
 # LDlinkR 1.2.3
 * Add feature to provide root URL to API
