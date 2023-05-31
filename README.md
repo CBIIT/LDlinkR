@@ -11,7 +11,8 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/LDlinkR?color=blue)](ht
 ![CRAN/METACRAN](https://img.shields.io/cran/l/LDlinkR?color=yellow)
 [![status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Website ldlink.nih.gov](https://img.shields.io/website-up-down-brightgreen-red/http/ldlink.nih.gov.svg)](https://ldlink.nih.gov/?tab=home)
-[![R-CMD-check](https://github.com/timyers/ldlinkr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/timyers/ldlinkr/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/CBIIT/ldlinkr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CBIIT/ldlinkr/actions/workflows/R-CMD-check.yaml)
+
 <!-- badges: end -->
 
 
