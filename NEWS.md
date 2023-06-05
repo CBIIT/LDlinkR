@@ -1,4 +1,5 @@
-# LDlinkR (development version)
+# LDlinkR 1.3.0.9000 (development version)
+* Add Zenodo DOI badge
 
 # LDlinkR 1.3.0
 * Change LDlink Domain URL to https://ldlink.nih.gov/ (previous url root will no longer work following an unspecified amount of time).
