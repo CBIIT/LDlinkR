@@ -1,6 +1,6 @@
 # LDlinkR 1.3.0.9000 (development version)
 * Add Zenodo DOI badge
-* To do: Increase maximum allowed variants in LDmatrix to 2500.
+* To do: Increase maximum allowed variants in LDmatrix to 3000.
 
 # LDlinkR 1.3.0
 * Change LDlink Domain URL to https://ldlink.nih.gov/ (previous url root will no longer work following an unspecified amount of time).
