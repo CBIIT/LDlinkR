@@ -3,7 +3,7 @@
 * 3/1/2024 - Increased maximum allowed variants in LDmatrix to 2500
 * 3/1/2024 - Added bp window size parameter to LDproxy
 * To do: Add bp window size parameter to LDproxy_batch
-* To do: Test all changes.=
+* To do: Test all changes
 * To do: Merge branch ldproxy-bp-window with branch master
 
 # LDlinkR 1.3.0.9000 (development version)
