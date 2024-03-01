@@ -575,7 +575,8 @@ LDpop(var1 = "rs496202",
             r2d = "r2", 
             token = NULL, 
             file = FALSE,
-            genome_build = "grch37"
+            genome_build = "grch37",
+            win_size = "500000"
            )
 
 Explore proxy and putative functional variants for a single query variant. Input is a single RS number and a population group. Depending on the number of query populations, this function could take some time to run.
@@ -588,6 +589,7 @@ Explore proxy and putative functional variants for a single query variant. Input
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nih.gov/?tab=apiaccess)
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
 -   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
+-   `win_size` Set basepair (bp) window size. Specify a value greater than or equal to zero and less than or equal to 1,000,000bp. Default value is 500,000bp.
 
 #### Usage: single reference population and default genome build GRCh37 (hg19).
 
