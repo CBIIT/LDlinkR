@@ -3,7 +3,7 @@
 #' Generates a data frame of pairwise linkage disequilibrium
 #' statistics.
 #'
-#' @param snps list of between 2 - 2,500 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
+#' @param snps list of between 2 - 2500 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")
 #' @param pop a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"
 #' @param r2d r2d, either "r2" for LD R2 or "d" for LD D', default = "r2"
 #' @param token LDlink provided user token, default = NULL, register for token at \url{https://ldlink.nih.gov/?tab=apiaccess}
