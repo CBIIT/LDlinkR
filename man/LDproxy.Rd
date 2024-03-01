@@ -12,6 +12,7 @@ LDproxy(
   token = NULL,
   file = FALSE,
   genome_build = "grch37",
+  win_size = "500000",
   api_root = "https://ldlink.nih.gov/LDlinkRest"
 )
 }
@@ -29,6 +30,9 @@ LDproxy(
 \item{genome_build}{Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
 `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
 data sets.  Default is GRCh37 (hg19).}
+
+\item{win_size}{set basepair (bp) window size. Specify a value greater than or equal to zero and less than or
+equal to 1,000,000bp. Default value is 500,000bp.}
 
 \item{api_root}{Optional alternative root url for API.}
 }
