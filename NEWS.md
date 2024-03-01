@@ -1,7 +1,7 @@
 # LDlinkR 1.3.0.9001 (dev version)
-# Added Zenodo DOI badge in version 1.3.0.9000
-# Increased maximum allowed variants in LDmatrix to 2500
-# To do: Add bp window size parameter to LDproxy and LDproxy_batch
+* Added Zenodo DOI badge in version 1.3.0.9000
+* Increased maximum allowed variants in LDmatrix to 2500
+* To do: Add bp window size parameter to LDproxy and LDproxy_batch
 
 # LDlinkR 1.3.0.9000 (development version)
 * Add Zenodo DOI badge
