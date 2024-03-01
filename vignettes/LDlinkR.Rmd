@@ -359,11 +359,11 @@ Output is a list that contains both the 'variant' and 'haplotype' output format 
              genome_build = "grch37"
             )
 
-Generates a data frame of pairwise linkage disequilibrium statistics. Input is a list of between 2 to 1000 variants. Desired output can be based on estimates of R^2^ or D'.
+Generates a data frame of pairwise linkage disequilibrium statistics. Input is a list of between 2 to 2500 variants. Desired output can be based on estimates of R^2^ or D'.
 
 #### Arguments
 
--   `snps`, list of between 2 - 1,000 variants, using an rsID or chromosome coordinate (GRCh37/hg19) (e.g. "chr7:24966446")
+-   `snps`, list of between 2 - 2500 variants, using an rsID or chromosome coordinate (GRCh37/hg19) (e.g. "chr7:24966446")
 -   `pop`, a 1000 Genomes Project population, uses three letter population code, (e.g. YRI or CEU), multiple allowed, default = "CEU"
 -   `r2d`, use either "r2" for pairwise R^2^ statistics or "d" for pairwise D' statistics
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nih.gov/?tab=apiaccess)
