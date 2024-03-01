@@ -11,6 +11,8 @@
 #' @param genome_build Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
 #' `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
 #' data sets.  Default is GRCh37 (hg19).
+#' @param win_size set basepair (bp) window size. Specify a value greater than or equal to zero and less than or
+#' equal to 1,000,000bp. Default value is 500,000bp.
 #' @param api_root Optional alternative root url for API.
 #'
 #' @return a data frame
@@ -27,6 +29,7 @@ LDproxy <- function(snp,
                     token=NULL,
                     file = FALSE,
                     genome_build = "grch37",
+                    win_size = "500000",
                     api_root="https://ldlink.nih.gov/LDlinkRest") {
 
   LD_config <- list(ldproxy.url=paste0(api_root,"/ldproxy"),
@@ -94,10 +97,23 @@ file <- as.character(file)
     stop("Not an available genome build.")
   }
 
+ # first, ensure 'win_size' is type 'integer'
+  win_size <- as.integer(win_size)
+
+  if (!(win_size >= 0 & win_size <= 1000000))
+   {
+    stop(paste("Window size must be between 0 and 1000000 bp. Input window size was ", win_size, " bp.", sep=""))
+   } else {
+     # convert back to character
+     win_size <- as.character(win_size)
+   }
+
+
 # Request body
 body <- list(paste("var=", snp, sep=""),
              paste("pop=", pop, sep=""),
              paste("r2_d=", r2d, sep=""),
+             paste("window=", win_size, sep=""),
              paste("genome_build=", genome_build, sep=""),
              paste("token=", token, sep=""))
 
