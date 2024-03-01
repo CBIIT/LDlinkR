@@ -16,7 +16,7 @@ LDmatrix(
 )
 }
 \arguments{
-\item{snps}{list of between 2 - 1,000 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")}
+\item{snps}{list of between 2 - 2500 variants, using an rsID or chromosome coordinate (e.g. "chr7:24966446")}
 
 \item{pop}{a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU"}
 
