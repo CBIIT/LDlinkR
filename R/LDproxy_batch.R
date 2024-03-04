@@ -12,6 +12,8 @@
 #' @param genome_build Choose between one of the three options...`grch37` for genome build GRCh37 (hg19),
 #' `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project
 #' data sets.  Default is GRCh37 (hg19).
+#' @param win_size set basepair (bp) window size. Specify a value greater than or equal to zero and less than or
+#' equal to 1,000,000bp. Default value is 500,000bp.
 #' @param api_root Optional alternative root url for API.
 #'
 #' @return text file(s) are saved to the current working directory.
@@ -28,6 +30,7 @@ LDproxy_batch <- function(snp,
                           token=NULL,
                           append = FALSE,
                           genome_build = "grch37",
+                          win_size = "500000",
                           api_root="https://ldlink.nih.gov/LDlinkRest") {
 
   snp <- as.data.frame(snp)
@@ -42,6 +45,7 @@ LDproxy_batch <- function(snp,
                           r2d = r2d,
                           token = token,
                           genome_build = genome_build,
+                          win_size = win_size,
                           api_root = api_root)
       if(!(grepl("error", df_proxy[1,1])))
       {
@@ -64,6 +68,7 @@ LDproxy_batch <- function(snp,
                           r2d = r2d,
                           token = token,
                           genome_build = genome_build,
+                          win_size = win_size,
                           api_root = api_root)
       if(!(grepl("error", df_proxy[1,1])))
       {
