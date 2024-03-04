@@ -622,7 +622,7 @@ head(my_proxies)
     ## 5            G=C,C=T         3a     <NA>
     ## 6            G=C,C=T          7     <NA>
 
-Includes information on all variants -/+ 500 Kb of the query variant with a pairwise R^2^ value greater than 0.01.
+Includes information on all variants within the specified window size of the query variant with a pairwise R^2^ value greater than 0.01.
 
 ------------------------------------------------------------------------
 
@@ -635,10 +635,11 @@ Includes information on all variants -/+ 500 Kb of the query variant with a pair
                   r2d = "r2", 
                   token = NULL, 
                   append = FALSE,
-                  genome_build = "grch37"
+                  genome_build = "grch37",
+                  win_size = "500000"
                  )
 
-Query *LDproxy* using a list of query variants. *LDproxy_batch* will make sequential queries, one query per variant. Concurrent queries are not permitted by the LDlink API. Output is saved as text file(s) to the current working directory. Depending on the number of query variants and reference populations selected, this function could time some time to run.
+Query *LDproxy* using a list of query variants. *LDproxy_batch* will make sequential queries, one query per variant. Concurrent queries are not permitted by the LDlink API. Output is saved as text file(s) to the current working directory. Depending on the number of query variants and reference populations selected, this function could take some time to run.
 
 #### Arguments
 
@@ -648,6 +649,7 @@ Query *LDproxy* using a list of query variants. *LDproxy_batch* will make sequen
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nih.gov/?tab=apiaccess)
 -   `append`, a logical, if TRUE, output for each query variant is appended to a single text file and saved to the current working directory. If FALSE, output for each query variant is saved in its own text file with the query variant as the filename. Default value is FALSE.
 -   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
+-   `win_size` Set basepair (bp) window size. Specify a value greater than or equal to zero and less than or equal to 1,000,000bp. Default value is 500,000bp.
 
 #### Usage: multiple variants, default `pop` and `r2d`
 
