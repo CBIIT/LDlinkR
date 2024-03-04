@@ -165,7 +165,7 @@ Search if a list of genomic variants (or variants in LD with those variants) is 
 -   `r2d`, Select either "r2" for LD R^2^ (R-squared) or "d" for LD D', default = "r2".
 -   `r2d_threshold`, R-squared or D' (depends on 'r2d' user input parameter) threshold for LD filtering. Any variants within -/+ of the specified genomic window and R^2^ or D' less than the threshold will be removed. Value needs to be in the range 0 to 1. Default value is 0.1.
 -   `p_threshold`, define the eQTL significance threshold used for returning query results. Default value is 0.1 which returns all GTEx eQTL associations with P-value less than 0.1.
--   `win_size`, set genomic base pair window size for LD calculation. Specify a value greater than or equal to zero and less than or equal to 1000000 basepairs (bp). Default value is -/+ 500000 bp.
+-   `win_size`, set genomic base pair window size for LD calculation. Specify a value greater than or equal to zero and less than or equal to 1000000 base pairs (bp). Default value is -/+ 500000 bp.
 -   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nih.gov/?tab=apiaccess)
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE.
@@ -589,7 +589,7 @@ Explore proxy and putative functional variants for a single query variant. Input
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nih.gov/?tab=apiaccess)
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE
 -   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
--   `win_size` Set basepair (bp) window size. Specify a value greater than or equal to zero and less than or equal to 1,000,000bp. Default value is 500,000bp.
+-   `win_size` Set base pair (bp) window size. Specify a value greater than or equal to zero and less than or equal to 1,000,000bp. Default value is 500,000bp.
 
 #### Usage: single reference population and default genome build GRCh37 (hg19).
 
@@ -649,7 +649,7 @@ Query *LDproxy* using a list of query variants. *LDproxy_batch* will make sequen
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nih.gov/?tab=apiaccess)
 -   `append`, a logical, if TRUE, output for each query variant is appended to a single text file and saved to the current working directory. If FALSE, output for each query variant is saved in its own text file with the query variant as the filename. Default value is FALSE.
 -   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
--   `win_size` Set basepair (bp) window size. Specify a value greater than or equal to zero and less than or equal to 1,000,000bp. Default value is 500,000bp.
+-   `win_size` Set base pair (bp) window size. Specify a value greater than or equal to zero and less than or equal to 1,000,000bp. Default value is 500,000bp.
 
 #### Usage: multiple variants, default `pop` and `r2d`
 
@@ -704,7 +704,7 @@ Search if a list of variants (or variants in LD with those variants) have been p
 -   `pop`, a 1000 Genomes Project population, (e.g. YRI or CEU), multiple allowed, default = "CEU". See the *list_pop* function in the utilities section below for available human populations and their abbreviation codes.
 -   `r2d`, use "r2" to filter desired output from a threshold based on estimated LD R2 (R squared) or "d" for LD D' (D-prime), default = "r2".
 -   `r2d_threshold`, R-squared or D' (depends on 'r2d' user input parameter) threshold for LD filtering. Any variants within -/+ of the specified genomic window and R^2^ or D' less than the threshold will be removed. Value needs to be in the range 0 to 1. Default value is 0.1.
--   `win_size`, set genomic base pair window size for LD calculation. Specify a value greater than or equal to zero and less than or equal to 1000000 basepairs (bp). Default value is -/+ 500000 bp.
+-   `win_size`, set genomic base pair window size for LD calculation. Specify a value greater than or equal to zero and less than or equal to 1000000 base pairs (bp). Default value is -/+ 500000 bp.
 -   `token`, LDlink provided user access token is required, default = NULL, register for a free token on the [LDlink web site.](https://ldlink.nih.gov/?tab=apiaccess).
 -   `file`, optional character string naming a path and file for saving results. If file = FALSE, no file will be generated, default = FALSE.
 -   `genome_build` Choose between one of three options...`grch37` for genome build GRCh37 (hg19), `grch38` for GRCh38 (hg38), or `grch38_high_coverage` for GRCh38 High Coverage (hg38) 1000 Genome Project data sets.  Default is GRCh37 (hg19).
@@ -729,7 +729,7 @@ The following is the output from the above function call.
     ## 2                1                 1      0.4495            0.0072 0.0047-0.0097   4e-08
 
 
-#### Usage: Multiple query variants, multiple reference populations and *win_size* set to 750000 basepairs (bp), default genome build GRCh37(hg19).
+#### Usage: Multiple query variants, multiple reference populations and *win_size* set to 750000 base pairs (bp), default genome build GRCh37(hg19).
 
 ```{r eval=FALSE}
 LDtrait(snps = c("rs114", "rs496202", "rs345"),
