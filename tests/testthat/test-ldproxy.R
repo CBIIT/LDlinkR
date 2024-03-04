@@ -42,3 +42,14 @@ test_that("ldproxy works using chr coord w/ upper case", {
   skip_on_ci()
   expect_named(LDproxy("Chr7:24966446", "YRI", token = Sys.getenv("LDLINK_TOKEN")))
 })
+
+test_that("ldproxy throws an error if `win_size` is outside acceptable range", {
+  skip_on_cran()
+  skip_on_ci()
+  expect_error(LDproxy(snp = "rs456",
+                       pop = "YRI",
+                       token = Sys.getenv("LDLINK_TOKEN"),
+                       win_size = "1000001"
+                      )
+               )
+})
