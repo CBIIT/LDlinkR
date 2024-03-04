@@ -2,6 +2,7 @@ ADI
 Affy
 CEU
 CMD
+DOI
 EBI
 GRCH
 GRCh
@@ -41,6 +42,7 @@ VIS
 WORDLIST
 YRI
 YourTokenHere
+Zenodo
 abc
 al
 allelic
@@ -53,6 +55,7 @@ cM
 chr
 cis
 dbSNP
+dev
 doi
 eQTL
 et
@@ -66,6 +69,7 @@ indels
 ldexpress
 ldhap
 ldlink
+ldproxy
 liftOver
 metacran
 nih
