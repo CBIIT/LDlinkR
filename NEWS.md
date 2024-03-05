@@ -5,6 +5,7 @@
 * 3/4/2024 - Add bp window size parameter to LDproxy_batch
 * 3/4/2024 - Test all changes
 * 3/4/2024 - Update dev version number to 1.3.0.9002
+* 3/4/2024 - Update all package documentation and vignette with changes above
 * To do: Merge branch ldproxy-bp-window with branch master
 
 # LDlinkR 1.3.0.9000 (development version)
