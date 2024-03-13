@@ -1,10 +1,11 @@
-## Submission of the 9th release
-* Change LDlink Domain URL to https://ldlink.nih.gov/ 
-* Add Continuous Integration using Github Actions
-* Update citation file with bibentry style
+## Submission of the 10th release
+* Added Zenodo DOI badge
+* Increased maximum allowed variants in `LDmatrix` to 2500
+* Added bp window size parameter to `LDproxy`
+* Added bp window size parameter to `LDproxy_batch`
 
 ## Test environments
-* local R installation, R 4.2.3, MacOS Ventura v.13.4
+* local R installation, R 4.3.2, MacOS Sonoma v.14.3.1
 * win-builder (devel)
 * Rhub
   * Windows Server 2022, R-devel, 64 bit
@@ -18,7 +19,9 @@
   * windows-latested (release)
   
 ## R CMD check results
-There were no ERRORs or WARNINGs. 
+
+0 errors | 0 warnings | 3 notes 
+
 There were three NOTEs:
 
 * This NOTE is only found during Rhub Fedora Linux, R-devel, clang, gfortran and 
@@ -30,7 +33,7 @@ Skipping checking HTML validation: no command 'tidy' found
 ```
 The HTML version of the manual validated locally and on all other platforms.  This would seem to be an issue with the path to `tidy` on the external Linux servers.
 
-* The following two NOTEs were only found during Windows Server 2022, R-devel, 64 bit:
+* The following two NOTEs were only found during Rhub Windows Server 2022, R-devel, 64 bit:
 
 ```
 * checking for detritus in the temp directory ... NOTE
@@ -46,5 +49,9 @@ Found the following files/directories:
 ```
 As noted in [R-hub issue #506](https://github.com/r-hub/rhub/issues/560), this is probably an R-hub issue and can be ignored.
 
-## Reverse Dependency Check
-None found
+## revdepcheck results
+
+We checked 2 reverse dependencies (1 from CRAN + 1 from Bioconductor), comparing R CMD check results across CRAN and dev versions of this package.
+
+ * We saw 0 new problems
+ * We failed to check 0 packages
