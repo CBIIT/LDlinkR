@@ -1,12 +1,8 @@
-# LDlinkR 1.3.0.9002 (dev version)
+# LDlinkR 1.4.0
 * Added Zenodo DOI badge in version 1.3.0.9000
 * 3/1/2024 - Increased maximum allowed variants in LDmatrix to 2500
 * 3/1/2024 - Added bp window size parameter to LDproxy
 * 3/4/2024 - Add bp window size parameter to LDproxy_batch
-* 3/4/2024 - Test all changes
-* 3/4/2024 - Update dev version number to 1.3.0.9002
-* 3/4/2024 - Update all package documentation and vignette with changes above
-* 3/7/2024 - Merge branch ldproxy-bp-window with branch master
 
 # LDlinkR 1.3.0.9000 (development version)
 * Add Zenodo DOI badge
