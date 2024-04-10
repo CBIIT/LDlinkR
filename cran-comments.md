@@ -1,12 +1,12 @@
 ## Submission of the 10th release
-* Added Zenodo DOI badge
 * Increased maximum allowed variants in `LDmatrix` to 2500
-* Added bp window size parameter to `LDproxy`
-* Added bp window size parameter to `LDproxy_batch`
+* Added base pair window size parameter to `LDproxy`
+* Added base pair window size parameter to `LDproxy_batch`
+* Added Zenodo DOI badge
 
 ## Test environments
 * local R installation, R 4.3.2, MacOS Sonoma v.14.3.1
-* win-builder (devel)
+* win-builder (devel, release, oldrelease)
 * Rhub
   * Windows Server 2022, R-devel, 64 bit
   * Ubuntu Linux 20.04.1 LTS, R-release, GCC
@@ -20,9 +20,9 @@
   
 ## R CMD check results
 
-0 errors | 0 warnings | 3 notes 
+0 errors | 0 warnings | 5 notes 
 
-There were three NOTEs:
+There were five NOTEs:
 
 * This NOTE is only found during Rhub Fedora Linux, R-devel, clang, gfortran and 
 Rhub Ubuntu Linux 20.04.1 LTS, R-release, GCC
@@ -49,9 +49,34 @@ Found the following files/directories:
 ```
 As noted in [R-hub issue #506](https://github.com/r-hub/rhub/issues/560), this is probably an R-hub issue and can be ignored.
 
+* The following two NOTEs were only found intermittently during `R CMD checks` on a **local** macOS system:
+
+```
+Found the following (possibly) invalid URLs:
+    URL: https://ldlink.nih.gov/?tab=apiaccess
+    From:....
+    Status: Error
+      Message: libcurl error code 35:
+
+```
+
+The URL in question is operated and maintained by a USA government research institute. It is accessible via browsers, suggesting an intermittent network or SSL handshake issue.
+
+```
+Found the following HTML validation problems:
+  LDexpress.html:4:1 (LDexpress.Rd:5): Warning: <link> inserting "type" attribute
+  LDexpress.html:12:1 (LDexpress.Rd:5): Warning: <script> proprietary attribute "onload"
+  ....
+```
+
+The validation notes are intermittent and arise from automatically generated documentation. These do not impact functionality or user accessibility and reflect the output of current documentation tools.
+
 ## revdepcheck results
 
-We checked 2 reverse dependencies (1 from CRAN + 1 from Bioconductor), comparing R CMD check results across CRAN and dev versions of this package.
+We checked 2 reverse dependencies (1 from CRAN + 1 from Bioconductor), comparing `R CMD check` results across CRAN and dev versions of this package.
 
- * We saw 0 new problems
- * We failed to check 0 packages
+ * We saw 0 problems with 1 package from CRAN
+ * One check failed for 1 package from Bioconductor
+ 
+The maintainer of the Bioconductor package (`GRaNIE`) was notified on 2024-03-20 (~3 weeks ago) via email of the upcoming new release of `LDlinkR`.
+ 
