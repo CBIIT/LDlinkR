@@ -57,7 +57,6 @@ Found the following (possibly) invalid URLs:
     From:....
     Status: Error
       Message: libcurl error code 35:
-
 ```
 
 The URL in question is operated and maintained by a USA government research institute. It is accessible via browsers, suggesting an intermittent network or SSL handshake issue.
