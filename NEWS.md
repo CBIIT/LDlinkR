@@ -1,3 +1,5 @@
+# LDlinkR (development version)
+
 # LDlinkR 1.4.0
 * Added Zenodo DOI badge in version 1.3.0.9000
 * 3/1/2024 - Increased maximum allowed variants in LDmatrix to 2500
