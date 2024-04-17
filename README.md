@@ -12,7 +12,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/LDlinkR?color=blue)](ht
 [![status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Website ldlink.nih.gov](https://img.shields.io/website-up-down-brightgreen-red/http/ldlink.nih.gov.svg)](https://ldlink.nih.gov/?tab=home)
 [![R-CMD-check](https://github.com/CBIIT/ldlinkr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CBIIT/ldlinkr/actions/workflows/R-CMD-check.yaml)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7996355.svg)](https://doi.org/10.5281/zenodo.7996355)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10986771.svg)](https://doi.org/10.5281/zenodo.10986771)
 
 <!-- badges: end -->
 
